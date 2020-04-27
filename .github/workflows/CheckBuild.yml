@@ -24,7 +24,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g react-scripts typescript tsc yarn  || true
+    - run: npm install -g react-scripts || true
+    - run: npm install -g typescript || true
+    - run: npm install -gtsc || true
+    - run: npm install -g yarn || true
     - run: yarn install
     - run: yarn run build
     - name: Snyk
