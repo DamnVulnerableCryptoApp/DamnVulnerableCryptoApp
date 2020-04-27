@@ -37,4 +37,4 @@ jobs:
         #args: # optional
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        CI: true
+        CI: false
