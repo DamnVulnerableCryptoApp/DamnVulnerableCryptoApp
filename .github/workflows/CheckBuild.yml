@@ -27,7 +27,7 @@ jobs:
     - run: npm install -g react-scripts
     - run: npm install -g typescript
     - run: npm install -g yarn
-    - run: source ~/.bash_profil
+    - run: source ~/.bash_profile
     - run: yarn install
     - run: yarn run build
     - name: Snyk
