@@ -26,8 +26,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install -g react-scripts || true
     - run: npm install -g typescript || true
-    - run: npm install -gtsc || true
+    - run: npm install -g tsc || true
     - run: npm install -g yarn || true
+    - run: source ~/.bash_profil
     - run: yarn install
     - run: yarn run build
     - name: Snyk
