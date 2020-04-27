@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,8 +24,19 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npm install -g react-scripts
     - run: npm install -g yarn
+    - run: yarn add -g typescript
+    - run: source ~/.bash_profile
     - run: yarn install
     - run: yarn run build
+    - name: Snyk
+      uses: snyk/actions@0.1.1
+      with:
+        # Which Snyk command to run, defaults to test
+        command: test # optional, default is test
+        # Additional arguments to pass to Snyk
+        #args: # optional
       env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         CI: true
