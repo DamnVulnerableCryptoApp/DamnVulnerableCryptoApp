@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Snyk
-      uses: snyk/actions/node@0master
+      uses: snyk/actions@0.1.1
       with:
         # Which Snyk command to run, defaults to test
         command: test # optional, default is test
