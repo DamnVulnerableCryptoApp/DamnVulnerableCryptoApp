@@ -24,9 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g react-scripts
-    - run: npm install -g yarn
-  
+    - run: npm install -g react-scripts tsc yarn  
     - run: yarn install
     - run: yarn run build
       env:
