@@ -2,8 +2,8 @@ import BlockReordering from "../BlockReordering/BlockReordering";
 import ByteAtATime from "../ByteAtATime/ByteAtATime";
 import ChecksumCollision from "../ChecksumCollision/ChecksumCollision";
 import ClassicCipher from "../ClassicCipher/ClassicCipher";
-import Empty from "../Common/Empty";
 import InsecureRandom from "../InsecureRandom/InsecureRandom";
+import IvDetection from "../IvDetection/IvDetection";
 import KeyDisclosure from "../KeyDisclosure/KeyDisclosure";
 import KnownPlaintextAndKeyReuse from "../KnownPlaintextAndKeyReuse/KnownPlaintextAndKeyReuse";
 import PaddingOracle from "../PaddingOracle/PaddingOracle";
@@ -72,11 +72,19 @@ const Challenges: ChallengeData[] = [
     explanation: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat."
   },
 
+  // {
+  //   name: "Chosen Plaintext",
+  //   component: Empty,
+  //   description: "",
+  //   url: "url",
+  //   objective: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.",
+  //   explanation: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat."
+  // },
   {
-    name: "Chosen Plaintext",
-    component: Empty,
+    name: "IV Detection",
+    component: IvDetection,
     description: "",
-    url: "url",
+    url: "/iv-detection",
     objective: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.",
     explanation: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat."
   },
