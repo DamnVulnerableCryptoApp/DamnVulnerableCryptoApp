@@ -12,7 +12,7 @@ const rootDir = __dirname;
 const frontend = path.join(rootDir, "../../frontend/build");
 
 $log.level = "info";
-$log.name = "DVC";
+$log.name = "DamnVulnerableCryptoApp";
 
 @ServerSettings({
   rootDir,
@@ -41,9 +41,8 @@ export class Server extends ServerLoader {
 
   public corsOptionsDelegate(req: any, callback: any) {
     let corsOptions;
-    const origin = req.header('Origin');
 
-    if (origin && origin.endsWith(":4000")) // disable cors
+    if (process.env.NODE_ENV === "development") // disable cors
       corsOptions = { origin: true };
     else
       corsOptions = { origin: false };
