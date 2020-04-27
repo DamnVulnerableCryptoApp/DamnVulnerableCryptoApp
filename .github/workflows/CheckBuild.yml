@@ -25,8 +25,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install -g react-scripts
-    - run: npm install -g typescript
     - run: npm install -g yarn
+    - run: yarn add -g typescript
     - run: source ~/.bash_profile
     - run: yarn install
     - run: yarn run build
