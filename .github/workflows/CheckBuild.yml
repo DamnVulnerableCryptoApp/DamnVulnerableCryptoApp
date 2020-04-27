@@ -30,13 +30,3 @@ jobs:
     - run: yarn run build
       env:
         CI: ""
-    - name: Snyk
-      uses: snyk/actions@0.1.1
-      with:
-        # Which Snyk command to run, defaults to test
-        command: test # optional, default is test
-        # Additional arguments to pass to Snyk
-        #args: # optional
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        CI: ""
