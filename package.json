@@ -9,7 +9,10 @@
   "scripts": {
     "build-react": "cd frontend && yarn run build",
     "build-be": "cd backend && yarn build",
-    "build": "yarn run build-react && yarn run build-be",
+    "build": "yarn install-deps && yarn run build-react && yarn run build-be",
+    "install-deps:be": "cd backend && yarn install",
+    "install-deps:react": "cd frontend && yarn install",
+    "install-deps": "yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod"
   },
   "repository": {

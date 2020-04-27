@@ -24,11 +24,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g react-scripts
     - run: npm install -g yarn
-    - run: yarn add -g typescript
-    - run: source ~/.bash_profile
-    - run: yarn install
+    - run: yarn add -g typescript react-scripts
+    - run: yarn run install-deps
     - run: yarn run build
     - name: Snyk
       uses: snyk/actions@0.1.1
