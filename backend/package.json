@@ -6,7 +6,7 @@
     "build": "yarn tsc",
     "tsc": "tsc --project tsconfig.compile.json",
     "tsc:w": "tsc --project tsconfig.json -w",
-    "start": "nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
+    "start": "cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
     "test:lint": "tslint --project tsconfig.json",
     "test:lint:fix": "tslint --project tsconfig.json --fix"

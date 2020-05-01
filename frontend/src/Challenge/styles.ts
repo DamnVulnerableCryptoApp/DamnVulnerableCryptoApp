@@ -14,6 +14,10 @@ const useStyles = makeStyles({
     marginBottom: '20px',
     textAlign: 'center'
   },
+  documentation: {
+    padding: '30px',
+    textAlign: 'center'
+  }
 });
 
 export default useStyles;

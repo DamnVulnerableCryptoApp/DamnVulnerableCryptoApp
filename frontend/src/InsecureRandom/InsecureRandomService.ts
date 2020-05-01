@@ -5,7 +5,7 @@ interface CheckResponse {
   flag: string;
 }
 
-export class InsecureRandomService {
+export class InsecureRandomService extends ApiRequest {
 
 
   public static CHALLENGEPATH = `/random`;
@@ -16,7 +16,7 @@ export class InsecureRandomService {
     return new Promise((resolve, reject) => {
 
       const path = `${InsecureRandomService.CHALLENGEPATH}/`;
-      ApiRequest.do(path).then(res => resolve(res.coupons)).catch(ex => reject(ex));
+      super.do(path).then(res => resolve(res.coupons)).catch(ex => reject(ex));
 
     });
   }
@@ -25,7 +25,7 @@ export class InsecureRandomService {
     const c = InsecureRandomService.unformatCoupon(coupon);
     const path = `${InsecureRandomService.CHALLENGEPATH}/check?couponCode=${c}`;
 
-    return ApiRequest.do(path);
+    return super.do(path);
   }
 
   public static formatCoupon(coupon: number): string {

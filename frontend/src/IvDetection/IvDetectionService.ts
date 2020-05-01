@@ -1,15 +1,15 @@
 import ApiRequest from "../Common/ApiRequest";
 
-export class IvDetectionService {
+export class IvDetectionService extends ApiRequest {
 
   // private static STORAGE_KEY = "";
-  public static CHALLENGEPATh = ``;
+  public static CHALLENGEPATH = `/aes/cbc/iv-detection`;
 
 
   public static async doSomething(): Promise<string> {
-    const path = `${IvDetectionService.CHALLENGEPATh}/`;
+    const path = `${IvDetectionService.CHALLENGEPATH}/`;
 
-    return ApiRequest.do(path);
+    return super.do(path);
   }
 
 

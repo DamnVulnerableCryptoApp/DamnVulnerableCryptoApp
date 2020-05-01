@@ -1,6 +1,6 @@
 import ApiRequest from '../Common/ApiRequest';
 
-export class PaddingOracleService {
+export class PaddingOracleService extends ApiRequest {
 
   public static CHALLENGEPATH = `/aes/cbc/padding-oracle`;
 
@@ -9,7 +9,7 @@ export class PaddingOracleService {
     return new Promise((resolve, reject) => {
       const path = `${PaddingOracleService.CHALLENGEPATH}`;
 
-      ApiRequest.do(path).then((response) => {
+      super.do(path).then((response) => {
         localStorage.setItem("poa-token", response.token);
         resolve();
       });
@@ -23,7 +23,7 @@ export class PaddingOracleService {
     const token = localStorage.getItem("poa-token");
     const headers: any = { token };
 
-    return ApiRequest.do(path, { headers });
+    return super.do(path, { headers });
 
 
 

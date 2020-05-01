@@ -56,10 +56,10 @@ export class PaddingOracleController {
   }
 
   private encryptToken(token: string): string {
-    const decipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(PaddingOracleController.KEY), PaddingOracleController.IV);
+    const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(PaddingOracleController.KEY), PaddingOracleController.IV);
     const tokenBuffer = Buffer.from(token, 'utf8');
-    let encrypted = decipher.update(tokenBuffer);
-    encrypted = Buffer.concat([encrypted, decipher.final()]);
+    let encrypted = cipher.update(tokenBuffer);
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
 
     return encrypted.toString("hex");
   }

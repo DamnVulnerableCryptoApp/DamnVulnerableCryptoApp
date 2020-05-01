@@ -1,6 +1,6 @@
 import ApiRequest from '../Common/ApiRequest';
 
-export class ClassicService {
+export class ClassicService extends ApiRequest {
 
   public static CHALLENGEPATH = `/classic/substitution`;
 
@@ -9,7 +9,7 @@ export class ClassicService {
     return new Promise((resolve, reject) => {
       const path = `${ClassicService.CHALLENGEPATH}`;
 
-      ApiRequest.do(path).then((response) => {
+      super.do(path).then((response) => {
         resolve(response.data);
       });
     });
@@ -20,7 +20,7 @@ export class ClassicService {
 
     const path = `${ClassicService.CHALLENGEPATH}/check?answer=` + answer;
 
-    return ApiRequest.do(path);
+    return super.do(path);
   }
 
 }

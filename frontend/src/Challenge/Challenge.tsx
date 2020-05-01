@@ -1,12 +1,11 @@
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, Paper, Typography } from "@material-ui/core";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Button, Grid, Paper, Typography } from "@material-ui/core";
+import DescriptionIcon from '@material-ui/icons/Description';
 import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../App/LayoutContext";
 import { ProgressService } from "../App/ProgressService";
 import Flag from "../Flag/Flag";
 import { IChallengeContainerProps } from "./IChallengeContainerProps";
 import useStyles from "./styles";
-
 
 const validFlag = (flag: string) => flag && flag.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/);
 
@@ -55,23 +54,17 @@ const Challenge = (props: IChallengeContainerProps) => {
 
         <Paper className={classes.mainContainer}>
           <Typography variant="h4" gutterBottom className={classes.title}> {challengeData.name}</Typography>
-          <Flag flag={flag} resetChallenge={resetChallange} />
           <Component flag={flag} setFlag={setFlag} />
         </Paper>
       </Grid>
       <Grid item md={4}>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography variant="h6">About {challengeData.name}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails><Typography>{challengeData.explanation}</Typography></ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography variant="h6">Help</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails><Typography>{challengeData.objective}</Typography></ExpansionPanelDetails>
-        </ExpansionPanel>
+        <Flag flag={flag} resetChallenge={resetChallange} />
+        <Paper className={classes.documentation}>
+          <Typography variant="h6">Documentation</Typography>
+          <DescriptionIcon style={{ fontSize: 200, color: '#EEE' }} />
+          <Typography>If you are having trouble with this challenge take a look at our documentation</Typography>
+          <Button size="small" fullWidth variant="contained" color="primary" href={"docs" + props.obj.url}>Docs</Button>
+        </Paper>
       </Grid>
     </Grid>
   );

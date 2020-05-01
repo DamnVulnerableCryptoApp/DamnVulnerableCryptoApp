@@ -10,26 +10,26 @@ export interface IAdminResponse {
   flag: string;
 }
 
-export class ByteAtATimeService {
+export class ByteAtATimeService extends ApiRequest {
 
   private static STORAGE_KEY = "byte-at-a-time-token";
-  public static CHALLENGEPATh = `/aes/ecb/byte-at-a-time`;
+  public static CHALLENGEPATH = `/aes/ecb/byte-at-a-time`;
 
 
   public static async askPermission(): Promise<IAccessResponse> {
 
-    const path = `${ByteAtATimeService.CHALLENGEPATh}/request-access`;
+    const path = `${ByteAtATimeService.CHALLENGEPATH}/request-access`;
     const params: any = { method: 'post', headers: { 'username': 'KeepingitFake' } };
 
-    return ApiRequest.do(path, params);
+    return super.do(path, params);
   }
 
   public static async adminLogin(password: string): Promise<IAdminResponse> {
 
-    const path = `${ByteAtATimeService.CHALLENGEPATh}/admin`;
+    const path = `${ByteAtATimeService.CHALLENGEPATH}/admin`;
     const params: any = { method: 'post', headers: { "Authorization": `Basic ${btoa(`admin:${password}`)}` } };
 
-    return ApiRequest.do(path, params);
+    return super.do(path, params);
   }
 
 

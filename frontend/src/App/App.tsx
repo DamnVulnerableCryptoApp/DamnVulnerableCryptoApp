@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Challenge from "../Challenge/Challenge";
 import Challenges, { ChallengeData } from "../Challenge/Challenges";
 import Dashboard from "../dashboard/Dashboard";
+import Documentation from "../Documentation/Documentation";
 import LogoMenu from '../Images/logo_menu.png';
 import { LayoutContext } from "./LayoutContext";
 import { ProgressService } from "./ProgressService";
@@ -34,6 +35,10 @@ const App = () => {
     return () => <Challenge obj={c} />;
   };
 
+  const renderDocumentation = (c: ChallengeData) => {
+    return () => <Documentation doc={c.url} />;
+  };
+
   return (
     <div className="App">
       <LayoutContext.Provider value={layoutInitialState}>
@@ -57,7 +62,10 @@ const App = () => {
             {
               Challenges.map((c) => {
                 return (
-                  <Route key={c.name} path={c.url} render={renderChallenge(c)} />
+                  <Box key={c.name}>
+                    <Route path={"/docs" + c.url} render={renderDocumentation(c)} exact={true} />
+                    <Route path={c.url} render={renderChallenge(c)} exact={true} />
+                  </Box>
                 );
               })
             }

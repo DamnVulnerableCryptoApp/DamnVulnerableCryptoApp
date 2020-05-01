@@ -1,4 +1,4 @@
-import { Card, CardContent, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Box, CardContent, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import amber from '@material-ui/core/colors/amber';
 import grey from '@material-ui/core/colors/grey';
@@ -14,8 +14,9 @@ interface FlagProps {
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    'margin-bottom': '50px'
+    marginBottom: '50px',
+    textAlign: 'center',
+    border: '1px solid #CCC'
   },
 });
 
@@ -48,13 +49,9 @@ const Flag = (props: FlagProps) => {
 
 
   return (
-    <Card className={classes.root} style={{ backgroundColor: cardColor }}>
+    <Box className={classes.root} style={{ backgroundColor: cardColor }}>
       <FlagIcon style={{ fontSize: 150, color: flagColor }} />
-      <CardContent style={{ color: fontColor, width: '100%' }}>
-
-        <IconButton onClick={props.resetChallenge} disabled={!props.flag} style={{ float: 'right', marginTop: '-10px', color: refreshColor }} aria-label="Reset Challenge" component="span">
-          <ReplayIcon />
-        </IconButton>
+      <CardContent style={{ color: fontColor }}>
 
         <Typography gutterBottom variant="h5" component="h2">{cardTitle}</Typography>
         <Typography variant="subtitle1">
@@ -62,10 +59,14 @@ const Flag = (props: FlagProps) => {
         </Typography>
 
         <Typography variant="overline" display="block" gutterBottom >
-          flag: {props.flag || "Not found yet"}
+          {props.flag || "Not found yet"}
         </Typography>
+
+        <IconButton onClick={props.resetChallenge} disabled={!props.flag} style={{ color: refreshColor }} aria-label="Reset Challenge" component="span">
+          <ReplayIcon />
+        </IconButton>
       </CardContent>
-    </Card>);
+    </Box>);
 };
 
 export default Flag;

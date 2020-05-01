@@ -26,7 +26,7 @@ $log.name = "DamnVulnerableCryptoApp";
   componentsScan: [
     `${rootDir}/middlewares/**/**.ts`
   ],
-  swagger: [{ path: "/docs" }],
+  swagger: [{ path: "/swagger" }],
   exclude: ["**/*.spec.ts"],
   uploadDir: `${rootDir}/uploads`,
   statics: {

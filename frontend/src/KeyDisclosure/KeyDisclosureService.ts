@@ -1,6 +1,6 @@
 import ApiRequest from "../Common/ApiRequest";
 
-export class KeyDisclosureService {
+export class KeyDisclosureService extends ApiRequest {
 
   public static CHALLENGEPATH = `/rsa/key-disclosure`;
 
@@ -9,7 +9,7 @@ export class KeyDisclosureService {
       const path = `${KeyDisclosureService.CHALLENGEPATH}/getLicense`;
 
 
-      ApiRequest.do(path).then(response => {
+      super.do(path).then(response => {
         resolve(response.license);
       }).catch(ex => reject(ex));
     });

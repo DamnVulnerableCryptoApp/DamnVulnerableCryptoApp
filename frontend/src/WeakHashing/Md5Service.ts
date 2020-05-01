@@ -1,6 +1,6 @@
 import ApiRequest from '../Common/ApiRequest';
 
-export class Md5Service {
+export class Md5Service extends ApiRequest {
 
   public static CHALLENGEPATH = `/md5`;
 
@@ -12,6 +12,6 @@ export class Md5Service {
       body: JSON.stringify({ username, password }),
     };
 
-    return ApiRequest.do(path, params);
+    return super.do(path, params);
   }
 }

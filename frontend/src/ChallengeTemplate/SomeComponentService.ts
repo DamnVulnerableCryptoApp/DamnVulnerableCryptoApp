@@ -1,15 +1,15 @@
 import ApiRequest from "../Common/ApiRequest";
 
-export class SomeComponentService {
+export class SomeComponentService extends ApiRequest {
 
   // private static STORAGE_KEY = "";
-  public static CHALLENGEPATh = ``;
+  public static CHALLENGEPATH = ``;
 
 
   public static async doSomething(): Promise<string> {
-    const path = `${SomeComponentService.CHALLENGEPATh}/`;
+    const path = `${SomeComponentService.CHALLENGEPATH}/`;
 
-    return ApiRequest.do(path);
+    return super.do(path);
   }
 
 

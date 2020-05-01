@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   logo: {
-    width: '70%'
+    width: '70%',
+    maxWidth: '500px'
   },
   mainContainer: {
     'background-color': '#fbf6f6',

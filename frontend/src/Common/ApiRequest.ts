@@ -2,7 +2,7 @@ export default class ApiRequest {
 
 
 
-  public static async do(path: string, params?: RequestInit, upload = false): Promise<any> {
+  protected static async do(path: string, params?: RequestInit, upload = false): Promise<any> {
     return new Promise((resolve, reject) => {
 
       if (!params) params = {};
@@ -25,12 +25,13 @@ export default class ApiRequest {
 
 
 
-  public static getApiUrl(): string {
+  protected static getApiUrl(): string {
     const runninPort = window.location.port || 80;
     const port = process.env.NODE_ENV === "development" ? 1234 : runninPort;
     const server = `${window.location.protocol}//${window.location.hostname}`;
 
     return `${server}:${port}`;
   }
+
 
 }
