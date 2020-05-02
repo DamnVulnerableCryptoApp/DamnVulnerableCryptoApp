@@ -1,5 +1,5 @@
 import { Controller, Get, PathParams, Req, Res } from '@tsed/common';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 @Controller("/docs/")
 export class DocumentationController {
@@ -11,8 +11,12 @@ export class DocumentationController {
     if (doc.match(/^(\w|-)*$/)) { // Just to make sure against path traversal
 
       response.contentType("text/plain; charset=UTF-8");
+      const filePath = __dirname + "/../documentation/" + doc + ".md";
 
-      return readFileSync(__dirname + "/../documentation/" + doc + ".md");
+      if (existsSync(filePath))
+        return readFileSync(filePath);
+      else
+        return "# Under Construction";
     }
 
   }

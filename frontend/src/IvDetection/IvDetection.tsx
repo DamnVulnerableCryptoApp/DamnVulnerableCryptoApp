@@ -69,16 +69,19 @@ const IvDetection = (props: IChallengeProps) => {
 
     // if the user sends the IV as a message, the flag will be returned
     IvDetectionService.sendMessage(message).then(res => {
-      if (res.flag) {
+
+      if (res.flag)
         props.setFlag(res.flag);
-        sendThanks();
+
+      if (fistResponse) {
+        if (res.flag)
+          sendThanks();
       }
       else {
-        if (fistResponse) {
-          setFistResponse(false);
-          sendThreat();
-        }
+        setFistResponse(false);
+        sendThreat();
       }
+
     });
 
     const msg: IMessage = { author: "me", authorImg: "", content: message, date: "now", type: "message" };

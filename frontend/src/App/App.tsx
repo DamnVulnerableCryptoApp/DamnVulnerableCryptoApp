@@ -35,9 +35,7 @@ const App = () => {
     return () => <Challenge obj={c} />;
   };
 
-  const renderDocumentation = (c: ChallengeData) => {
-    return () => <Documentation doc={c.url} />;
-  };
+
 
   return (
     <div className="App">
@@ -63,13 +61,13 @@ const App = () => {
               Challenges.map((c) => {
                 return (
                   <Box key={c.name}>
-                    <Route path={"/docs" + c.url} render={renderDocumentation(c)} exact={true} />
                     <Route path={c.url} render={renderChallenge(c)} exact={true} />
                   </Box>
                 );
               })
             }
             <Route exact path="/"><Dashboard /></Route>
+            <Route exact path="/docs/:topic" component={Documentation} />
           </Router>
         </Container>
       </LayoutContext.Provider>

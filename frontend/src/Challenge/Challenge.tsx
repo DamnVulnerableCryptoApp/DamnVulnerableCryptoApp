@@ -20,23 +20,18 @@ const Challenge = (props: IChallengeContainerProps) => {
 
 
   const setFlag = (flg: string) => {
-
     if (validFlag(flg)) {
       _setFlag(flg);
-
-      // otherwise will clean an already finished challenge and we do not whant that.
-      if (flg) ProgressService.updateProgress(props.obj.url, flg);
-    }
-    else {
-      _setFlag("");
-      ProgressService.updateProgress(props.obj.url, "");
+      ProgressService.updateProgress(props.obj.url, flg);
     }
 
     setChallengesDone(ProgressService.done());
   };
 
   const resetChallange = () => {
-    setFlag("");
+    _setFlag("");
+    ProgressService.updateProgress(props.obj.url, "");
+    setChallengesDone(ProgressService.done());
   };
 
 

@@ -3,33 +3,33 @@ import * as hljs from 'highlight.js';
 import "highlight.js/styles/github.css";
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
+import { useParams } from "react-router";
 import { DocumentationService } from "./DocumentationService";
-import IDocumentationProps from "./IDocumentationProps";
 import useStyles from "./styles";
 
 
-const Documentation = (props: IDocumentationProps) => {
+
+const Documentation = () => {
 
   const [documentation, setDocumentation] = useState("");
   const classes = useStyles();
+  const { topic } = useParams();
 
   useEffect(() => {
 
-    DocumentationService.getDocumentation(props.doc).then((res: string) => {
+    DocumentationService.getDocumentation(topic).then((res: string) => {
       setDocumentation(res);
       hljs.initHighlighting();
     });
 
   }, []);
 
-
-
   return (
     <Box>
       <Paper>
         <ReactMarkdown className={classes.root} source={documentation} />
       </Paper>
-    </Box>
+    </Box >
   );
 };
 

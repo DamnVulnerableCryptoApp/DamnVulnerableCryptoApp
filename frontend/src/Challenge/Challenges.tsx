@@ -73,7 +73,7 @@ const Challenges: ChallengeData[] = [
   {
     name: "IV Detection",
     component: IvDetection,
-    description: "",
+    description: "Although the IV was made to be public, keeping it secret can help keeping the encrypted data safe. Unfortunatly there are ways to detect the IV used to encrypt data, if the system doesn't give it to you",
     url: "/iv-detection",
 
   },

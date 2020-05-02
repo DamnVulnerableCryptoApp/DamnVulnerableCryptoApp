@@ -46,6 +46,7 @@ const Flag = (props: FlagProps) => {
     refreshColor = grey[400];
   }
 
+  const resetChallenge = () => props.resetChallenge();
 
 
   return (
@@ -62,7 +63,7 @@ const Flag = (props: FlagProps) => {
           {props.flag || "Not found yet"}
         </Typography>
 
-        <IconButton onClick={props.resetChallenge} disabled={!props.flag} style={{ color: refreshColor }} aria-label="Reset Challenge" component="span">
+        <IconButton onClick={resetChallenge} disabled={!props.flag} style={{ color: refreshColor }} aria-label="Reset Challenge" component="span">
           <ReplayIcon />
         </IconButton>
       </CardContent>
