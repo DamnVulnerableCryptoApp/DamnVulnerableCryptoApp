@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    padding: '30px',
-
+    padding: '200px',
+    paddingTop: '100px',
 
     '& pre': {
       border: '1px solid #ccc'
