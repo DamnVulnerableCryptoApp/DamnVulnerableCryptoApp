@@ -8,7 +8,7 @@ In the case presented in DamnVulnerableCryptoApp yor objective is to do a privil
 When you open the challenge for the first time an extra request is done to the server, to create a session for you. 
 Take a look at the request made and you will notice the username is being sent, and in this case, as anonymous
 
-![initial request](documentation/img/initial_request.png "Initial Request")
+![initial request](/documentation/img/initial_request.png "Initial Request")
 
 Also, in the challenge page you have a very important help. The format of the token being encrypted and sent to the view is:
 ```
