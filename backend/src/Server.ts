@@ -30,7 +30,8 @@ $log.name = "DamnVulnerableCryptoApp";
   exclude: ["**/*.spec.ts"],
   uploadDir: `${rootDir}/uploads`,
   statics: {
-    "/": frontend
+    "/": frontend,
+    "/documentation/": `${rootDir}/documentation`,
   }
   // logger: { requestFields: [] }
 })
