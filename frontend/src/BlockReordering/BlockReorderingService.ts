@@ -20,7 +20,7 @@ export class BlockReorderingService extends ApiRequest {
       const token = localStorage.getItem(BlockReorderingService.STORAGE_KEY);
       const headers: any = { token };
 
-      return super.do(path, { headers });
+      super.do(path, { headers }).then(res => resolve(res)).catch(err => reject(err));
 
     });
   }
@@ -31,7 +31,7 @@ export class BlockReorderingService extends ApiRequest {
       const path = `${BlockReorderingService.CHALLENGEPATH}/`;
       const headers: any = { username: 'anonymous' };
 
-      super.do(path, headers).then((response) => {
+      super.do(path, { headers }).then((response) => {
         localStorage.setItem(BlockReorderingService.STORAGE_KEY, response.token); // Don't do this, it is insecure :)
         resolve(response.token);
       }).catch(ex => reject(ex));
