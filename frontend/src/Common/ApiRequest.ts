@@ -24,13 +24,27 @@ export default class ApiRequest {
   }
 
 
+  public static serverPort(): number {
+    const runningPort = window.location.port || 80;
+    let port = parseInt(runningPort.toString(), 10);
 
-  protected static getApiUrl(): string {
-    const runninPort = window.location.port || 80;
-    const port = process.env.NODE_ENV === "development" ? 1234 : runninPort;
-    const server = `${window.location.protocol}//${window.location.hostname}`;
+    if (process?.env?.NODE_ENV === "development") {
 
-    return `${server}:${port}`;
+      if (process?.env?.REACT_APP_SERVER_PORT)
+        port = parseInt(process.env.REACT_APP_SERVER_PORT, 10);
+      else
+        port = 1234; // if no port specified we are going to assume its the default, 1234
+    }
+
+    return port;
+  }
+
+
+  public static getApiUrl(): string {
+    const port = ApiRequest.serverPort();
+
+    return `${window.location.protocol}//${window.location.hostname}:${port}`;
+
   }
 
 

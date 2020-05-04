@@ -33,23 +33,41 @@ yarn run build
 yarn run start
 ```
 
+If you want to change the port:
+```
+PORT=4000 yarn run start
+```
+
 ### Running in dev environment
 
 **NOTE:** This process will change in the near future
-By default server will run on port 1234 and frontend on port 4000
-At the time of this writing ports shouldn't be changed as it could break the app (check [#21](https://github.com/luisfontes19/damn_vulnerable_crypto_app/issues/21) )
 
-In one terminal start the backend:
+**In one terminal start the backend:**
 ```
 cd backend 
 npm start
 ```
+Or to run in a different port (default is 1234)
+```
+PORT=5000 npm start
+```
 
-And in another terminal start the frontend:
+**And in another terminal start the frontend:**
 ```
 cd frontend
 yarn start
 ```
+
+
+if you want to change the port (default is 4000):
+```
+PORT=3000
+```
+If you changed the server port you need to specify it here as well:
+```
+REACT_APP_SERVER_PORT=5000 yarn start
+```
+
 
 ## Documentation
 comming soon...

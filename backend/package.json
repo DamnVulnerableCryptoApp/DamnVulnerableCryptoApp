@@ -16,6 +16,7 @@
     "@tsed/common": "5.44.17",
     "@tsed/core": "5.44.17",
     "@tsed/di": "5.44.17",
+    "@tsed/exceptions": "^5.50.0",
     "@tsed/logger": "^5.4.1",
     "@tsed/multipartfiles": "^5.44.17",
     "@tsed/swagger": "5.44.17",

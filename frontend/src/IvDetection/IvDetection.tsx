@@ -46,7 +46,7 @@ const IvDetection = (props: IChallengeProps) => {
 
   const [history, setHistory] = useState<IMessage[]>([]);
   const [message, setMessage] = useState("");
-  const [fistResponse, setFistResponse] = useState(true);
+  const [firstResponse, setFistResponse] = useState(true);
 
   const appendToHistory = (m: IMessage) => setHistory((hstry) => [...hstry, m]);
   const classes = useStyles();
@@ -75,7 +75,7 @@ const IvDetection = (props: IChallengeProps) => {
         sendThanks();
       }
       else {
-        if (fistResponse)
+        if (firstResponse)
           sendThreat();
       }
 
