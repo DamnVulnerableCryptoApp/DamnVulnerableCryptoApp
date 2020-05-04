@@ -1,5 +1,6 @@
 # DamnVulnerableCryptoApp
 
+![Logo](/frontend/src/Images/logo.png)
 
 ## Why?
 
