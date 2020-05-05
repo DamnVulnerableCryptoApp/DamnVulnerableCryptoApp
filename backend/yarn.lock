@@ -114,6 +114,13 @@
     chalk "3.0.0"
     tslib "1.11.1"
 
+"@tsed/exceptions@^5.50.0":
+  version "5.52.1"
+  resolved "https://registry.yarnpkg.com/@tsed/exceptions/-/exceptions-5.52.1.tgz#f4f359e06185244f107f139317943357b7fdab31"
+  integrity sha512-JPzSOPi0ErpP2MGXt20oZgkYbIOMK9TEUAM2Vqzno/ClHf0Ayq4OA24uVhuHQCDKcCtjhdfCKKWWlaE4z5Gjaw==
+  dependencies:
+    tslib "1.11.1"
+
 "@tsed/logger@5.4.1", "@tsed/logger@^5.4.1":
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/@tsed/logger/-/logger-5.4.1.tgz#20f68cb9032594dd7846cfe4a9a0ee26c20dd908"
