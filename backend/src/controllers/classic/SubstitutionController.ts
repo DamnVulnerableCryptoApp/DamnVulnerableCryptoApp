@@ -1,5 +1,4 @@
-import { Controller, Get, Post, BodyParams, QueryParams } from "@tsed/common";
-import * as crypto from 'crypto';
+import { Controller, Get, QueryParams } from "@tsed/common";
 
 
 @Controller("/classic/substitution")
@@ -40,7 +39,7 @@ export class SubstitutionController {
 
   @Get("/")
   public index() {
-    const enc = this.encrypt("It was an ambush. Five or our men died. We got the goods. We leave at dawn")
+    const enc = this.encrypt("It was an ambush. Five or our men died. We got the goods. We leave at dawn");
 
     return { data: enc };
   }
@@ -49,7 +48,7 @@ export class SubstitutionController {
   // zyxqponmlkjihgfewvutsrdcba
   // a normal substitution cypher that translates to:
   // It was an ambush. Five or our men died. We got the goods. We leave at dawn
-  // this can be manually decrypted by studying letter frequency 
+  // this can be manually decrypted by studying letter frequency
   // now a daws there are awesome websites that do this automatically
   // https://quipqiup.com/
   // [1, 4, 13, 27, 35, 46, 49, 62, 71]

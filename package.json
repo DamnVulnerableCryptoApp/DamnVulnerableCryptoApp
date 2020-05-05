@@ -7,8 +7,8 @@
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "build-react": "cd frontend && yarn run build",
-    "build-be": "cd backend && yarn build",
+    "build-react": "cd frontend && yarn run test:lint && yarn run build",
+    "build-be": "cd backend && yarn run test:lint && yarn build",
     "build": "yarn install-deps && yarn run build-react && yarn run build-be",
     "install-deps:be": "cd backend && yarn install",
     "install-deps:react": "cd frontend && yarn install",
