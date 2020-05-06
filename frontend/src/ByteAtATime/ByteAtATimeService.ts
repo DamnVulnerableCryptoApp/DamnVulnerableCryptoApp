@@ -12,7 +12,6 @@ export interface IAdminResponse {
 
 export class ByteAtATimeService extends ApiRequest {
 
-  private static STORAGE_KEY = "byte-at-a-time-token";
   public static CHALLENGEPATH = `/aes/ecb/byte-at-a-time`;
 
 
