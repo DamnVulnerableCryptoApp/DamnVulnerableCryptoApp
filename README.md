@@ -45,11 +45,11 @@ PORT=4000 yarn run start
 **In one terminal start the backend:**
 ```
 cd backend 
-npm start
+yarn start
 ```
 Or to run in a different port (default is 1234)
 ```
-PORT=5000 npm start
+PORT=5000 yarn start
 ```
 
 **And in another terminal start the frontend:**
