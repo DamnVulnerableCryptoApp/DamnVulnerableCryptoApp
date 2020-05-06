@@ -1,6 +1,6 @@
 # Byte At A Time
 
-For this section is important you read and understand the [BLock cipher docs](/docs/block-ciphers)
+For this section is important you read and understand the [Block cipher docs](/docs/block-ciphers)
 
 ## The Basics
 
@@ -73,7 +73,7 @@ def makeRequest(data):
     return r.json()['token']
 
 
-def break_it(length):
+def break(length):
     
     found = ""
     for i in range((length - 1), -1, -1):
@@ -97,7 +97,7 @@ def break_it(length):
             
 response = makeRequest("A" * BLOCKSIZE)
 max_cipher_size = len(response) / 2 # since content is retrieved in hex. every two chars are one byte
-print(b"Finished: " + reak_it(max_cipher_size))
+print("Finished: " + break(max_cipher_size))
 
 ```
 
