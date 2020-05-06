@@ -1,10 +1,10 @@
 # Known Plaintext
 
-For this section is important you read and understand the [XOR docs](/docs/xor)
+For this section is important that you read and understand the [XOR docs](/docs/xor)
 
 ## The Basics
 
-A Kown Plaintext attacks can happen when an attacker as access to both the plain text content and the encrypted content.
+A Kown Plaintext can happen when an attacker as access to both the plain text content and the encrypted content.
 These can be used to find other information like the secret key used in the encryption process.
 
 As seen in the XOR documentation where  A⊕B=C  and A⊕C=B an attacker can use the same logic with weak cryptographic algorithms to retrieve the key being used, or even to decrypt other messages
@@ -13,7 +13,7 @@ With RC4 This same principle applies.
 
 So if you encrypt a plaintext message with a key and use that output (the encrypted text) and encrypt it again with the same key, you will get the plain text value.
 
-Although this is probably all you need to break this algorithm there are other ways of doing it...
+Although this is probably all you need to break the algorithm, there are other ways of doing it...
 
 And to explain it we need a few formulas (bare with me, they are really simple):
 ```
