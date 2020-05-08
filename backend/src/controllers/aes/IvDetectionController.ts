@@ -23,15 +23,31 @@ export class IvDetectionController {
     return { data: this.encryptData(data), flag: f };
   }
 
+  @Post("/decrypt")
+  public async decrypt(@BodyParams("data") data: string) {
+    return { data: this.decryptData(data) };
+  }
+
 
 
   private encryptData(data: string): string {
     const cipher = crypto.createCipheriv('aes-128-cbc', Buffer.from(IvDetectionController.KEY), IvDetectionController.IV);
-    const tokenBuffer = Buffer.from(data, 'utf8');
-    let encrypted = cipher.update(tokenBuffer);
+    cipher.setAutoPadding(false);
+    const buff = Buffer.from(data, 'utf8');
+    let encrypted = cipher.update(buff);
     encrypted = Buffer.concat([encrypted, cipher.final()]);
 
     return encrypted.toString("hex");
+  }
+
+  private decryptData(data: string): string {
+    const cipher = crypto.createDecipheriv('aes-128-cbc', Buffer.from(IvDetectionController.KEY), IvDetectionController.IV);
+    cipher.setAutoPadding(false);
+    const buff = Buffer.from(data, 'hex');
+    let decrypted = cipher.update(buff);
+    decrypted = Buffer.concat([decrypted, cipher.final()]);
+
+    return decrypted.toString();
   }
 
 }
