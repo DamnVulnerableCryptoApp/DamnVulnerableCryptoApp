@@ -21,8 +21,8 @@ COPY package.json .
 COPY yarn.lock .
 COPY ./src ./src
 COPY ./dist ./dist
-COPY ./resources ./resources
-COPY ./spec ./spec
+# COPY ./resources ./resources
+# COPY ./spec ./spec
 
 RUN yarn install --production
 
