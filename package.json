@@ -9,11 +9,14 @@
   "scripts": {
     "build-react": "cd frontend && yarn run test:lint && yarn run build",
     "build-be": "cd backend && yarn run test:lint && yarn build",
-    "build": "yarn install-deps && yarn run build-react && yarn run build-be",
-    "install-deps:be": "cd backend && yarn install",
-    "install-deps:react": "cd frontend && yarn install",
+    "build": "yarn install-deps && yarn run build-react && yarn run build-be && yarn run merge-projects",
+    "copy-fe-to-public": "cp -r frontend/build/ backend/dist/public",
+    "merge-projects": "yarn run copy-fe-to-public",
+    "install-deps:be": "cd backend && yarn install --production",
+    "install-deps:react": "cd frontend && yarn install --production",
     "install-deps": "yarn run install-deps:be && yarn run install-deps:react",
-    "start": "cd backend && yarn run start:prod"
+    "start": "cd backend && yarn run start:prod",
+    "clean": "rm -rf dist && rm -rf backend/dist && rm -rf frontend/build"
   },
   "repository": {
     "type": "git",

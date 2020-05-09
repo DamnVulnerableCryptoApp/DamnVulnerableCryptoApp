@@ -9,7 +9,7 @@ import * as methodOverride from "method-override";
 import * as path from 'path';
 
 const rootDir = __dirname;
-const frontend = path.join(rootDir, "../../frontend/build");
+const frontend = (process.env.NODE_ENV === "development") ? path.join(rootDir, "../../frontend/build") : path.join(rootDir, "public");
 
 $log.level = "info";
 $log.name = "DamnVulnerableCryptoApp";
