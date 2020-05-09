@@ -40,6 +40,9 @@ export class ProgressService {
     return { challenges: {} } as IProgress;
   }
 
+  public static clearProgress() {
+    localStorage.clear();
+  }
 
   public static done(): number {
     let count = 0;

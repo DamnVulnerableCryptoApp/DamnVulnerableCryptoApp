@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, LinearProgress, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Box, IconButton, Toolbar } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import React, { useState } from "react";
@@ -9,6 +9,7 @@ import Dashboard from "../dashboard/Dashboard";
 import Documentation from "../Documentation/Documentation";
 import LogoMenu from '../Images/logo_menu.png';
 import { LayoutContext } from "./LayoutContext";
+import Progress from "./Progress";
 import { ProgressService } from "./ProgressService";
 import useStyles from "./styles";
 
@@ -38,6 +39,8 @@ const App = () => {
 
 
   return (
+
+
     <div className="App">
       <LayoutContext.Provider value={layoutInitialState}>
         <AppBar position="sticky" className={classes.appbar}>
@@ -48,11 +51,7 @@ const App = () => {
               </IconButton>
               <img className={classes.menuLogo} src={LogoMenu} />
             </Box>
-            <Box className={classes.progressBox}>
-              <Box><Typography>Your Progress: {challengesDone}</Typography></Box>
-              <LinearProgress variant="determinate" color="secondary" value={progressPercentage} className={classes.progress} />
-              <Box><Typography>{Challenges.length}</Typography> </Box>
-            </Box>
+            <Progress />
           </Toolbar>
         </AppBar>
         <Container fixed>

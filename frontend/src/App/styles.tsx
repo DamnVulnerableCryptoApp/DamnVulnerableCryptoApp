@@ -1,4 +1,4 @@
-import { makeStyles, Theme, createStyles } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
       display: 'flex',
       flexFlow: "flex-direction",
+      paddingTop: '10px'
     },
     progress: {
       width: '200px',
@@ -33,6 +34,14 @@ const useStyles = makeStyles((theme: Theme) =>
     menuLogo: {
       height: '30px',
       marginTop: '9px'
+    },
+    progressContainer: {
+      'display': 'flex'
+    },
+
+    resetButton: {
+      color: '#FFF',
+      marginLeft: '5px'
     }
 
   }),
