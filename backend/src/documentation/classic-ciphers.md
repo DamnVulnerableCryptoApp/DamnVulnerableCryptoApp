@@ -60,7 +60,7 @@ The presented image has some gibberish text. The message has many repeated lette
 
 The strategy is to look for the most repetitive letters in the ciphertext and compare them to the most frequent letters in the English language. This process is called the **letter frequency** of the ciphertext. Letter frequency is the average frequency a letter appears in written language usually measured in percentage. Higher the percentage of a letter, the higher probability to be that one. In this case, you can see [here](https://en.wikipedia.org/wiki/Letter_frequency) the frequencies for the English language. More particularly, there is a famous phrase in the English language called [**ETAOIN SHRDLU**](https://en.wikipedia.org/wiki/Etaoin_shrdlu). It is famous because it shows the  twelve most commonly used letters by order of frequency in the English language.
 
-At this point, you know how to attempt breaking the ciphertext of this challenge. You can try on your own and do it manually to test if you understood the process of letter frequency. There are online tools that do this automatically, such as [this](https://quipqiup.com/) one.
+At this point, you know how to attempt breaking the ciphertext of this challenge. You can try on your own and do it manually or code a script to test if you understood the process of letter frequency. There are online tools that do this automatically, such as [this](https://quipqiup.com/) one.
 
 
 After studying the letter analysis of the ciphertext, should result in the following message:
