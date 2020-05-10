@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IProgress } from "./ProgressService";
+import { IProgress } from "../Progress/ProgressService";
 
 export interface ILayoutContextProps {
   setProgress: React.Dispatch<React.SetStateAction<IProgress>>;

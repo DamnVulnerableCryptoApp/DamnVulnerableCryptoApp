@@ -2,9 +2,9 @@
 import { Box, IconButton, LinearProgress, Typography } from "@material-ui/core";
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import React, { useContext, useState } from "react";
+import { LayoutContext } from "../App/LayoutContext";
 import Challenges from "../Challenge/Challenges";
-import Confirmation from "./Confirmation";
-import { LayoutContext } from "./LayoutContext";
+import Confirmation from "../Common/Confirmation";
 import { ProgressService } from "./ProgressService";
 import useStyles from "./styles";
 

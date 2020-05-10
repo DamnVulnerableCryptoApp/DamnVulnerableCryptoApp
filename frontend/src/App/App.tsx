@@ -6,9 +6,9 @@ import Challenge from "../Challenge/Challenge";
 import Challenges, { ChallengeData } from "../Challenge/Challenges";
 import Dashboard from "../dashboard/Dashboard";
 import Documentation from "../Documentation/Documentation";
+import { ProgressService } from "../Progress/ProgressService";
 import Appbar from "./Appbar";
 import { LayoutContext } from "./LayoutContext";
-import { ProgressService } from "./ProgressService";
 
 
 const App = () => {

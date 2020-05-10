@@ -3,8 +3,8 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { LayoutContext } from "../App/LayoutContext";
-import { ProgressService } from "../App/ProgressService";
 import Flag from "../Flag/Flag";
+import { ProgressService } from "../Progress/ProgressService";
 import { IChallengeContainerProps } from "./IChallengeContainerProps";
 import useStyles from "./styles";
 
