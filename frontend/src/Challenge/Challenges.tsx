@@ -29,7 +29,7 @@ const Challenges: ChallengeData[] = [
   {
     name: "Insecure Random",
     component: InsecureRandom,
-    description: "Programming languages usually have a random function to help generating random values. These methods are heavely used used in security related features, but they are usually quite easy to predit",
+    description: "Programming languages usually have a random function to help generating random values. These methods are heavily used used in security related features, but they are usually quite easy to predict",
     url: "/weak-random",
 
   },
@@ -43,21 +43,21 @@ const Challenges: ChallengeData[] = [
   {
     name: "Known Plaintext",
     component: KnownPlaintextAndKeyReuse,
-    description: "Symmetric encryption is heavely based on XOR operations, and XOR has some nice properties, which if wrongly used can be used to retrieve plaintext data, or even keys",
+    description: "Symmetric encryption is heavily based on XOR operations, and XOR has some nice properties, which if wrongly used can be used to retrieve plaintext data, or even keys",
     url: "/known-plaintext-and-key-reuse",
 
   },
   {
     name: "Byte At A Time",
     component: ByteAtATime,
-    description: "ECB Mode of operation encrypts blocks of data independently. If there's content beint appended to your data, you can play with the blocks and a bit of brute force to find each byte individually",
+    description: "ECB Mode of operation encrypts blocks of data independently. If there's content being appended to your data, you can play with the blocks and a bit of brute force to find each byte individually",
     url: "/byte-at-a-time",
 
   },
   {
     name: "Block Reordering",
     component: BlockReordering,
-    description: "Since in ECB each block is independent, you can easly change the order of the encrypted blocks. And if you know what you're doing, you can cause serious damage",
+    description: "Since in ECB each block is independent, you can easily change the order of the encrypted blocks. And if you know what you're doing, you can cause serious damage",
     url: "/block-reordering",
 
   },
@@ -73,20 +73,20 @@ const Challenges: ChallengeData[] = [
   {
     name: "IV Detection",
     component: IvDetection,
-    description: "Although the IV was made to be public, keeping it secret can help keeping the encrypted data safe. Unfortunatly there are ways to detect the IV used to encrypt data, if the system doesn't give it to you",
+    description: "Although the IV was made to be public, keeping it secret can help keeping the encrypted data safe. Unfortunately there are ways to detect the IV used to encrypt data, if the system doesn't give it to you",
     url: "/iv-detection",
 
   },
   {
     name: "Padding Oracle",
     component: PaddingOracle,
-    description: "Oracles give you nice error information, like if the padding is wrong, and if there was an error decrypting. This information can be helpfull if you know how to use it.",
+    description: "Oracles give you nice error information, like if the padding is wrong, and if there was an error decrypting. This information can be helpful if you know how to use it.",
     url: "/padding-oracle",
 
   },
 
   {
-    name: "Key Disclousure",
+    name: "Key Disclosure",
     component: KeyDisclosure,
     description: "Nearly every project uses Git nowadays. How many times did you see/commit to the repository a password or a key? Who can see it? Did you try to remove it? Is it an open source project?",
     url: "/key-disclosure",
