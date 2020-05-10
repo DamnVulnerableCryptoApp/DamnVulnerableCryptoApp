@@ -1,6 +1,7 @@
 import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import DescriptionIcon from '@material-ui/icons/Description';
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { LayoutContext } from "../App/LayoutContext";
 import { ProgressService } from "../App/ProgressService";
 import Flag from "../Flag/Flag";
@@ -14,6 +15,7 @@ const Challenge = (props: IChallengeContainerProps) => {
 
   const [flag, _setFlag] = useState("");
   const { setChallengesDone } = useContext(LayoutContext);
+  const history = useHistory();
 
   const challengeData = props.obj || { description: "", explanation: "", name: "", objective: "", url: "" };
   const Component = props.obj.component;
@@ -28,10 +30,14 @@ const Challenge = (props: IChallengeContainerProps) => {
     setChallengesDone(ProgressService.done());
   };
 
-  const resetChallange = () => {
+  const resetChallenge = () => {
     _setFlag("");
     ProgressService.updateProgress(props.obj.url, "");
     setChallengesDone(ProgressService.done());
+  };
+
+  const onGoToDocsClicked = (path: string) => {
+    return () => history.push(path);
   };
 
 
@@ -53,12 +59,12 @@ const Challenge = (props: IChallengeContainerProps) => {
         </Paper>
       </Grid>
       <Grid item md={4}>
-        <Flag flag={flag} resetChallenge={resetChallange} />
+        <Flag flag={flag} resetChallenge={resetChallenge} />
         <Paper className={classes.documentation}>
           <Typography variant="h6">Documentation</Typography>
           <DescriptionIcon style={{ fontSize: 200, color: '#EEE' }} />
           <Typography>If you are having trouble with this challenge take a look at our documentation</Typography>
-          <Button size="small" fullWidth variant="contained" color="primary" href={"docs" + props.obj.url}>Docs</Button>
+          <Button size="small" fullWidth variant="contained" color="primary" onClick={onGoToDocsClicked("docs" + props.obj.url)}>Docs</Button>
         </Paper>
       </Grid>
     </Grid>
