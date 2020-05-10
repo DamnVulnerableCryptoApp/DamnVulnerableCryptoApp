@@ -1,8 +1,8 @@
 import { Box } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
-import Challenges from '../Challenge/Challenges';
 import ChallengeCard from '../ChallengeCard/ChallengeCard';
+import Challenges from '../Challenges/Challenges';
 import { ProgressService } from '../Layout/ProgressService';
 import Logo from './../Images/logo.png';
 import useStyles from './styles';

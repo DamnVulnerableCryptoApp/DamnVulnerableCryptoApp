@@ -21,7 +21,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 
 ## New Challenge Process
-- After getting approval to a new challenge concept, copy the folder in /frontend/src/ChallengeTemplate and adapt it as you wish.
+- After getting approval to a new challenge concept, copy the folder in /frontend/src/challenges/ChallengeTemplate and adapt it as you wish.
 - For the backend part follow the structure used. In controllers folder, create or use the folder for the crypto algorithm you are using, and inside a controller file with the name of the vulnerability.
 - Add the relevant documentation for the challenge you wrote. The docs should be stored in backend/src/documentation and the filename should be the same as the url for the challenge, defined in /frontend/src/challenges/challenges.tsx
 

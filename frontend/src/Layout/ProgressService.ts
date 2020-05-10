@@ -1,4 +1,4 @@
-import Challenges from "../Challenge/Challenges";
+import Challenges from "../Challenges/Challenges";
 
 export interface IProgress {
   challenges: Record<string, string>;

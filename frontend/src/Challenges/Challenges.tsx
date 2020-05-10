@@ -1,14 +1,14 @@
-import BlockReordering from "../Challenges/BlockReordering/BlockReordering";
-import ByteAtATime from "../Challenges/ByteAtATime/ByteAtATime";
-import ChecksumCollision from "../Challenges/ChecksumCollision/ChecksumCollision";
-import ClassicCipher from "../Challenges/ClassicCipher/ClassicCipher";
-import InsecureRandom from "../Challenges/InsecureRandom/InsecureRandom";
-import IvDetection from "../Challenges/IvDetection/IvDetection";
-import KeyDisclosure from "../Challenges/KeyDisclosure/KeyDisclosure";
-import KnownPlaintextAndKeyReuse from "../Challenges/KnownPlaintextAndKeyReuse/KnownPlaintextAndKeyReuse";
-import PaddingOracle from "../Challenges/PaddingOracle/PaddingOracle";
-import WeakHashing from "../Challenges/WeakHashing/WeakHashing";
-import { IChallengeProps } from "./IChallengeProps";
+import { IChallengeProps } from "../Challenge/IChallengeProps";
+import BlockReordering from "./BlockReordering/BlockReordering";
+import ByteAtATime from "./ByteAtATime/ByteAtATime";
+import ChecksumCollision from "./ChecksumCollision/ChecksumCollision";
+import ClassicCipher from "./ClassicCipher/ClassicCipher";
+import InsecureRandom from "./InsecureRandom/InsecureRandom";
+import IvDetection from "./IvDetection/IvDetection";
+import KeyDisclosure from "./KeyDisclosure/KeyDisclosure";
+import KnownPlaintextAndKeyReuse from "./KnownPlaintextAndKeyReuse/KnownPlaintextAndKeyReuse";
+import PaddingOracle from "./PaddingOracle/PaddingOracle";
+import WeakHashing from "./WeakHashing/WeakHashing";
 
 export interface ChallengeData {
   name: string;
