@@ -14,8 +14,14 @@ const useStyles = makeStyles({
     marginBottom: '20px',
     textAlign: 'center'
   },
+  documentationTitle: {
+    padding: '20px',
+    textAlign: 'left'
+  },
   documentation: {
     padding: '30px',
+    paddingTop: '60px',
+    paddingBottom: '60px',
     textAlign: 'center'
   }
 });

@@ -1,5 +1,4 @@
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
-import DescriptionIcon from '@material-ui/icons/Description';
+import { AppBar, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { LayoutContext } from "../App/LayoutContext";
@@ -60,11 +59,11 @@ const Challenge = (props: IChallengeContainerProps) => {
       </Grid>
       <Grid item md={4}>
         <Flag flag={flag} resetChallenge={resetChallenge} />
-        <Paper className={classes.documentation}>
-          <Typography variant="h6">Documentation</Typography>
-          <DescriptionIcon style={{ fontSize: 200, color: '#EEE' }} />
-          <Typography>If you are having trouble with this challenge take a look at our documentation</Typography>
-          <Button size="small" fullWidth variant="contained" color="primary" onClick={onGoToDocsClicked("docs" + props.obj.url)}>Docs</Button>
+        <AppBar position="static" className={classes.documentationTitle}>
+          <Typography variant="h6">Docs</Typography>
+        </AppBar>
+        <Paper role="tabpanel" className={classes.documentation}>
+          <Typography>If you are having trouble with this challenge take a look at our documentation <a href="" onClick={onGoToDocsClicked("docs" + props.obj.url)}>here</a> </Typography>
         </Paper>
       </Grid>
     </Grid>
