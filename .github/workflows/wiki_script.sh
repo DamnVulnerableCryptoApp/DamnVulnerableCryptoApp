@@ -46,7 +46,7 @@ for i in $MD_FOLDER*; do
   echo "Processing $i"
 
   if [[ $i == *.md ]]; then
-    realFileName="basename $i"
+    realFileName=`basename $i`
     echo "real file name $realFileName"
     
 
