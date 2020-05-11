@@ -56,16 +56,16 @@ cd ..
 
 for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{}' ';')"; do
     realFileName=${i}
-    if [[ $TRANSLATE -ne 0 ]]; then
-        realFileName=${i//_/ }
-        echo "$i -> $realFileName"
-    else 
-        echo $realFileName
-    fi
+
+    echo "Processing $realFileName"
+
+
     if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
         if [[ $i == *.md ]]; then
+          echo "Changing markdown file $MD_FOLDER$i"
           sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
         else
+          echo "copying $MD_FOLDER/$i to $TEMP_CLONE_FOLDER/${realFileName}"
           cp "$MD_FOLDER/$i" "$TEMP_CLONE_FOLDER/${realFileName}"
         fi
         
@@ -74,6 +74,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
     fi
 done
 
+echo "Copying images folder"
 cp -r "$MD_FOLDER/img" "$TEMP_CLONE_FOLDER"
 
 echo "Pushing new pages"
