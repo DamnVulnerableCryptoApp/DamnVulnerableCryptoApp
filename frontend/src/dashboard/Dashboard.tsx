@@ -1,10 +1,10 @@
+import { Box } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import React from 'react';
 import ChallengeCard from '../ChallengeCard/ChallengeCard';
 import Challenges from '../Challenges/Challenges';
 import { ProgressService } from '../Progress/ProgressService';
 import Logo from './../Images/logo.png';
-import { Box } from './node_modules/@material-ui/core';
-import Grid from './node_modules/@material-ui/core/Grid';
-import React from './node_modules/react';
 import useStyles from './styles';
 
 const Dashboard = () => {

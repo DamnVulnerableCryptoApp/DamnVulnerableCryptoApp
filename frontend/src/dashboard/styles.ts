@@ -1,4 +1,4 @@
-import { makeStyles } from "./node_modules/@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
