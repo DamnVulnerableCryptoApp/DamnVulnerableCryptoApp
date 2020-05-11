@@ -58,7 +58,7 @@ for i in "$(find $MD_FOLDER -maxdepth 10 -type f -name '*' -execdir basename '{}
         echo $realFileName
     fi
     if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
-        if [[ "$S" == *def ]] then
+        if [[ $i == *.md ]]; then
           sed 's/\/documentation\///g' "$MD_FOLDER/$i" > "$GITHUB_WORKSPACE/${realFileName}"
         else
           cp "$MD_FOLDER/$i" "$GITHUB_WORKSPACE/${realFileName}"
