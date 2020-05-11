@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Updating Wiki
-      run: wiki_script.sh
+    - uses: actions/checkout@v2
+      run: .github/wiki_script.sh
     env:
       GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
       ACTION_MAIL: luisfontes101@gmail.com
