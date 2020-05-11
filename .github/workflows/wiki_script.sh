@@ -41,6 +41,9 @@ git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
+pwd 
+ls
+
 echo "Getting files from $MD_FOLDER"
 
 for i in $MD_FOLDER*; do
@@ -52,11 +55,11 @@ for i in $MD_FOLDER*; do
     
 
     if [[ $i == *.md ]]; then
-      echo "Changing markdown file $MD_FOLDER$i"
-      sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
+      echo "Changing markdown file $i"
+      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
     else
-      echo "copying $MD_FOLDER/$i to $TEMP_CLONE_FOLDER/${realFileName}"
-      cp "$MD_FOLDER/$i" "$TEMP_CLONE_FOLDER/${realFileName}"
+      echo "copying $i to $TEMP_CLONE_FOLDER/${realFileName}"
+      cp "$i" "$TEMP_CLONE_FOLDER/${realFileName}"
     fi
   fi
     
