@@ -64,8 +64,7 @@ done
 echo "Copying images folder"
 cp -r "$MD_FOLDER/img" "$TEMP_CLONE_FOLDER"
 
-cd $TEMP_CLONE_FOLDER
-rm -rf *
+
 
 echo "Pushing new pages"
 cd $TEMP_CLONE_FOLDER
