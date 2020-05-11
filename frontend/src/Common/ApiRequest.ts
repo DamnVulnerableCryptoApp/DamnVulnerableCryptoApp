@@ -5,9 +5,6 @@ export default class ApiRequest {
   protected static async do(path: string, params?: RequestInit, upload = false): Promise<any> {
     return new Promise((resolve, reject) => {
 
-      const isLoading = document.getElementById("isLoading") || document.createElement("input");
-      isLoading.textContent = "true";
-
       if (!params) params = {};
 
       // force json content type
@@ -20,10 +17,8 @@ export default class ApiRequest {
 
       const url = `${ApiRequest.getApiUrl()}${path}`;
       fetch(url, params).then((res) => res.json()).then((response) => {
-        isLoading.textContent = "false";
         resolve(response);
       }).catch(ex => {
-        isLoading.textContent = "true";
         reject(ex);
       });
 

@@ -1,23 +1,16 @@
-import { Backdrop, createStyles, makeStyles } from "@material-ui/core";
-import React from "react";
-import LoadingImg from '../Images/loading.gif';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    backdrop: {
-      zIndex: 10,
-    },
-  }),
-);
+import { Box, LinearProgress } from "@material-ui/core";
+import React, { useContext } from "react";
+import { LayoutContext } from "./LayoutContext";
 
 
 const Loading = () => {
-  const classes = useStyles();
+  const layoutContext = useContext(LayoutContext);
+  const loading = layoutContext.loading;
+  const lp = <LinearProgress />;
 
   return (
-    <Backdrop className={classes.backdrop} open={true}>
-      <img src={LoadingImg} width="100" />
-    </Backdrop>
+    <Box>{loading ? lp : null}</Box>
+
   );
 };
 

@@ -3,6 +3,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import React from 'react';
 import { useHistory } from 'react-router';
 import LogoMenu from '../Images/logo_menu.png';
+import Loading from './Loading';
 import Progress from './Progress';
 import useStyles from './styles';
 
@@ -25,6 +26,7 @@ const Appbar = () => {
         </Box>
         <Progress />
       </Toolbar>
+      <Loading />
     </AppBar>
   );
 };
