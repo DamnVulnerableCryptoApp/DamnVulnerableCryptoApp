@@ -28,8 +28,10 @@ jobs:
     - run: yarn add -g typescript react-scripts
     - run: yarn run install-deps
     - run: yarn run build
+      env:
+        CI: ""
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/node@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        CI: ""
+      
