@@ -42,7 +42,7 @@ git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
 for i in "${MD_FOLDER}/*" do
-  if [[ "$i" == *.md ]]; then
+  if [ "$i" == *.md ]; then
     realFileName=${i}
 
     echo "Processing $realFileName"
