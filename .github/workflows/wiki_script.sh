@@ -48,7 +48,7 @@ cd $GITHUB_WORKSPACE
 git init
 git config user.name $ACTION_NAME
 git config user.email $ACTION_MAIL
-
+git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 
 for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{}' ';')"; do
     realFileName=${i}
@@ -60,7 +60,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
     fi
     if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
         if [[ $i == *.md ]]; then
-          sed 's/\/documentation\///g' "$MD_FOLDER/$i" > "$GITHUB_WORKSPACE/${realFileName}"
+          sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$GITHUB_WORKSPACE/${realFileName}"
         else
           cp "$MD_FOLDER/$i" "$GITHUB_WORKSPACE/${realFileName}"
         fi
@@ -70,7 +70,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
     fi
 done
 
-cp $MD_FOLDER/img $GITHUB_WORKSPACE
+cp -r $MD_FOLDER/img $GITHUB_WORKSPACE
 
 echo "Pushing new pages"
 cd $GITHUB_WORKSPACE
