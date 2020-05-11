@@ -4,8 +4,8 @@ import "highlight.js/styles/github.css";
 import React, { useContext, useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { useParams } from "react-router";
+import { LayoutContext } from "../App/LayoutContext";
 import ApiRequest from "../Common/ApiRequest";
-import { LayoutContext } from "../Layout/LayoutContext";
 import { DocumentationService } from "./DocumentationService";
 import useStyles from "./styles";
 
