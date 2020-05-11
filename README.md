@@ -75,12 +75,10 @@ REACT_APP_SERVER_PORT=5000 yarn start
 To build the docker image run:
 
 ```
-cd backend
-docker build .
+yarn build:docker
 ```
 
 By default port 8081 is being exported,
-
 So you can map it to your own port:
 
 ```
