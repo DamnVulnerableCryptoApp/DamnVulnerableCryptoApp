@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      run: .github/wiki_script.sh
+    - run: .github/wiki_script.sh
     env:
       GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
       ACTION_MAIL: luisfontes101@gmail.com
