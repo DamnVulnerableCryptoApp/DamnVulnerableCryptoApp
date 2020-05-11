@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Appbar from "../Appbar/Appbar";
 import Challenge from "../Challenge/Challenge";
 import Challenges, { ChallengeData } from "../Challenges/Challenges";
-import Dashboard from "../dashboard/Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
 import Documentation from "../Documentation/Documentation";
 import { ProgressService } from "../Progress/ProgressService";
 import { LayoutContext } from "./LayoutContext";
