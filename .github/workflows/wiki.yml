@@ -12,10 +12,10 @@ jobs:
     - uses: actions/checkout@v2
     - run: chmod +x .github/workflows/wiki_script.sh
     - run: .github/workflows/wiki_script.sh
-    env:
-      GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
-      ACTION_MAIL: luisfontes101@gmail.com
-      ACTION_NAME: wikiautomation
-      OWNER: DamNVulnerableCryptoApp
-      REPO_NAME: damn_vulnerable_crypto_app
-      MD_FOLDER: backend/src/documentation/
+      env:
+        GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
+        ACTION_MAIL: luisfontes101@gmail.com
+        ACTION_NAME: wikiautomation
+        OWNER: DamNVulnerableCryptoApp
+        REPO_NAME: damn_vulnerable_crypto_app
+        MD_FOLDER: backend/src/documentation/
