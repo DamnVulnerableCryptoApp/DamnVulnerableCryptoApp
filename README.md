@@ -29,6 +29,8 @@ yarn run build
 
 ## Run
 
+
+### Running in Production mode
 ```
 yarn run start
 ```
@@ -38,7 +40,7 @@ If you want to change the port:
 PORT=4000 yarn run start
 ```
 
-### Running in dev environment
+### Running for development
 
 **NOTE:** This process will change in the near future
 
@@ -66,6 +68,23 @@ PORT=3000
 If you changed the server port you need to specify it here as well:
 ```
 REACT_APP_SERVER_PORT=5000 yarn start
+```
+
+## Docker
+
+To build the docker image run:
+
+```
+cd backend
+docker build .
+```
+
+By default port 8081 is being exported,
+
+So you can map it to your own port:
+
+```
+docker run -p 8081:8081 <IMAGE_ID>
 ```
 
 
