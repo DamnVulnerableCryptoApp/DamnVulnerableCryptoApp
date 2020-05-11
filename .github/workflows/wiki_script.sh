@@ -43,7 +43,7 @@ cd ..
 
 echo "Getting files from $MD_FOLDER"
 
-for i in "$MD_FOLDER*"; do
+for i in $MD_FOLDER*; do
   echo "Processing $realFileName"
 
   if [[ $i == *.md ]]; then
