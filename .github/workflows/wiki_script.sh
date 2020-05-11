@@ -58,7 +58,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
     realFileName=${i}
 
     echo "Processing $realFileName"
-
+ 
 
     if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
         if [[ $i == *.md ]]; then
