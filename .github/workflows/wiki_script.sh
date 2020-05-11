@@ -64,7 +64,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
     fi
     if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
         if [[ $i == *.md ]]; then
-          sed 's/\/documentation\///g' "$MD_FOLDER/$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
+          sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
         else
           cp "$MD_FOLDER/$i" "$TEMP_CLONE_FOLDER/${realFileName}"
         fi
@@ -74,7 +74,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
     fi
 done
 
-cp -r $MD_FOLDER/img $GITHUB_WORKSPACE
+cp -r "$MD_FOLDER/img" "$TEMP_CLONE_FOLDER"
 
 echo "Pushing new pages"
 cd $TEMP_CLONE_FOLDER
