@@ -49,7 +49,8 @@ git init
 git config user.name $ACTION_NAME
 git config user.email $ACTION_MAIL
 
-for i in "$(find $MD_FOLDER -maxdepth 10 -type f -name '*' -execdir basename '{}' ';')"; do
+
+for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{}' ';')"; do
     realFileName=${i}
     if [[ $TRANSLATE -ne 0 ]]; then
         realFileName=${i//_/ }
@@ -68,6 +69,8 @@ for i in "$(find $MD_FOLDER -maxdepth 10 -type f -name '*' -execdir basename '{}
         echo "Skip $i as it matches the $SKIP_MD rule"
     fi
 done
+
+cp $MD_FOLDER/img $GITHUB_WORKSPACE
 
 echo "Pushing new pages"
 cd $GITHUB_WORKSPACE
