@@ -5,7 +5,7 @@ export class BlockReorderingService extends ApiRequest {
   private static STORAGE_KEY = "ecb-br-token";
   public static CHALLENGEPATH = `/aes/ecb/block-reordering`;
 
-  public static async createAnonymousSessionIfNeded(): Promise<string> {
+  public static async createAnonymousSessionIfNeeded(): Promise<string> {
 
     const token = localStorage.getItem(BlockReorderingService.STORAGE_KEY);
     if (token) return token;

@@ -1,11 +1,11 @@
 import ApiRequest from '../../Common/ApiRequest';
 
-export class Md5Service extends ApiRequest {
+export class WeakHashingService extends ApiRequest {
 
   public static CHALLENGEPATH = `/md5`;
 
   public static async login(username: string, password: string): Promise<any> {
-    const path = `${Md5Service.CHALLENGEPATH}/login`;
+    const path = `${WeakHashingService.CHALLENGEPATH}/login`;
 
     const params = {
       method: 'POST',

@@ -2,13 +2,13 @@ import { Box } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Appbar from "../Appbar/Appbar";
 import Challenge from "../Challenge/Challenge";
 import Challenges, { ChallengeData } from "../Challenges/Challenges";
 import Dashboard from "../dashboard/Dashboard";
 import Documentation from "../Documentation/Documentation";
-import Appbar from "./Appbar";
+import { ProgressService } from "../Progress/ProgressService";
 import { LayoutContext } from "./LayoutContext";
-import { ProgressService } from "./ProgressService";
 
 
 const App = () => {

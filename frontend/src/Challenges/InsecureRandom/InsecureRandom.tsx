@@ -2,7 +2,8 @@ import { Box, Card, CardContent, IconButton, InputBase, Paper, Typography } from
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import Alert from "@material-ui/lab/Alert";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import { InsecureRandomService } from "./InsecureRandomService";
 import useStyles from "./styles";
@@ -17,9 +18,11 @@ const InsecureRandom = (props: IChallengeProps) => {
   const [coupons, setCoupons] = useState<number[]>([]);
   const [couponCheck, setCouponCheck] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const layoutContext = useContext(LayoutContext);
 
   const checkCoupon = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    layoutContext.setLoading(true);
 
     InsecureRandomService.checkCoupon(couponCheck).then(res => {
       props.setFlag(res.flag);
@@ -29,17 +32,22 @@ const InsecureRandom = (props: IChallengeProps) => {
       }
       else setErrorMessage("This coupon is not valid");
 
+      layoutContext.setLoading(false);
+
     }).catch(ex => {
       setErrorMessage("This coupon is not valid");
+      layoutContext.setLoading(false);
     });
 
   };
 
 
   useEffect(() => {
+    layoutContext.setLoading(true);
     InsecureRandomService.getCoupons().then(response => {
       setCoupons(response);
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   }, []);
 
 

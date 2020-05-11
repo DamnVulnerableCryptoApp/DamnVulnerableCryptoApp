@@ -1,6 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import { KeyDisclosureService } from "./KeyDisclosureService";
 import useStyles from "./styles";
@@ -12,6 +13,7 @@ const KeyDisclosure = (props: IChallengeProps) => {
 
   const classes = useStyles();
   const [license, setLicense] = useState("");
+  const layoutContext = useContext(LayoutContext);
 
 
   const downloadLicense = () => {
@@ -28,9 +30,12 @@ const KeyDisclosure = (props: IChallengeProps) => {
 
 
   useEffect(() => {
+
+    layoutContext.setLoading(true);
     KeyDisclosureService.getLicense().then((_license) => {
       setLicense(_license);
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   }, []);
 
   return (

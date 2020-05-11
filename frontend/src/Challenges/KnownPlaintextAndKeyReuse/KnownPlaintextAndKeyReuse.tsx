@@ -1,6 +1,7 @@
 import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@material-ui/core";
 import LockIcon from '@material-ui/icons/Lock';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import { HistoryEntry, KnownPlaintextAndKeyReuseService } from "./KnownPlaintextAndKeyReuseService";
 import useStyles from "./styles";
@@ -10,9 +11,12 @@ const KnownPlaintextAndKeyReuse = (props: IChallengeProps) => {
 
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [plaintext, setPlaintext] = useState("");
+  const layoutContext = useContext(LayoutContext);
 
 
   const onEncryptButtonPressed = () => {
+    layoutContext.setLoading(true);
+
     KnownPlaintextAndKeyReuseService.encrypt(plaintext).then((res: HistoryEntry) => {
       const c = Buffer.from(res.encryptedContent, "hex").toString();
       setHistory((hstry) => [res, ...hstry]);
@@ -21,14 +25,18 @@ const KnownPlaintextAndKeyReuse = (props: IChallengeProps) => {
       if (c.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/))
         props.setFlag(c);
 
+      layoutContext.setLoading(false);
 
-    });
+    }).catch(() => layoutContext.setLoading(false));
   };
 
   const getHistory = () => {
+    layoutContext.setLoading(true);
+
     KnownPlaintextAndKeyReuseService.history().then(res => {
       setHistory((hstry) => res);
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   };
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { Box, TextField, Typography } from "@material-ui/core";
 import LockIcon from '@material-ui/icons/Lock';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import DetectiveImg from '../../Images/detective.png';
 import { IvDetectionService } from "./IvDetectionService";
@@ -47,6 +48,7 @@ const IvDetection = (props: IChallengeProps) => {
   const [history, setHistory] = useState<IMessage[]>([]);
   const [message, setMessage] = useState("");
   const [firstResponse, setFistResponse] = useState(true);
+  const layoutContext = useContext(LayoutContext);
 
   const appendToHistory = (m: IMessage) => setHistory((hstry) => [...hstry, m]);
   const classes = useStyles();
@@ -67,9 +69,11 @@ const IvDetection = (props: IChallengeProps) => {
   const onMessageSent = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
+    layoutContext.setLoading(true);
+
     // if the user sends the IV as a message, the flag will be returned
     IvDetectionService.sendMessage(message).then(res => {
-
+      layoutContext.setLoading(false);
       if (res.flag) {
         props.setFlag(res.flag);
         sendThanks();
@@ -81,7 +85,7 @@ const IvDetection = (props: IChallengeProps) => {
 
       setFistResponse(false);
 
-    });
+    }).catch(() => layoutContext.setLoading(false));
 
     const msg: IMessage = { author: "me", authorImg: "", content: message, date: "now", type: "message" };
     appendToHistory(msg);

@@ -1,6 +1,6 @@
 import { Box, LinearProgress } from "@material-ui/core";
 import React, { useContext } from "react";
-import { LayoutContext } from "./LayoutContext";
+import { LayoutContext } from "../App/LayoutContext";
 
 
 const Loading = () => {
@@ -9,7 +9,7 @@ const Loading = () => {
   const lp = <LinearProgress />;
 
   return (
-    <Box>{loading ? lp : null}</Box>
+    <Box height="4">{loading ? lp : null}</Box>
 
   );
 };

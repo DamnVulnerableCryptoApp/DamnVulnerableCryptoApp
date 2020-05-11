@@ -1,6 +1,7 @@
 import { Box, Container, IconButton, Typography } from "@material-ui/core";
 import RefreshIcon from '@material-ui/icons/Refresh';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import notAuthorizedImg from "../../Images/notauthorized.jpg";
 import { PaddingOracleService } from "./PaddingOracleService";
@@ -11,19 +12,26 @@ const PaddingOracle = (props: IChallengeProps) => {
 
   const classes = useStyles();
   const [isAdmin, setIsAdmin] = useState(false);
+  const layoutContext = useContext(LayoutContext);
 
   const checkPermissions = () => {
+    layoutContext.setLoading(true);
+
     PaddingOracleService.isAdmin().then((res: any) => {
       setIsAdmin(res.isAdmin);
       props.setFlag(res.flag);
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   };
 
 
   useEffect(() => {
+    layoutContext.setLoading(true);
+
     PaddingOracleService.init().then(() => {
       checkPermissions();
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   }, []);
 
 
