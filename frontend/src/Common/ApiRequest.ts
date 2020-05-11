@@ -1,5 +1,14 @@
 export default class ApiRequest {
 
+  public static fetchWithTimeout(url: string, options: any = {}, timeout = 7000): Promise<any> {
+    return Promise.race([
+      fetch(url, options),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('timeout')), timeout)
+      )
+    ]);
+  }
+
 
 
   protected static async do(path: string, params?: RequestInit, upload = false): Promise<any> {
@@ -16,9 +25,11 @@ export default class ApiRequest {
       params.headers = headers;
 
       const url = `${ApiRequest.getApiUrl()}${path}`;
-      fetch(url, params).then((res) => res.json()).then((response) => {
+      ApiRequest.fetchWithTimeout(url, params).then((res) => res.json()).then((response) => {
         resolve(response);
-      }).catch(ex => reject(ex));
+      }).catch(ex => {
+        reject(ex);
+      });
 
     });
   }

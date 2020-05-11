@@ -1,9 +1,10 @@
 import { Box, Paper } from "@material-ui/core";
 import * as hljs from 'highlight.js';
 import "highlight.js/styles/github.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { useParams } from "react-router";
+import { LayoutContext } from "../App/LayoutContext";
 import ApiRequest from "../Common/ApiRequest";
 import { DocumentationService } from "./DocumentationService";
 import useStyles from "./styles";
@@ -21,24 +22,29 @@ const fixImagesInDev = () => {
   }
 };
 
+
 const Documentation = () => {
 
   const [documentation, setDocumentation] = useState("");
   const classes = useStyles();
   const { topic } = useParams();
+  const layoutContext = useContext(LayoutContext);
 
   useEffect(() => {
-
+    layoutContext.setLoading(true);
     DocumentationService.getDocumentation(topic).then((res: string) => {
+      layoutContext.setLoading(false);
       setDocumentation(res);
       hljs.initHighlighting();
-    });
+
+    }).catch(() => layoutContext.setLoading(false));
 
   }, []);
 
   useEffect(() => {
     fixImagesInDev();
   }, [documentation]);
+
 
   return (
     <Box>
