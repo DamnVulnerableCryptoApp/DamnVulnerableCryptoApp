@@ -41,10 +41,12 @@ git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
-for i in "$MD_FOLDER/*"; do
+echo "Getting files from $MD_FOLDER"
+
+for i in "$MD_FOLDER*"; do
   echo "Processing $realFileName"
 
-  if [ $i == "*.md" ]; then
+  if [[ $i == *.md ]]; then
     realFileName=${i}
 
     
