@@ -1,24 +1,26 @@
 import { Box, Button, IconButton } from "@material-ui/core";
 import AttachFileIcon from '@material-ui/icons/AttachFile';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Typed from "typed.js";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import ChecksumCollisionService from "./ChecksumCollisionService";
 import useStyles from "./styles";
+
+const banner =
+  '___________       __        ___________                   \n' +
+  '\\_   _____/____  |  | __ ___\\__    ___/__________  _____  \n' +
+  ' |    __) \\__  \\ |  |/ // __ \\|    |_/ __ \\_  __ \\/     \\ \n' +
+  ' |     \\   / __ \\|    <\\  ___/|    |\\  ___/|  | \\/  Y Y  \\\n' +
+  ' \\___  /  (____  /__|_ \\\\___  >____| \\___  >__|  |__|_|  /\n' +
+  '     \\/        \\/     \\/    \\/           \\/            \\/ \n';
 
 
 
 const ChecksumCollision = (props: IChallengeProps) => {
   const classes = useStyles();
-
+  const layoutContext = useContext(LayoutContext);
   const noFileSelected = "No File Selected";
-  const banner =
-    '___________       __        ___________                   \n' +
-    '\\_   _____/____  |  | __ ___\\__    ___/__________  _____  \n' +
-    ' |    __) \\__  \\ |  |/ // __ \\|    |_/ __ \\_  __ \\/     \\ \n' +
-    ' |     \\   / __ \\|    <\\  ___/|    |\\  ___/|  | \\/  Y Y  \\\n' +
-    ' \\___  /  (____  /__|_ \\\\___  >____| \\___  >__|  |__|_|  /\n' +
-    '     \\/        \\/     \\/    \\/           \\/            \\/ \n';
 
 
   const [file1, setFile1] = useState<File>(new File([], ""));
@@ -40,15 +42,18 @@ const ChecksumCollision = (props: IChallengeProps) => {
   };
 
   const uploadFiles = () => {
+    layoutContext.setLoading(true);
+
     ChecksumCollisionService.sendFiles(file1, file2).then(data => {
+      layoutContext.setLoading(false);
       props.setFlag(data.flag);
 
+      if (!data.success) typedError();
 
-      if (!data.success)
-        typedError();
-
-
-    }).catch(() => typedError());
+    }).catch(() => {
+      layoutContext.setLoading(false);
+      typedError();
+    });
 
   };
 

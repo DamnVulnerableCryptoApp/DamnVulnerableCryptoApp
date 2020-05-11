@@ -4,8 +4,8 @@ import "highlight.js/styles/github.css";
 import React, { useContext, useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { useParams } from "react-router";
+import { LayoutContext } from "../App/LayoutContext";
 import ApiRequest from "../Common/ApiRequest";
-import { LayoutContext } from "../Layout/LayoutContext";
 import { DocumentationService } from "./DocumentationService";
 import useStyles from "./styles";
 
@@ -22,6 +22,7 @@ const fixImagesInDev = () => {
   }
 };
 
+
 const Documentation = () => {
 
   const [documentation, setDocumentation] = useState("");
@@ -32,16 +33,18 @@ const Documentation = () => {
   useEffect(() => {
     layoutContext.setLoading(true);
     DocumentationService.getDocumentation(topic).then((res: string) => {
+      layoutContext.setLoading(false);
       setDocumentation(res);
       hljs.initHighlighting();
-      layoutContext.setLoading(false);
-    });
+
+    }).catch(() => layoutContext.setLoading(false));
 
   }, []);
 
   useEffect(() => {
     fixImagesInDev();
   }, [documentation]);
+
 
   return (
     <Box>

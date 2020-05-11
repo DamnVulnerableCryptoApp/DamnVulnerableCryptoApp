@@ -1,31 +1,10 @@
-import { Box, Button, Card, Checkbox, Container, FormControlLabel, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
+import { Box, Button, Card, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { LayoutContext } from '../../App/LayoutContext';
 import { IChallengeProps } from '../../Challenge/IChallengeProps';
-import { Md5Service } from './Md5Service';
-
-
-
-
-
-const useStyles = makeStyles({
-  container: {
-    backgroundColor: "#66bd4a"
-  },
-  title: {
-    textAlign: 'center',
-    color: "#FFF",
-  },
-  loginButton: {
-    textTransform: "none",
-    backgroundColor: green[500],
-    color: '#FFF'
-  }
-});
-
-
-
+import useStyles from './styles';
+import { WeakHashingService } from './WeakHashingService';
 
 
 
@@ -34,7 +13,8 @@ const LoginScreen = (props: IChallengeProps) => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [failedLogin, setLailedLogin] = useState(false);
+  const [failedLogin, setFailedLogin] = useState(false);
+  const layoutContext = useContext(LayoutContext);
 
   let loginError;
   if (failedLogin)
@@ -42,15 +22,19 @@ const LoginScreen = (props: IChallengeProps) => {
 
 
   const doLogin = (user: string, pass: string) => {
-    Md5Service.login(user, pass).then((res) => {
+    layoutContext.setLoading(true);
+
+    WeakHashingService.login(user, pass).then((res) => {
       if (res.flag) {
         props.setFlag(res.flag);
-        setLailedLogin(false);
+        setFailedLogin(false);
         window.scrollTo(0, 200);
       }
       else
-        setLailedLogin(true);
-    });
+        setFailedLogin(true);
+
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   };
 
   const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);

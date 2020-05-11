@@ -5,7 +5,7 @@ export class DocumentationService extends ApiRequest {
     return new Promise((resolve, reject) => {
 
       const url = `${ApiRequest.getApiUrl()}/documentation/${doc}.md`;
-      fetch(url).then(res => resolve(res.text())).catch(err => reject(err));
+      ApiRequest.fetchWithTimeout(url).then(res => resolve(res.text())).catch(err => reject(err));
     });
   }
 

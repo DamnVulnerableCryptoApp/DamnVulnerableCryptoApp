@@ -1,5 +1,6 @@
 import { Box, Typography } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import fcaLogo from "../../Images/fca_logo.png";
 import { BlockReorderingService } from "./BlockReorderingService";
@@ -10,14 +11,18 @@ import useStyles from "./styles";
 
 const BlockReordering = (props: IChallengeProps) => {
   const classes = useStyles();
+  const layoutContext = useContext(LayoutContext);
 
   useEffect(() => {
-
-    BlockReorderingService.createAnonymousSessionIfNeded().then(() => {
+    layoutContext.setLoading(true);
+    BlockReorderingService.createAnonymousSessionIfNeeded().then(() => {
       BlockReorderingService.isAdmin().then((res) => {
+
         props.setFlag(res.flag);
-      });
-    });
+        layoutContext.setLoading(false);
+
+      }).catch(() => layoutContext.setLoading(false));
+    }).catch(() => layoutContext.setLoading(false));
 
   }, []);
 

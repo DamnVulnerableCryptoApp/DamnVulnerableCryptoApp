@@ -1,5 +1,6 @@
 import { Box, Button, Container, TextField, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import { ByteAtATimeService } from "./ByteAtATimeService";
 import useStyles from "./styles";
@@ -9,23 +10,31 @@ const ByteAtATime = (props: IChallengeProps) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [token, setToken] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
+  const layoutContext = useContext(LayoutContext);
+
 
   const onAdminPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setAdminPassword(e.target.value);
 
   const submitAdminPassword = (event: React.SyntheticEvent) => {
+
     event.preventDefault();
+    layoutContext.setLoading(true);
+
     ByteAtATimeService.adminLogin(adminPassword).then(res => {
       props.setFlag(res.flag);
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   };
 
 
   useEffect(() => {
+    layoutContext.setLoading(true);
 
     ByteAtATimeService.askPermission().then(response => {
       setHasPermission(response.granted);
       setToken(response.token);
-    });
+      layoutContext.setLoading(false);
+    }).catch(() => layoutContext.setLoading(false));
   }, []);
 
 
