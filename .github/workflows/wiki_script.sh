@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEMP_CLONE_FOLDER="temp_wiki1"
+TEMP_CLONE_FOLDER="temp_wiki2"
 
 if [ -z "$ACTION_MAIL" ]; then
   echo "ACTION_MAIL ENV is missing"
@@ -43,7 +43,7 @@ cd ..
 
 
 for i in $MD_FOLDER*; do
-  echo "Processing $realFileName"
+  echo "Processing $i"
 
   if [[ $i == *.md ]]; then
     realFileName=basename $i
