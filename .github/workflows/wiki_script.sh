@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TEMP_CLONE_FOLDER="temp_wiki"
+
 if [ -z "$ACTION_MAIL" ]; then
   echo "ACTION_MAIL ENV is missing"
   exit 1
@@ -44,11 +46,13 @@ else
   TRANSLATE=1
 fi
 
-cd $GITHUB_WORKSPACE
+mkdir $TEMP_CLONE_FOLDER
+cd $TEMP_CLONE_FOLDER
 git init
 git config user.name $ACTION_NAME
 git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
+cd ..
 
 for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{}' ';')"; do
     realFileName=${i}
@@ -62,7 +66,7 @@ for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '
         if [[ $i == *.md ]]; then
           sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$GITHUB_WORKSPACE/${realFileName}"
         else
-          cp "$MD_FOLDER/$i" "$GITHUB_WORKSPACE/${realFileName}"
+          cp "$MD_FOLDER/$i" "$TEMP_CLONE_FOLDER/${realFileName}"
         fi
         
     else
@@ -73,7 +77,7 @@ done
 cp -r $MD_FOLDER/img $GITHUB_WORKSPACE
 
 echo "Pushing new pages"
-cd $GITHUB_WORKSPACE
+cd $TEMP_CLONE_FOLDER
 git add .
 git commit -m "$WIKI_PUSH_MESSAGE"
 git push --set-upstream https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git master
