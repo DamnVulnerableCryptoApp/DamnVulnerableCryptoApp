@@ -50,11 +50,11 @@ for i in $MD_FOLDER*; do
     
 
     if [[ $i == *.md ]]; then
-      echo "Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/${realFileName}"
-      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
+      echo "Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/$realFileName"
+      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/$realFileName"
     else
-      echo "copying $i to $TEMP_CLONE_FOLDER/${realFileName}"
-      cp "$i" "$TEMP_CLONE_FOLDER/${realFileName}"
+      echo "copying $i to $TEMP_CLONE_FOLDER/$realFileName"
+      cp "$i" "$TEMP_CLONE_FOLDER/$realFileName"
     fi
   fi
     
