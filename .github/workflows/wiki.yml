@@ -20,7 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: wiki-page-creator-action
-      uses: Decathlon/wiki-page-creator-action@v2.0.1
+      uses: Decathlon/wiki-page-creator-action@v2.0.0
     env:
       GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
       ACTION_MAIL: luisfontes101@gmail.com
