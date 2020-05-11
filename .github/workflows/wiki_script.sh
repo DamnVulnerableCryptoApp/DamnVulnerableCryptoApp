@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEMP_CLONE_FOLDER="temp_wiki"
+TEMP_CLONE_FOLDER="temp_wiki1"
 
 if [ -z "$ACTION_MAIL" ]; then
   echo "ACTION_MAIL ENV is missing"
@@ -50,7 +50,7 @@ for i in $MD_FOLDER*; do
     
 
     if [[ $i == *.md ]]; then
-      echo "Changing markdown file $i"
+      echo "Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/${realFileName}"
       sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
     else
       echo "copying $i to $TEMP_CLONE_FOLDER/${realFileName}"
