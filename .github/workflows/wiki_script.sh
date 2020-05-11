@@ -27,24 +27,11 @@ if [ -z "$MD_FOLDER" ]; then
   MD_FOLDER='.'
 fi
 
-if [ ! -z "$SKIP_MD" ]; then
-  DOC_TO_SKIP=(`echo $SKIP_MD | sed s/,/\ /g`)
-else
-  DOC_TO_SKIP=
-fi
-
 if [ -z "$WIKI_PUSH_MESSAGE" ]; then
   echo "WIKI_PUSH_MESSAGE ENV is missing, using the default one"
   WIKI_PUSH_MESSAGE='Auto Publish new pages'
 fi
 
-if [ -z "$TRANSLATE_UNDERSCORE_TO_SPACE" ]; then
-  echo "Don't translate '_' to space in Markdown's names"
-  TRANSLATE=0
-else
-  echo "Enable translation of '_' to spaces in Markdown's names"
-  TRANSLATE=1
-fi
 
 mkdir $TEMP_CLONE_FOLDER
 cd $TEMP_CLONE_FOLDER
@@ -54,24 +41,19 @@ git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
-for i in "$(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{}' ';')"; do
-    realFileName=${i}
+for i in *.md; do
+  realFileName=${i}
 
-    echo "Processing $realFileName"
- 
+  echo "Processing $realFileName"
 
-    if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
-        if [[ $i == *.md ]]; then
-          echo "Changing markdown file $MD_FOLDER$i"
-          sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
-        else
-          echo "copying $MD_FOLDER/$i to $TEMP_CLONE_FOLDER/${realFileName}"
-          cp "$MD_FOLDER/$i" "$TEMP_CLONE_FOLDER/${realFileName}"
-        fi
-        
-    else
-        echo "Skip $i as it matches the $SKIP_MD rule"
-    fi
+  if [[ $i == *.md ]]; then
+    echo "Changing markdown file $MD_FOLDER$i"
+    sed 's/\/documentation\///g' "$MD_FOLDER$i" > "$TEMP_CLONE_FOLDER/${realFileName}"
+  else
+    echo "copying $MD_FOLDER/$i to $TEMP_CLONE_FOLDER/${realFileName}"
+    cp "$MD_FOLDER/$i" "$TEMP_CLONE_FOLDER/${realFileName}"
+  fi
+    
 done
 
 echo "Copying images folder"
