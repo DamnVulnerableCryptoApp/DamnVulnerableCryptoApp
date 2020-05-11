@@ -33,14 +33,15 @@ const Documentation = () => {
     layoutContext.setLoading(true);
     DocumentationService.getDocumentation(topic).then((res: string) => {
       setDocumentation(res);
-      hljs.initHighlighting();
       layoutContext.setLoading(false);
-    });
+
+    }).catch(() => layoutContext.setLoading(false));
 
   }, []);
 
   useEffect(() => {
     fixImagesInDev();
+    setTimeout(() => hljs.initHighlighting(), 500);
   }, [documentation]);
 
   return (
