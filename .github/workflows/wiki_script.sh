@@ -48,12 +48,12 @@ for i in $MD_FOLDER*; do
   if [[ $i == *.md ]]; then
     realFileName=`basename $i`
     newFileName=`echo $realFileName | tr - " "` # replace - with spaces
-    newFileName=`$realFileName | sed -e "s/\b\(.\)/\u\1/g"` #capitalize
+    newFileName=`echo $newFileName | sed -e "s/\b\(.\)/\u\1/g"` #capitalize
     
     
     if [[ $i == *.md ]]; then
       echo "Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/$newFileName"
-      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/$realFinewFileNameleName"
+      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/$newFileName"
     else
       echo "copying $i to $TEMP_CLONE_FOLDER/$newFileName"
       cp "$i" "$TEMP_CLONE_FOLDER/$newFileName"
