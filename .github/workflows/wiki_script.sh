@@ -41,6 +41,7 @@ git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
+rm -rf $TEMP_CLONE_FOLDER/* # 
 
 for i in $MD_FOLDER*; do
   echo "Processing $i"
