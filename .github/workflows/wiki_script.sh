@@ -41,27 +41,34 @@ git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
-rm -rf $TEMP_CLONE_FOLDER/* # 
+rm -rf $TEMP_CLONE_FOLDER/* # make sure we remove everyting first. In case files were deleted/renamed
 
 for i in $MD_FOLDER*; do
   echo "Processing $i"
 
   if [[ $i == *.md ]]; then
-    realFileName=`basename $i`
+    realFileName=`basename $i` # filename 'block-reordering' will end up with the name 'Block Reordering'
     newFileName=`echo $realFileName | tr - " "` # replace - with spaces
     newFileName=`echo $newFileName | sed -e "s/\b\(.\)/\u\1/g"` #capitalize
     
     
     if [[ $i == *.md ]]; then
       echo "Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/$newFileName"
-      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/$newFileName"
+
+      # Replacing image urls, to relative paths in the wiki. 
+      # This may give some problems if text /documentation/ is present in markdown...
+      # We can create a more restrictive rule
+      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/$newFileName" 
     else
+
+      # If its not markdown just copy the file. No need to change it
       echo "copying $i to $TEMP_CLONE_FOLDER/$newFileName"
       cp "$i" "$TEMP_CLONE_FOLDER/$newFileName"
     fi
   fi
     
 done
+
 
 echo "Copying images folder"
 cp -r "$MD_FOLDER/img" "$TEMP_CLONE_FOLDER"
