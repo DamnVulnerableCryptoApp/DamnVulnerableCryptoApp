@@ -32,7 +32,6 @@ export class IvDetectionController {
 
   private encryptData(data: string): string {
     const cipher = crypto.createCipheriv('aes-128-cbc', Buffer.from(IvDetectionController.KEY), IvDetectionController.IV);
-    cipher.setAutoPadding(false);
     const buff = Buffer.from(data, 'utf8');
     let encrypted = cipher.update(buff);
     encrypted = Buffer.concat([encrypted, cipher.final()]);
@@ -49,5 +48,6 @@ export class IvDetectionController {
 
     return decrypted.toString();
   }
+
 
 }

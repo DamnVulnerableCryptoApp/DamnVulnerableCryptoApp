@@ -1,6 +1,6 @@
 # Known Plaintext
 
-For this section is important that you read and understand the [XOR docs](/docs/xor)
+For this section is important that you read and understand the [XOR docs](xor)
 
 ## The Basics
 
