@@ -3,13 +3,13 @@ import LockIcon from '@material-ui/icons/Lock';
 import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import { HistoryEntry, KnownPlaintextAndKeyReuseService } from "./KnownPlaintextAndKeyReuseService";
+import { IHistoryEntry, KnownPlaintextAndKeyReuseService } from "./KnownPlaintextAndKeyReuseService";
 import useStyles from "./styles";
 
 
 const KnownPlaintextAndKeyReuse = (props: IChallengeProps) => {
 
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [history, setHistory] = useState<IHistoryEntry[]>([]);
   const [plaintext, setPlaintext] = useState("");
   const layoutContext = useContext(LayoutContext);
 
@@ -17,7 +17,7 @@ const KnownPlaintextAndKeyReuse = (props: IChallengeProps) => {
   const onEncryptButtonPressed = () => {
     layoutContext.setLoading(true);
 
-    KnownPlaintextAndKeyReuseService.encrypt(plaintext).then((res: HistoryEntry) => {
+    KnownPlaintextAndKeyReuseService.encrypt(plaintext).then((res: IHistoryEntry) => {
       const c = Buffer.from(res.encryptedContent, "hex").toString();
       setHistory((hstry) => [res, ...hstry]);
 
