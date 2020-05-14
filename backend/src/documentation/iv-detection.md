@@ -14,15 +14,23 @@ To exploit this scenario there are a few conditions that need to be met.
 3 - Padding check disabled
 
 There's a *magic payload* to exploit this, and its like:
-```
-[FirstEncryptedBlock][NullFilledBlock][FirstEncryptedBlock]
-```
+
+Lets recap first how CBC decryption works
+
+![CBC Decryption](img/cbc_decrypt.png "CBC Decryption")
+
+As you can see the first encrypted block is xorted with the 2nd decrypted block, giving us the second block of plain text. And the second encrypted block is xored with the decrypted 3rd block, and so on 
+
+
+A specially crafter ciphertext can be used to exploit this way of working, to give us the IV. 
 
 Lets see by example, how this works. Again lets assume a custom CBC  encryption, and since we are going to see this in binary (which is easier to understand) lets assume that each block takes 4 digits.
 
-For this example lets say that the encrypted content of a random string, in binary, is 011000010111.
 
-Since the block size is 4 digits, the first block is 0110. Lets see how our payload ends up:
+
+For this example lets also say that the encrypted content of a random string, in binary, is 011000010111.
+
+The specially crafter payload is calculated by using the first block, then a block filled with zeros, followed by the first block again:
 
 ```
 0110 - First Block
@@ -32,7 +40,7 @@ Since the block size is 4 digits, the first block is 0110. Lets see how our payl
 Final Payload: 011000000110
 ```
 
-The decryption of the content is processed as follows (assuming IV is 11111):
+The decryption of the content is processed as follows, according to the schema above (assuming IV is 11111):
 
 ```
 Decrypted1stBlock = Decrypt(FirstBlock)  ⊕ IV           | 1101 ⊕ 1111 = 0010
@@ -42,9 +50,9 @@ Decrypted3rdBlock = Decrypt(ThirdBlock)  ⊕ SecondBlock  | 1101 ⊕ 0000 = 1101
 
 
 
-Remember that xoring something with 0000, you end up with the original content, so Decrypted3rdBlock = Decrypt(ThirdBlock) = Decrypt(FirstBlock)
+Remember that xoring something with 0000, you end up with the original content, so Decrypted3rdBlock is the same as Decrypt(ThirdBlock) which is the same as Decrypt(FirstBlock)
 
-And Decrypted1stBlock = Decrypt(FirstBlock)  ⊕ IV 
+And Decrypted1stBlock is the same as Decrypt(FirstBlock) ⊕ IV 
 
 
 If we xor both: 
