@@ -5,6 +5,9 @@ name: Wiki Update
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
   wiki:
     runs-on: ubuntu-latest

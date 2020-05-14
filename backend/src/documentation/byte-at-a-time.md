@@ -1,6 +1,6 @@
 # Byte At A Time
 
-For this section is important you read and understand the [BLock cipher docs](/docs/block-ciphers)
+For this section is important you read and understand the [BLock cipher docs](block-ciphers)
 
 ## The Basics
 

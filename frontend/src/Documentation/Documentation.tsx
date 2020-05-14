@@ -16,8 +16,9 @@ const fixImagesInDev = () => {
   if (process?.env?.NODE_ENV === 'development') {
     const currentPort = window.location.port || "80";
 
-    document.querySelectorAll("img").forEach(img => {
-      img.src = img.src.replace(`:${currentPort}/`, `:${ApiRequest.serverPort()}/`);
+    document.querySelectorAll("#doc-container > img").forEach(img => {
+      const image: HTMLImageElement = img as HTMLImageElement;
+      image.src = image.src.replace(`:${currentPort}/`, `:${ApiRequest.serverPort()}/`);
     });
   }
 };
@@ -44,9 +45,10 @@ const Documentation = () => {
     setTimeout(() => hljs.initHighlighting(), 500);
   }, [documentation]);
 
+
   return (
     <Box>
-      <Paper>
+      <Paper id="doc-container">
         <ReactMarkdown className={classes.root} source={documentation} />
       </Paper>
     </Box >
