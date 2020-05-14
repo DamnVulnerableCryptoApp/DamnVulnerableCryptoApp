@@ -1,6 +1,6 @@
 import ApiRequest from "../../Common/ApiRequest";
 
-interface IHistoryEntry {
+export interface IHistoryEntry {
   encryptedContent: string;
   date: string;
 }

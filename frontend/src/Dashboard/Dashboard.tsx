@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     <div>
       <Box className={classes.logoContainer} >
-        <img className={classes.logo} src={Logo} />
+        <img className={classes.logo} src={Logo} alt="DamnVulenrableCryptoApp Logo" />
       </Box>
       <Grid container spacing={5} className={classes.root}>
         {Challenges.map((challenge, i) => {

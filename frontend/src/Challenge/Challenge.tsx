@@ -1,6 +1,7 @@
 import { AppBar, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { LayoutContext } from "../App/LayoutContext";
 import Flag from "../Flag/Flag";
 import { ProgressService } from "../Progress/ProgressService";
@@ -63,7 +64,7 @@ const Challenge = (props: IChallengeContainerProps) => {
           <Typography variant="h6">Docs</Typography>
         </AppBar>
         <Paper role="tabpanel" className={classes.documentation}>
-          <Typography>If you are having trouble with this challenge take a look at our documentation <a href="" onClick={onGoToDocsClicked("docs" + props.obj.url)}>here</a> </Typography>
+          <Typography>If you are having trouble with this challenge take a look at our documentation <Link to={"docs" + props.obj.url}>here</Link> </Typography>
         </Paper>
       </Grid>
     </Grid>
