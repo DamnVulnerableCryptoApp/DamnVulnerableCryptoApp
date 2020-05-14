@@ -1,9 +1,20 @@
 import ApiRequest from "../../Common/ApiRequest";
 
+
+interface IAdminResponse {
+  isAdmin: boolean;
+  flag: string;
+}
+
+interface IAccessResponse {
+  token: string;
+}
+
 export class BlockReorderingService extends ApiRequest {
 
   private static STORAGE_KEY = "ecb-br-token";
   public static CHALLENGEPATH = `/aes/ecb/block-reordering`;
+
 
   public static async createAnonymousSessionIfNeeded(): Promise<string> {
 
@@ -14,13 +25,13 @@ export class BlockReorderingService extends ApiRequest {
   }
 
 
-  public static async isAdmin(): Promise<any> {
+  public static async isAdmin(): Promise<IAdminResponse> {
     return new Promise((resolve, reject) => {
       const path = `${BlockReorderingService.CHALLENGEPATH}/isAdmin`;
       const token = localStorage.getItem(BlockReorderingService.STORAGE_KEY);
       const headers: any = { token };
 
-      super.do(path, { headers }).then(res => resolve(res)).catch(err => reject(err));
+      super.do(path, { headers }).then((res: IAdminResponse) => resolve(res)).catch(err => reject(err));
 
     });
   }
@@ -31,8 +42,8 @@ export class BlockReorderingService extends ApiRequest {
       const path = `${BlockReorderingService.CHALLENGEPATH}/`;
       const headers: any = { username: 'anonymous' };
 
-      super.do(path, { headers }).then((response) => {
-        localStorage.setItem(BlockReorderingService.STORAGE_KEY, response.token); // Don't do this, it is insecure :)
+      super.do(path, { headers }).then((response: IAccessResponse) => {
+        localStorage.setItem(BlockReorderingService.STORAGE_KEY, response.token);
         resolve(response.token);
       }).catch(ex => reject(ex));
 

@@ -1,18 +1,12 @@
-import { Controller, Post, Property } from "@tsed/common";
+import { Controller, Post } from "@tsed/common";
 import { MultipartFile } from "@tsed/multipartfiles";
-import { Description, Example, Returns } from '@tsed/swagger';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 
-
-class ResponseModel {
-
-  @Example("11111111-1111-1111-1111-111111111111")
-  @Description("Returns empty if operation not succeeded")
-  @Property() flag: string;
-  @Property() success: boolean;
+interface ICheckResponse {
+  success: boolean;
+  flag: string;
 }
-
 
 
 @Controller("/md5")
@@ -29,12 +23,10 @@ export class ChecksumCollisitonsController {
   // python3 gen_coll_c.py
   // this will compile the c template in the project folder and create two different files.
   @Post("/checksum")
-  @Description("Receives the two files and checks if they have same md5 hash and if they are different")
-  @Returns(ResponseModel)
   public async checksum(
     @MultipartFile("file1") file1: Express.Multer.File,
     @MultipartFile("file2") file2: Express.Multer.File
-  ): Promise<ResponseModel> {
+  ): Promise<ICheckResponse> {
 
     let success = false;
     let flag = "";

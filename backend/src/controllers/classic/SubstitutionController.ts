@@ -1,6 +1,15 @@
 import { Controller, Get, QueryParams } from "@tsed/common";
 
 
+interface IResponse {
+  data: string;
+}
+
+interface ICheckResponse {
+  success: boolean;
+  flag: string;
+}
+
 @Controller("/classic/substitution")
 export class SubstitutionController {
 
@@ -38,25 +47,19 @@ export class SubstitutionController {
 
 
   @Get("/")
-  public index() {
+  public index(): IResponse {
     const enc = this.encrypt("It was an ambush. Five or our men died. We got the goods. We leave at dawn");
 
     return { data: enc };
   }
 
 
-  // zyxqponmlkjihgfewvutsrdcba
-  // a normal substitution cypher that translates to:
-  // It was an ambush. Five or our men died. We got the goods. We leave at dawn
-  // this can be manually decrypted by studying letter frequency
-  // now a daws there are awesome websites that do this automatically
-  // https://quipqiup.com/
-  // [1, 4, 13, 27, 35, 46, 49, 62, 71]
-  // these are just possitions of the letters to get:
-  // iwbodteld
   @Get("/check")
-  public check(@QueryParams("answer") answer: string) {
-    return answer === "iwbodteld" ? { flag: SubstitutionController.FLAG } : { flag: "" };
+  public check(@QueryParams("answer") answer: string): ICheckResponse {
+    if (answer === "iwbodteld")
+      return { flag: SubstitutionController.FLAG, success: true };
+    else
+      return { flag: "", success: false };
   }
 
 

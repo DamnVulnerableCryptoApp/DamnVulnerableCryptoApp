@@ -1,9 +1,10 @@
 import ApiRequest from "../../Common/ApiRequest";
 
-export interface IIvDetectionServiceResponse {
+interface IResponse {
   data: string;
   flag: string;
 }
+
 
 export class IvDetectionService extends ApiRequest {
 
@@ -11,7 +12,7 @@ export class IvDetectionService extends ApiRequest {
   public static CHALLENGEPATH = `/aes/cbc/iv-detection`;
 
 
-  public static async sendMessage(message: string): Promise<IIvDetectionServiceResponse> {
+  public static async sendMessage(message: string): Promise<IResponse> {
     return new Promise((resolve, reject) => {
 
 

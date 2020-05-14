@@ -2,6 +2,17 @@ import { $log, Controller, Get, HeaderParams } from "@tsed/common";
 import * as crypto from 'crypto';
 import { InternalServerError } from 'ts-httpexceptions';
 
+
+interface IAdminResponse {
+  isAdmin: boolean;
+  flag: string;
+}
+
+interface IAccessResponse {
+  token: string;
+}
+
+
 @Controller("/aes/cbc/padding-oracle")
 export class PaddingOracleController {
 
@@ -10,7 +21,7 @@ export class PaddingOracleController {
   static FLAG = "ab194c44-b2f7-4c3e-a2e8-d2601cafe73f";
 
   @Get("/")
-  public async home() {
+  public home(): IAccessResponse {
     const token = this.getAnonymousToken();
 
     return { token };
@@ -27,7 +38,7 @@ export class PaddingOracleController {
   // poattack "decrypt" "http://localhost:4000" "hex:2ad2afbf7109c87618213051e2d1f9b89d4582bda719bf4f607a9181a20e7ea1cd0e2bea953a1050bb4475be9c6cd49d139fe8f2bfe3498b75569613d8244c37afaf5449bdaa59e9d39edf60873d61a3" "16" "bad decrypt" "/tmp/a.txt" "hex"
   // // poattack "encrypt" "http://localhost:4000" "hex:32302d30342d31335432313a32383a35342e3837315a3b697341646d696e3d747275653b757365726e616d653d416e6f6e796d6f7573" "16" "bad decrypt" "/tmp/a.txt" "hex"
   @Get("/isAdmin")
-  public async admin(@HeaderParams("token") token: string) {
+  public admin(@HeaderParams("token") token: string): IAdminResponse {
 
     let isAdmin = false;
 

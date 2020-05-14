@@ -1,5 +1,15 @@
 import ApiRequest from '../../Common/ApiRequest';
 
+
+interface IResponse {
+  data: string;
+}
+
+interface ICheckResponse {
+  success: boolean;
+  flag: string;
+}
+
 export class ClassicService extends ApiRequest {
 
   public static CHALLENGEPATH = `/classic/substitution`;
@@ -9,14 +19,14 @@ export class ClassicService extends ApiRequest {
     return new Promise((resolve, reject) => {
       const path = `${ClassicService.CHALLENGEPATH}`;
 
-      super.do(path).then((response) => {
+      super.do(path).then((response: IResponse) => {
         resolve(response.data);
       });
     });
   }
 
 
-  public static async checkAnswer(answer: string): Promise<any> {
+  public static async checkAnswer(answer: string): Promise<ICheckResponse> {
 
     const path = `${ClassicService.CHALLENGEPATH}/check?answer=` + answer;
 
