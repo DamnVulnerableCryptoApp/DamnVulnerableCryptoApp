@@ -1,9 +1,14 @@
 import ApiRequest from "../../Common/ApiRequest";
 
-interface CheckResponse {
+interface ICouponsResponse {
+  coupons: number[];
+}
+
+interface ICheckResponse {
   valid: boolean;
   flag: string;
 }
+
 
 export class InsecureRandomService extends ApiRequest {
 
@@ -16,12 +21,12 @@ export class InsecureRandomService extends ApiRequest {
     return new Promise((resolve, reject) => {
 
       const path = `${InsecureRandomService.CHALLENGEPATH}/`;
-      super.do(path).then(res => resolve(res.coupons)).catch(ex => reject(ex));
+      super.do(path).then((res: ICouponsResponse) => resolve(res.coupons)).catch(ex => reject(ex));
 
     });
   }
 
-  public static async checkCoupon(coupon: string): Promise<CheckResponse> {
+  public static async checkCoupon(coupon: string): Promise<ICheckResponse> {
     const c = InsecureRandomService.unformatCoupon(coupon);
     const path = `${InsecureRandomService.CHALLENGEPATH}/check?couponCode=${c}`;
 

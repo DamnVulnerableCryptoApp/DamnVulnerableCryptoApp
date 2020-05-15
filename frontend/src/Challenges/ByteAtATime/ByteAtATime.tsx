@@ -3,10 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import { ByteAtATimeService } from "./ByteAtATimeService";
-import useStyles from "./styles";
 
 const ByteAtATime = (props: IChallengeProps) => {
-  const classes = useStyles();
   const [hasPermission, setHasPermission] = useState(false);
   const [token, setToken] = useState("");
   const [adminPassword, setAdminPassword] = useState("");

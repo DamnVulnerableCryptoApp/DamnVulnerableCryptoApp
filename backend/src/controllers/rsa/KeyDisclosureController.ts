@@ -1,7 +1,26 @@
-import { Controller, QueryParams, Get } from '@tsed/common';
+import { Controller, Get, QueryParams } from '@tsed/common';
+import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as crypto from 'crypto';
+
+interface IResponse {
+  success: boolean;
+  flag: string;
+}
+
+interface ILicense {
+  users: number;
+  type: string;
+  addons: string;
+  expiration: string;
+  projectLimit: number;
+  magic: string;
+  flag: string;
+}
+
+interface IEncryptedLicense {
+  license: string;
+}
 
 @Controller("/rsa/key-disclosure")
 export class KeyDisclosure {
@@ -13,16 +32,16 @@ export class KeyDisclosure {
 
 
   @Get("/")
-  public async index(@QueryParams("magic") magic: string) {
+  public index(@QueryParams("magic") magic: string): IResponse {
     if (KeyDisclosure.MAGIC === magic)
-      return { flag: KeyDisclosure.FLAG };
+      return { flag: KeyDisclosure.FLAG, success: true };
     else
-      return { flag: "" };
+      return { flag: "", success: false };
   }
 
   @Get("/getLicense")
-  public async getLicense() {
-    const license = JSON.stringify({
+  public getLicense(): IEncryptedLicense {
+    const license: ILicense = {
       users: 10,
       type: "full",
       addons: "reporting",
@@ -30,13 +49,13 @@ export class KeyDisclosure {
       projectLimit: 9999999,
       magic: KeyDisclosure.MAGIC,
       flag: KeyDisclosure.FLAG,
-    });
+    };
 
-    return { license: this.encryptLicense(license) };
+    return { license: this.encryptLicense(JSON.stringify(license)) };
   }
 
 
-  public encryptLicense(license: string) {
+  private encryptLicense(license: string) {
 
     const publicKey = fs.readFileSync(KeyDisclosure.PUBLIC_KEY_PATH, "utf8");
     const buffer = Buffer.from(license);

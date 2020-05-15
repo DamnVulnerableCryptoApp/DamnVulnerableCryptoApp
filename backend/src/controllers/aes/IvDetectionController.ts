@@ -1,6 +1,10 @@
 import { BodyParams, Controller, Post } from "@tsed/common";
 import * as crypto from 'crypto';
 
+interface IResponse {
+  data: string;
+  flag: string;
+}
 
 @Controller("/aes/cbc/iv-detection")
 export class IvDetectionController {
@@ -10,22 +14,22 @@ export class IvDetectionController {
   static FLAG = "485e40a2-8c8a-11ea-bc55-0242ac130003";
 
   @Post("/send")
-  public async send(@BodyParams("data") data: string) {
+  public send(@BodyParams("data") data: string) {
     // do nothing... just to have an endpoint for the UI to call :)
     return {};
   }
 
 
   @Post("/encrypt")
-  public async encrypt(@BodyParams("data") data: string) {
+  public encrypt(@BodyParams("data") data: string): IResponse {
     const f = data === IvDetectionController.IV ? IvDetectionController.FLAG : "";
 
     return { data: this.encryptData(data), flag: f };
   }
 
   @Post("/decrypt")
-  public async decrypt(@BodyParams("data") data: string) {
-    return { data: this.decryptData(data) };
+  public decrypt(@BodyParams("data") data: string): IResponse {
+    return { data: this.decryptData(data), flag: "" };
   }
 
 

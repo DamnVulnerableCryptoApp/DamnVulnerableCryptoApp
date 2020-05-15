@@ -27,7 +27,7 @@ const ClassicCipher = (props: IChallengeProps) => {
     ClassicService.checkAnswer(answer).then(res => {
       const flag = res.flag;
       props.setFlag(flag);
-      if (!flag) setErrorMessage("Sorry, not quite there yet...");
+      if (!res.success) setErrorMessage("Sorry, not quite there yet...");
 
       layoutContext.setLoading(false);
 

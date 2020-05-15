@@ -30,7 +30,7 @@ const Appbar = () => {
           <IconButton edge="start" disabled={isHomePage()} onClick={onBackClicked} className={classes.menuButton} color="inherit" aria-label="menu">
             <ArrowBackIcon />
           </IconButton>
-          <img className={classes.menuLogo} src={LogoMenu} onClick={onLogoClicked} />
+          <img className={classes.menuLogo} src={LogoMenu} onClick={onLogoClicked} alt="DamnVulenrableCryptoApp Logo" />
         </Box>
         <Progress />
       </Toolbar>

@@ -1,5 +1,13 @@
 import { Controller, Get, QueryParams } from '@tsed/common';
 
+interface ICouponsResponse {
+  coupons: number[];
+}
+
+interface ICheckResponse {
+  valid: boolean;
+  flag: string;
+}
 
 
 @Controller("/random")
@@ -10,7 +18,7 @@ export class Random {
   static FLAG = "83939130-daa9-4878-ab18-5d5edac5fead";
 
   @Get("/")
-  public async index() {
+  public index(): ICouponsResponse {
 
     this.nextCoupons = [];
     this.currentCoupons = [];
@@ -35,7 +43,7 @@ export class Random {
   // pip install z3-solver
   // more about js random: https://gist.github.com/joepie91/7105003c3b26e65efcea63f3db82dfba
   @Get("/check")
-  public async check(@QueryParams("couponCode") code: number) {
+  public check(@QueryParams("couponCode") code: number): ICheckResponse {
     if (this.currentCoupons.includes(code))
       return { valid: true, flag: "" };
     else if (this.nextCoupons.includes(code))
