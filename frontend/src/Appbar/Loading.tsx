@@ -9,7 +9,7 @@ const Loading = () => {
   const lp = <LinearProgress />;
 
   return (
-    <Box height="4">{loading ? lp : null}</Box>
+    <Box style={{ height: '4px' }}>{loading ? lp : null}</Box>
 
   );
 };
