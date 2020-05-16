@@ -26,7 +26,7 @@ const KeyModal = (props: IModalProps) => {
     layoutContext.setLoading(true);
 
     KeyDisclosureService.unlockMailbox(props.mailboxKey).then(res => {
-      layoutContext.setLoading(false)
+      layoutContext.setLoading(false);
       if (res.success) {
         props.setFlag(res.flag);
         props.setInboxUnlocked(true);
