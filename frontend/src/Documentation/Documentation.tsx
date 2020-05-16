@@ -10,17 +10,29 @@ import { DocumentationService } from "./DocumentationService";
 import useStyles from "./styles";
 
 
-const fixImagesInDev = () => {
+const fixImages = () => {
   // check if running on dev, because if so, since the images come from backend
   // and backend is in a different url we need to change the url of the image
-  if (process?.env?.NODE_ENV === 'development') {
-    const currentPort = window.location.port || "80";
 
-    document.querySelectorAll("#doc-container > img").forEach(img => {
-      const image: HTMLImageElement = img as HTMLImageElement;
-      image.src = image.src.replace(`:${currentPort}/`, `:${ApiRequest.serverPort()}/`);
-    });
-  }
+
+  const currentPort = window.location.port || "80";
+
+  document.querySelectorAll("#doc-container img").forEach(img => {
+    const image: HTMLImageElement = img as HTMLImageElement;
+    let src = image.src;
+
+    // markdown viewer automatically changes the url to absolute.
+    // But /docs its a react route, its not on the server, so change /docs/ with the server route /documentation/
+    src = src.replace("/docs/", "/documentation/");
+
+    if (process?.env?.NODE_ENV === 'development')
+      src = src.replace(`:${currentPort}/`, `:${ApiRequest.serverPort()}/`);
+
+    image.src = src;
+
+
+  });
+
 };
 
 const Documentation = () => {
@@ -41,7 +53,7 @@ const Documentation = () => {
   }, []);
 
   useEffect(() => {
-    fixImagesInDev();
+    fixImages();
     setTimeout(() => hljs.initHighlighting(), 500);
   }, [documentation]);
 
