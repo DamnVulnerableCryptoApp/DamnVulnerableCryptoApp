@@ -25,7 +25,16 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: '9px',
       cursor: 'pointer'
     },
-
+    docsLink: {
+      color: '#FFF',
+      textDecoration: 'none',
+      fontSize: '1rem',
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontWeight: 400,
+      lineHeight: '43px',
+      letterSpacing: '0.00938em',
+      paddingRight: '20px'
+    }
 
   }),
 );

@@ -2,6 +2,7 @@ import { AppBar, Box, IconButton, Toolbar } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import React from 'react';
 import { useHistory } from 'react-router';
+import { Link } from "react-router-dom";
 import LogoMenu from '../Images/logo_menu.png';
 import Progress from '../Progress/Progress';
 import Loading from './Loading';
@@ -30,9 +31,12 @@ const Appbar = () => {
           <IconButton edge="start" disabled={isHomePage()} onClick={onBackClicked} className={classes.menuButton} color="inherit" aria-label="menu">
             <ArrowBackIcon />
           </IconButton>
-          <img className={classes.menuLogo} src={LogoMenu} onClick={onLogoClicked} alt="DamnVulenrableCryptoApp Logo" />
+          <img className={classes.menuLogo} src={LogoMenu} onClick={onLogoClicked} alt="DamnVulnerableCryptoApp Logo" />
         </Box>
-        <Progress />
+        <Box display="flex">
+          <Link to={"/docs/home"} className={classes.docsLink}>Docs</Link>
+          <Progress />
+        </Box>
       </Toolbar>
       <Loading />
     </AppBar>
