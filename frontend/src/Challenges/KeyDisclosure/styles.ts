@@ -2,20 +2,21 @@ import { makeStyles } from "@material-ui/core";
 import indigo from '@material-ui/core/colors/indigo';
 
 const useStyles = makeStyles({
-  downloadSection: {
-    'background-color': indigo[500],
-    color: '#FFF',
+  mailbox: {
+    minHeight: '500px'
   },
-  downloadSectionBox: {
-    padding: '20px',
-    'text-align': 'center',
+  emailList: {
+    borderRight: '1px solid #DDD',
+
   },
-  downloadIcon: {
-    'font-size': "200px",
+  emailDetails: {
+
   },
-  infoBox: {
-    padding: '30px',
-    'padding-top': '0px'
+  tabs: {
+    backgroundColor: indigo[500],
+  },
+  emailBody: {
+    marginTop: '30px'
   }
 });
 
