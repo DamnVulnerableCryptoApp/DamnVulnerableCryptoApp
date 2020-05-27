@@ -44,10 +44,17 @@ const InsecureRandom = (props: IChallengeProps) => {
 
   useEffect(() => {
     layoutContext.setLoading(true);
+
+    props.setWarning("The publicly available POC for predicting Math.random numbers doesn't work properly with (at least) Node v10.\n" +
+      "This was tested successfully on Node v12, so if you want to keep it simple this is the recommended version to use for this challenge.");
+
     InsecureRandomService.getCoupons().then(response => {
       setCoupons(response);
       layoutContext.setLoading(false);
     }).catch(() => layoutContext.setLoading(false));
+
+
+
   }, []);
 
 
@@ -55,12 +62,6 @@ const InsecureRandom = (props: IChallengeProps) => {
 
   return (
     <Box>
-      <Box className={classes.warning}>
-        <Alert severity="warning">
-          The publicly available POC for predicting Math.random numbers doesn't work properly with (at least) Node v10.<br />
-          This was tested successfull on Node v12, so if you want to keep it simple this is the recomended version to use for this challenge.
-      </Alert>
-      </Box>
 
       <Box textAlign="center" className={classes.congrats}>
         <Typography color="primary" variant="h2">Congratulations!!!</Typography>

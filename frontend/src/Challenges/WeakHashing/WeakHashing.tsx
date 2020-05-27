@@ -81,7 +81,7 @@ const WeakHashing = (props: IChallengeProps) => {
 
 
         <Box border={1} mt={10}>
-          <LoginScreen flag={props.flag} setFlag={props.setFlag} />
+          <LoginScreen flag={props.flag} setFlag={props.setFlag} setWarning={props.setWarning} />
         </Box>
 
       </Card>

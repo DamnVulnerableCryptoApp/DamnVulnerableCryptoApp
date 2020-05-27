@@ -4,21 +4,20 @@ import { indigo } from "@material-ui/core/colors";
 const useStyles = makeStyles({
   root: {
     display: 'flex',
-    'margin-bottom': '50px',
-    'background-color': indigo[500], // lightGreen['500']
+    marginBottom: '50px',
+    backgroundColor: indigo[500], // lightGreen['500']
     color: '#FFF'
   },
   couponIcon: {
-    'font-size': 150,
+    fontSize: 150,
     color: '#FFF'
   },
   congrats: {
-    'margin-top': '100px',
-    'margin-bottom': '70px'
+    marginBottom: '70px'
   },
   warning: {
-    'margin-top': '20px',
-    'margin-bottom': '20px'
+    marginTop: '20px',
+    marginBottom: '20px'
   },
   form: {
     display: 'flex',

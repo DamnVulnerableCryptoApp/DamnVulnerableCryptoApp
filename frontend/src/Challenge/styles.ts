@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { amber } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   sidebarCard: {
@@ -23,6 +24,19 @@ const useStyles = makeStyles({
     paddingTop: '60px',
     paddingBottom: '60px',
     textAlign: 'center'
+  },
+
+  warningTitle: {
+    padding: '20px',
+    textAlign: 'left',
+    backgroundColor: amber[500]
+  },
+  warning: {
+    padding: '30px',
+    paddingTop: '60px',
+    paddingBottom: '60px',
+    textAlign: 'center',
+    marginBottom: '50px'
   }
 });
 
