@@ -2,7 +2,8 @@ import { AppBar, Avatar, Box, Grid, List, ListItem, ListItemAvatar, ListItemText
 import DraftsIcon from '@material-ui/icons/Drafts';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import StarIcon from '@material-ui/icons/Star';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import DetectiveImg from '../../Images/detective.png';
 import FakeReporterImg from "../../Images/fakereporter.jpg";
@@ -17,7 +18,13 @@ const KeyDisclosure = (props: IChallengeProps) => {
   const [mailboxKey, setMailboxKey] = useState("");
   const [emails, setEmails] = useState<IEmail[]>([]);
   const [selectedEmail, setSelectedEmail] = useState<IEmail>({} as IEmail);
+  const layoutContext = useContext(LayoutContext);
 
+
+  useEffect(() => {
+    props.setWarning("This challenge is intended for you to go to the source code of the application and search for something. "
+      + "So don't waste your time, go to the project's github page and start digging");
+  }, []);
 
   useEffect(() => {
     setEmailDetails();
