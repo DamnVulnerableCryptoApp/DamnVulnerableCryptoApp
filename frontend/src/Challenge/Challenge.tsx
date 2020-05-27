@@ -52,7 +52,7 @@ const Challenge = (props: IChallengeContainerProps) => {
         </Paper>
       </Box>
     );
-  }
+  };
 
   useEffect(() => {
     const f = ProgressService.getFoundFlag(props.obj.url);

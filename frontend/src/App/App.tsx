@@ -1,5 +1,6 @@
-import { Box } from "@material-ui/core";
+import { Box, Snackbar } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
+import Alert from "@material-ui/lab/Alert";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Appbar from "../Appbar/Appbar";
@@ -20,18 +21,31 @@ const App = () => {
   const [challengesDone, setChallengesDone] = useState(ProgressService.done());
   const [progressPercentage, setProgressPercentage] = useState(ProgressService.donePercentage());
   const [loading, setLoading] = useState(false);
+  const [snackOpen, setSnackOpen] = useState(false);
+  const [snackErrorMessage, _setSnackErrorMessage] = useState("");
+
+  const setSnackErrorMessage = (msg: string) => {
+    _setSnackErrorMessage(msg);
+    setSnackOpen(true);
+  };
 
   const layoutInitialState = {
     progress, setProgress,
     progressPercentage, setProgressPercentage,
     challengesDone, setChallengesDone,
-    loading, setLoading
+    loading, setLoading,
+    setSnackErrorMessage
   };
 
   const renderChallenge = (c: ChallengeData) => {
     return () => <Challenge obj={c} />;
   };
 
+
+
+  const snackClose = () => {
+    setSnackOpen(false);
+  };
 
   return (
     <div className="App">
@@ -50,6 +64,12 @@ const App = () => {
             }
             <Route exact path="/"><Dashboard /></Route>
             <Route exact path="/docs/:topic" component={Documentation} />
+
+            <Snackbar open={snackOpen} autoHideDuration={6000} onClose={snackClose}>
+              <Alert severity="error">
+                {snackErrorMessage}
+              </Alert>
+            </Snackbar>
           </Container>
         </LayoutContext.Provider>
       </Router>
