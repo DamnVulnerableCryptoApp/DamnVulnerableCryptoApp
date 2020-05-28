@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core";
-import { indigo } from "@material-ui/core/colors";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   chatContainer: {
-    border: '1px solid ' + indigo[500],
+    border: '1px solid ' + red[400],
 
   },
   chatTitle: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     borderBottom: '1px solid #DDD',
 
     padding: '20px',
-    backgroundColor: indigo[500],
+    backgroundColor: red[400],
     color: '#FFF'
 
   },
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
       background: '#ddd'
     },
     '&::-webkit-scrollbar-thumb': {
-      background: indigo[500]
+      background: red[400]
     }
   },
   lockIcon: {
@@ -66,6 +66,14 @@ const useStyles = makeStyles({
   },
   messageChip: {
     paddingBottom: '10px'
+  },
+  ownMessage: {
+    backgroundColor: red[400],
+    color: '#FFF'
+  },
+  receivedMessage: {
+    backgroundColor: '#e0e0e0',
+    color: '#000'
   }
 });
 
