@@ -1,4 +1,5 @@
 import { IChallengeProps } from "../Challenge/IChallengeProps";
+import AlgorithmDowngrade from "./AlgorithmDowngrade/AlgorithmDowngrade";
 import BlockReordering from "./BlockReordering/BlockReordering";
 import ByteAtATime from "./ByteAtATime/ByteAtATime";
 import ChecksumCollision from "./ChecksumCollision/ChecksumCollision";
@@ -39,6 +40,12 @@ const Challenges: ChallengeData[] = [
     description: "Hashing is a good way of protect passwords, since data is lost in the process and its not reversible. Some algorithms are relatively easy to brute force, generate collisions and dictionaries are already available online for them.",
     url: "/weak-hashing",
 
+  },
+  {
+    name: "Algorithm Downgrade",
+    component: AlgorithmDowngrade,
+    description: "",
+    url: "/algorithm-downgrade"
   },
   {
     name: "Known Plaintext",
