@@ -19,6 +19,8 @@ export class AlgorithmDowngradeService extends ApiRequest {
   public static async initAsAnonymous(): Promise<string> {
     return new Promise((resolve, reject) => {
 
+      if (localStorage.getItem(AlgorithmDowngradeService.STORAGE_KEY)) resolve(); // not need to create a new session
+
       const path = `${AlgorithmDowngradeService.CHALLENGEPATH}/anonymousAccess`;
 
       super.do(path, { method: 'post' }).then((res) => {
