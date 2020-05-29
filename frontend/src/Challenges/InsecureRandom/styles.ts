@@ -1,24 +1,31 @@
 import { makeStyles } from "@material-ui/core";
-import { indigo } from "@material-ui/core/colors";
+import { grey, indigo } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    marginBottom: '50px',
-    backgroundColor: indigo[500], // lightGreen['500']
-    color: '#FFF'
+  container: {
+    backgroundColor: grey[200]
   },
+  coupons: {
+    padding: '20px'
+  },
+  coupon: {
+    padding: '20px'
+  },
+  logo: {
+    maxWidth: '200px'
+  },
+
   couponIcon: {
-    fontSize: 150,
-    color: '#FFF'
+    fontSize: 100,
+    color: indigo[500]
   },
   congrats: {
-    marginBottom: '70px'
+    marginBottom: '10px',
+    backgroundColor: indigo[500],
+    color: '#FFF',
+    padding: '30px'
   },
-  warning: {
-    marginTop: '20px',
-    marginBottom: '20px'
-  },
+
   form: {
     display: 'flex',
   },

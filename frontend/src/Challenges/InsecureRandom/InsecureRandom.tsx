@@ -1,13 +1,13 @@
-import { Box, Card, CardContent, IconButton, InputBase, Paper, Typography } from "@material-ui/core";
+import { Box, Button, Card, Grid, TextField, Typography } from "@material-ui/core";
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
+import SendIcon from '@material-ui/icons/Send';
 import Alert from "@material-ui/lab/Alert";
 import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
+import fakeRoad from "../../Images/fake_road.png";
 import { InsecureRandomService } from "./InsecureRandomService";
 import useStyles from "./styles";
-
 
 
 
@@ -22,6 +22,7 @@ const InsecureRandom = (props: IChallengeProps) => {
 
   const checkCoupon = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setErrorMessage("");
     layoutContext.setLoading(true);
 
     InsecureRandomService.checkCoupon(couponCheck).then(res => {
@@ -61,41 +62,56 @@ const InsecureRandom = (props: IChallengeProps) => {
   const onCouponChange = (e: React.ChangeEvent<HTMLInputElement>) => setCouponCheck(e.target.value);
 
   return (
-    <Box>
+    <Box className={classes.container}>
 
       <Box textAlign="center" className={classes.congrats}>
-        <Typography color="primary" variant="h2">Congratulations!!!</Typography>
+        <img src={fakeRoad} className={classes.logo} />
+        <Typography variant="h2">Congratulations!!!</Typography>
         <Typography >You are our 1 000 000 visitor.</Typography>
         <Typography >To celebrate we want to offer you some coupon codes that you can use on our online stores.</Typography>
         <Typography >Hurry up, this offer has limited time!!!</Typography>
       </Box>
 
-
-      <Card className={classes.root}>
-        <ConfirmationNumberIcon className={classes.couponIcon} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" >You coupon codes</Typography>
-          <Typography>Thank you for being a loyal customer. Here's a special treat for you</Typography>
-          <Typography>2% Discount at any purchase</Typography>
-          {coupons.map((coupon) => (
-            <Typography key={coupon} variant="overline" display="block" gutterBottom >
-              Code: dvcapp-{InsecureRandomService.formatCoupon(coupon)}
-            </Typography>
-          ))
+      <Box className={classes.coupons}>
+        <Grid container spacing={3}>
+          {
+            coupons.map((coupon, i) => (
+              <Grid item xs={12} md={4} key={i} >
+                <Card className={classes.coupon}>
+                  <Box textAlign="center">
+                    <Box >
+                      <Typography><strong>2% Discount</strong></Typography>
+                    </Box>
+                    <Box>
+                      <ConfirmationNumberIcon className={classes.couponIcon} />
+                    </Box>
+                    <Box>
+                      dvcapp-{InsecureRandomService.formatCoupon(coupon)}
+                    </Box>
+                  </Box>
+                </Card>
+              </Grid>
+            ))
           }
-        </CardContent>
-      </Card>
+        </Grid>
+      </Box>
 
-      <Box>
-        <Typography>Check if your coupon codes are still valid here:</Typography>
-        <Paper className={classes.form} component="form" onSubmit={checkCoupon}>
-          <IconButton color="primary" type="submit">
-            <FindInPageIcon />
-          </IconButton>
-          <InputBase fullWidth className={classes.couponInput} placeholder="DVCAPP-xxxx-xxxxx-xxxx-xxxx-xxxx" onChange={onCouponChange} />
-        </Paper>
 
-        {errorMessage ? <Alert severity="error">{errorMessage}</Alert> : <div />}
+
+      <Box p={3}>
+        <Typography variant="h5">Check Coupon</Typography>
+
+        <form onSubmit={checkCoupon}>
+          <Box display="flex">
+            <TextField fullWidth onChange={onCouponChange} label="Coupon code here" />
+            <Button variant="contained" color="primary" type="submit">Send <SendIcon /></Button>
+          </Box>
+
+          <Box pt={2}>{errorMessage ? <Alert severity="error">{errorMessage}</Alert> : <div />}</Box>
+        </form>
+
+
+
       </Box>
 
     </Box >

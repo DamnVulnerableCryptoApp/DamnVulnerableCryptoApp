@@ -44,7 +44,7 @@ const Challenges: ChallengeData[] = [
   {
     name: "Algorithm Downgrade",
     component: AlgorithmDowngrade,
-    description: "",
+    description: "It is worth nothing if you have the best and more secure algorithms in place, if you still accept old or insecure ones. Choosing an older álgorithm or version may lead to some security issues.",
     url: "/algorithm-downgrade"
   },
   {
@@ -68,15 +68,6 @@ const Challenges: ChallengeData[] = [
     url: "/block-reordering",
 
   },
-
-  // {
-  //   name: "Chosen Plaintext",
-  //   component: Empty,
-  //   description: "",
-  //   url: "url",
-  //   objective: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.",
-  //   explanation: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat."
-  // },
   {
     name: "IV Detection",
     component: IvDetection,
