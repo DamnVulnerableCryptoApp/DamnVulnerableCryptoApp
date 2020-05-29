@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import indigo from '@material-ui/core/colors/indigo';
+import deepPurple from '@material-ui/core/colors/deepPurple';
 
 const useStyles = makeStyles({
   mailbox: {
@@ -13,10 +13,14 @@ const useStyles = makeStyles({
 
   },
   tabs: {
-    backgroundColor: indigo[500],
+    backgroundColor: deepPurple[500],
   },
   emailBody: {
     marginTop: '30px'
+  },
+  btn: {
+    backgroundColor: deepPurple[500],
+    color: '#FFF'
   }
 });
 

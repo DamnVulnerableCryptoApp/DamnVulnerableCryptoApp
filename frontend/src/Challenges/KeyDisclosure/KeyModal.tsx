@@ -53,7 +53,7 @@ const KeyModal = (props: IModalProps) => {
           </Box>
 
           <Box textAlign="right">
-            <Button variant="contained" color="primary" onClick={onLoginClicked}>Decrypt</Button>
+            <Button variant="contained" className={classes.btn} onClick={onLoginClicked}>Decrypt</Button>
           </Box>
         </Box>
       </DialogContent>
