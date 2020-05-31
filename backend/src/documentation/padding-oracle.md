@@ -9,13 +9,13 @@ Firstly, to understand the _padding oracle attack_ also known as _Vaudenay attac
 
 ### Padding
 
-The CBC mode encrypts blocks with the same block length. As you may think, certainly not all the plaintext messages length are a multiple of the cipher block length. So, how this problem can be solved? How a 14-byte message is encrypted where cipher blocks are 8 bytes? One of the techniques used is **padding**.
+The CBC mode encrypts blocks with the same block length. As you may think, certainly not all the plaintext messages length are a multiple of the cipher block length. So, how can this problem be solved? How is a 14-byte message encrypted where cipher blocks are 8 bytes? One of the techniques used is **padding**.
 
 The **padding** makes the ciphertext longer than the plaintext to maintain each block with the same size allowing to encrypt a message of any length. For block ciphers, padding is applied according to the [PKCS#7](https://en.wikipedia.org/wiki/Padding_(cryptography)#PKCS#5_and_PKCS#7) standard and [RFC 5652](https://tools.ietf.org/html/rfc5652#section-6.3). The standard says, the value to pad with is the number of bytes of padding that remains to fill a block. More technically, the message is expanded and extra bytes are added to the plaintext in order to complete a block. 
 
 > Take in mind that one char is one byte in size. As an example, 8 chars are equal to 8 bytes. 
 
-For example, let's try to encrypt `FAKEGUY` with a block size of 8 bytes (or 8 characters). The message would be padded to `FAKEGUY\x01`. Why `\x01` at the end? According to the standard mentioned above, if there is one byte to complete the block, the message is padded with `\x01`. If there were two bytes the pad would be with `\x02`. Let's show a practical example of how this works with different message lengths and their pads.
+For example, let's try to encrypt `FAKEGUY` with a block size of 8 bytes (or 8 characters). The message would be padded to `FAKEGUY\x01`. Why `\x01` at the end? According to the standard mentioned above, if there is one byte missing to complete the block, the message is padded with `\x01`. If there were two bytes the pad would be with `\x02`. Let's show a practical example of how this works with different message lengths and their pads.
 
 
 
@@ -56,30 +56,30 @@ An Oracle is a system (e.g. Web Application) that accepts arbitrary ciphertexts 
 
 ## The Attack
 
-To perform this attack is not needed to know the key, any plaintext or be an expert in math. Just access to a ciphertext you want to decrypt is enough. Firstly, pay attention to the diagram shown below of how the CBC mode decrypts a given ciphertext.
+To perform this attack is not needed to know the key, any plaintext or be an expert in math. Just access to the cipher text and to the decryption method is enough. Firstly, pay attention to the diagram shown below of how the CBC mode decrypts a given ciphertext.
 
 ![CBC Decryption](img/cbc_decrypt.png "CBC Decryption")
 
 The most relevant point is how each block decryption ends. 
 
-> **The ciphertext passes throught the block cipher decryption and then its output is XORed with the previous ciphertext block**. The XOR of this two strings with the correct padding gives the plaintext message.
+> **The ciphertext passes through the block cipher decryption and then its output is XORed with the previous ciphertext block**. The XOR of this two strings with the correct padding gives the plaintext message.
 
 
-Image you have made a random request to a web application you use with the following **encrypted cookie value** and you want to decrypt it to know its content:
+Imagine you have made a random request to a web application you use with the following **encrypted cookie value** and you want to decrypt it to know its content:
 
 > 6A211E234529238AA323D4D562B35056
 
-Assume the application is encryptiong this value in CBC mode and PKCS#7 standard. The application receives this value, decrypts it and sends the response based on it. The perfect scenario for a padding oracle attack! 
+Assume the application is encrypting this value in CBC mode and PKCS#7 standard. The application receives this value, decrypts it and sends the response based on it. The perfect scenario for a padding oracle attack! 
 
 With this knowledge, there are 3 possible cases:
 
-1. The ciphertext is valid - a successfull response is sent;
+1. The ciphertext is valid - a successful response is sent;
 
 2. Invalid ciphertext (with improper padding) -  error message;
 
 3. Valid ciphertext with invalid padding -  error message.
 
-To make this clear, if you can send different ciphertexts and result in different upon its decryption you know if the padding is valid or not. With this kind of knowdlege the attacker has the to decrypt any ciphertext.
+To make this clear, if you can send different ciphertexts and result in different outputs upon its decryption you know if the padding is valid or not. With this kind of knowledge, the attacker has the ability to decrypt any ciphertext.
 
 To conclude, the goal is to find the correct ciphertext payload to get a successful response (200 OK), meaning we have the right value for the byte we want to decrypt. If it responds with an error (usually 500 error), it means the tampered ciphertext does not decrypt to a valid message. We can try other payloads to find a proper match.
 
@@ -87,7 +87,7 @@ Look for the example below, where the ciphertext is divided through the differen
 
 ![Ciphertext Block Division](img/cipher_padding_oracle.png "Ciphertext Block Division")
 
-As you can see the second cipher block drcyption output is directly XORed with the first cipher block which the attacker has control. So, let's try to decrypt the second cipher block.
+As you can see the second cipher block decryption output is directly XORed with the first cipher block which the attacker has control. So, let's try to decrypt the second cipher block.
 
 You can pickup a random C1 and substitutes it with the original ciphertext first block (**C1** || C2 || C3) and send to the oracle. The **X** points to the output of D(E,C2), the decrypted value of C2 which the value we are trying to figure out.
 
@@ -123,7 +123,7 @@ Decrypted value
 
 The output is another padding but with a different decrypted value **2D** since we change the last byte of C1.
 
-If we continue to increment the last of C1 (until FF) we will find for sure a value that matches a valid padding sequence. When this value is hitted it will produce a successfull response. This value is unique, so the response it will be different than the other 255 values.
+If we continue to increment the last of C1 (until FF) we will find for sure a value that matches a valid padding sequence. When this value is hit it will produce a successful response. This value is unique, so the response will be different than the other 255 values.
 
 Pay attention to the following case.
 
