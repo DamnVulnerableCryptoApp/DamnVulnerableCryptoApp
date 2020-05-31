@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "yarn tsc && mkdir -p dist/uploads && cp -r src/documentation dist",
+    "build": "yarn tsc && mkdir -p dist/uploads && cp -r src/documentation dist && cp -r src/config dist",
     "tsc": "tsc --project tsconfig.compile.json",
     "tsc:w": "tsc --project tsconfig.json -w",
     "start": "cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
