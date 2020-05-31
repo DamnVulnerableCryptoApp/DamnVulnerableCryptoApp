@@ -44,8 +44,8 @@ export class ByteAtATimeController {
     return { granted: true, token };
   }
 
-  @Get("/checkAccess")
-  public hasAccess(@HeaderParams("token") token: string): boolean {
+  @Get("/hasAccess")
+  public hasAccess(@HeaderParams("Authorization") token: string): boolean {
     const data = this.decrypt(token);
 
     return data === this.ADMIN_PASSWORD;

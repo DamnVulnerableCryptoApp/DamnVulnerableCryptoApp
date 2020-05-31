@@ -10,7 +10,7 @@ export interface ILayoutContextProps {
   challengesDone: number;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-
+  setSnackErrorMessage: (str: string) => void;
 }
 
 

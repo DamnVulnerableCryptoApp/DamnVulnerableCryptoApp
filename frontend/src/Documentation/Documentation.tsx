@@ -1,4 +1,4 @@
-import { Box, Paper } from "@material-ui/core";
+import { Box, Paper, Typography } from "@material-ui/core";
 import * as hljs from 'highlight.js';
 import "highlight.js/styles/github.css";
 import React, { useContext, useEffect, useState } from "react";
@@ -60,8 +60,9 @@ const Documentation = () => {
 
   return (
     <Box>
-      <Paper id="doc-container">
-        <ReactMarkdown className={classes.root} source={documentation} />
+      <Paper id="doc-container" className={classes.root}>
+        <Typography variant="h2">Documentation</Typography>
+        <ReactMarkdown source={documentation} />
       </Paper>
     </Box >
   );

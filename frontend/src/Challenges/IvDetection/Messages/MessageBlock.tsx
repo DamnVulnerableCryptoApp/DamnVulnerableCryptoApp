@@ -10,7 +10,8 @@ export interface IMessageBlockProps {
 }
 
 
-const MessageChip = (content: string, color: "primary" | "default") => (<Chip label={content} color={color} />);
+
+const MessageChip = (content: string, className: string) => (<Chip label={content} className={className} />);
 const NotificationChip = (content: string) => (<Chip label={content} variant="outlined" color="secondary" />);
 
 const MessageBlock = (props: IMessageBlockProps) => {
@@ -20,6 +21,7 @@ const MessageBlock = (props: IMessageBlockProps) => {
   const firstMessage = props.messages[0];
   const ownMessage = firstMessage.author === "me";
   const alignment = ownMessage ? classes.messageRight : classes.messageLeft;
+  const className = ownMessage ? classes.ownMessage : classes.receivedMessage;
 
   return (
     <Box className={alignment}>
@@ -35,7 +37,7 @@ const MessageBlock = (props: IMessageBlockProps) => {
             return (
               <Box key={i} className={classes.messageChip}>
                 {
-                  m.type === "message" ? MessageChip(m.content, ownMessage ? "primary" : "default") : NotificationChip(m.content)
+                  m.type === "message" ? MessageChip(m.content, className) : NotificationChip(m.content)
                 }
               </Box>
             );

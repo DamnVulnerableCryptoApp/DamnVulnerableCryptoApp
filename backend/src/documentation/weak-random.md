@@ -34,11 +34,11 @@ That's why this algorithm and the other PRG are not suitable for sensitive opera
 
 Instead there are [Cryptographically secure pseudorandom number generator](https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator) which you usually find in most languages as a class called SecureRandom. 
 
-These generators (CSPRNG) also use algorithms to generate the next values, but they have some stronger properties. 
+These generators (CSPRNG) may also use algorithms to generate the next values, but they have some stronger properties. 
 
 For example, in a CSPRNG giving a generated value you should never be able to predict the next value.
 
-Also the seeds are obtained from a huge source of entropy, usually supplied from the operating system which uses user interaction, among other things, to generate random bytes.
+Also the seeds are obtained from a huge source of entropy, usually supplied from the operating system which uses user interactions, among other things, to generate random bytes.
 
 
 ## Solving the challenge
@@ -78,12 +78,12 @@ curl http://localhost:1234 -v
 
 ```
 
-You can see in the X-Powered-By that the server uses Express which is a NodeJS framework. So here we have it, its Node/JS.
+You can see in the X-Powered-By header that the server uses Express which is a NodeJS framework. So here we have it, its Node/JS.
 
 So the next step is to find which algorithm is used by Javascript, and after a little research you will see that the specification does not specify the algorithm to be used, so its up to the implementation to choose which one to use. 
 Since NodeJS uses [V8](https://v8.dev/blog/math-random?showComment=1450389868643#c2004131565745698275), we can try to find V8's implementation. You will find that they are using XorShift128+ or XorShift128 (depending on the versions) 
 
-We are not going into the details on how the algorithm works or how to predict it, since it is a little bit more complex.
+We are not going into the details on how the algorithm works or how to predict it, since it is a little bit more complex, although it's purely reverse engineer the algorithm's math formula.
 
 Anyway, if you do some searches you will find out that there are already projects to help you predict the next values. 
 
@@ -120,8 +120,8 @@ DVCAPP-5631-2608-7185-8565-0000
 
 So if you analyse this (or if you go to the frontend source code) you'll notice that the transformation is easy. The '0.' disappears, and then, for every 4 digits you have a -. At the end if values are missing to fill the 5th block they are filled with zeros.
 
-So now, you have 5 random numbers, run then through [XorShift128Plus](https://github.com/TACIXAT/XorShift128Plus).
-You will get the next 5. Choose on of them ,p ut it in the coupon format and submit. Thats it.
+So now, you have 5 random numbers, run them through [XorShift128Plus](https://github.com/TACIXAT/XorShift128Plus).
+You will get the next 5. Choose on of them, put it in the coupon format and submit. Thats it.
 
 ## Lesson Learned
 

@@ -51,10 +51,16 @@ export default class ApiRequest {
   }
 
 
-  public static getApiUrl(): string {
+  public static getApiOrigin(): string {
     const port = ApiRequest.serverPort();
 
-    return `${window.location.protocol}//${window.location.hostname}:${port}`;
+    return `${window.location.hostname}:${port}`;
+  }
+
+  public static getApiUrl(): string {
+
+
+    return `${window.location.protocol}//${ApiRequest.getApiOrigin()}`;
 
   }
 

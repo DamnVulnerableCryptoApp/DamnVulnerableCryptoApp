@@ -32,7 +32,7 @@ const ChallengeCard = (props: IChallengeCardProps) => {
     <Card>
       <CardActionArea>
         <CardContent style={{ height: '180px' }} onClick={onChallengeClick(props.challenge.url)}>
-          <Typography gutterBottom variant="h5" component="h2" style={{ height: '40px' }}>
+          <Typography gutterBottom variant="h5" component="h2" style={{ height: '60px' }}>
             {pad(props.index + 1, 2)} - {props.challenge.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

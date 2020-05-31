@@ -1,5 +1,3 @@
-# Damn Vulnerable Crypto App Docs
-
 ## Classic cryptography
 
 * [Classic Ciphers](classic-ciphers)  

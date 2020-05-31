@@ -1,22 +1,8 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import React from "react";
+import IConfirmationProps from "./IConfirmationProps";
+import useStyles from "./styles";
 
-
-interface IConfirmationProps {
-  title: string;
-  message: string;
-  positiveButton: string;
-  negativeButton: string;
-  onPositiveButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onNegativeButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onClose: () => void;
-  isOpen: boolean;
-}
-
-const useStyles = makeStyles({
-  successButton: { color: green[500] }
-});
 
 
 const Confirmation = (props: IConfirmationProps) => {

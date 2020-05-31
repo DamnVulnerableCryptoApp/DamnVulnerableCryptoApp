@@ -13,6 +13,10 @@ const useStyles = makeStyles({
     textTransform: "none",
     backgroundColor: green[500],
     color: '#FFF'
+  },
+  siteLogo: {
+    color: green[500],
+    fontSize: '200px'
   }
 });
 

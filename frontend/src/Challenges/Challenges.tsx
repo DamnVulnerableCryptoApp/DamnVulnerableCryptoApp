@@ -1,4 +1,5 @@
 import { IChallengeProps } from "../Challenge/IChallengeProps";
+import AlgorithmDowngrade from "./AlgorithmDowngrade/AlgorithmDowngrade";
 import BlockReordering from "./BlockReordering/BlockReordering";
 import ByteAtATime from "./ByteAtATime/ByteAtATime";
 import ChecksumCollision from "./ChecksumCollision/ChecksumCollision";
@@ -41,6 +42,12 @@ const Challenges: ChallengeData[] = [
 
   },
   {
+    name: "Algorithm Downgrade",
+    component: AlgorithmDowngrade,
+    description: "It is worth nothing if you have the best and more secure algorithms in place, if you still accept old or insecure ones. Choosing an older álgorithm or version may lead to some security issues.",
+    url: "/algorithm-downgrade"
+  },
+  {
     name: "Known Plaintext",
     component: KnownPlaintextAndKeyReuse,
     description: "Symmetric encryption is heavily based on XOR operations, and XOR has some nice properties, which if wrongly used can be used to retrieve plaintext data, or even keys",
@@ -61,15 +68,6 @@ const Challenges: ChallengeData[] = [
     url: "/block-reordering",
 
   },
-
-  // {
-  //   name: "Chosen Plaintext",
-  //   component: Empty,
-  //   description: "",
-  //   url: "url",
-  //   objective: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.",
-  //   explanation: "Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat.Esse ea aliqua qui duis et anim in qui dolore ut et cillum nostrud mollit nisi ut voluptate pariatur duis voluptate proident magna veniam excepteur ullamco fugiat."
-  // },
   {
     name: "IV Detection",
     component: IvDetection,
