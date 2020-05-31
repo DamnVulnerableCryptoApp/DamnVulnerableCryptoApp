@@ -15,6 +15,15 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - name: Extract tag name
+      id: tag
+      uses: actions/github-script@0.2.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          return context.payload.ref.replace(/\/refs\/tags\//, '');
+          
+          
     - uses: actions/checkout@v2
     - name: Build Application
       uses: actions/setup-node@v1
@@ -28,9 +37,11 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:       
-        tag_name: ${{ GITHUB_REF#refs/tags/ }}
-        release_name: Release ${{ GITHUB_REF#refs/tags/ }}
+        tag_name: ${{ steps.date.outputs.date }}
+        release_name: Release ${{ steps.date.outputs.date }}
         body: Automated release
+
+
 
     - name: Build Docker image and push Docker images
       uses: docker/build-push-action@v1.1.0
