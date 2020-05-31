@@ -1,5 +1,3 @@
-# DamnVulnerableCryptoApp
-
 ![Logo](/frontend/src/Images/logo.png)
 
 ## Why?
@@ -87,9 +85,9 @@ docker run -p 8081:8081 <IMAGE_ID>
 
 
 ## Documentation
-comming soon...
+You can find project documentation on github's [wiki page](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki)
 
-## Other places to learn about crypto attacks
+## Some other nice projects crypto related
 * [Crypton](https://github.com/ashutosh1206/Crypton)
 * [RSACtfTool](https://github.com/Ganapati/RsaCtfTool)
 * [CryptoHack](http://cryptohack.org/)
