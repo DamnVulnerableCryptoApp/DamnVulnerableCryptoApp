@@ -1,3 +1,6 @@
+![Build](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/workflows/Build/badge.svg)
+
+
 ![Logo](/frontend/src/Images/logo.png)
 
 ## Why?
