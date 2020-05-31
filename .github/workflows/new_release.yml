@@ -1,0 +1,38 @@
+name: Deploy New Release
+
+on:
+  push:
+    branches: [ master ]
+#on:
+#  create:
+#    tags:
+#      - v*
+jobs:
+  
+     
+  BuildAndPublish:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Application
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install -g yarn
+    - run: yarn run build-with-deps
+
+
+
+    - name: Build Docker image and push Docker images
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        repository: damnvulnerablecryptoapp/damnvulnerablecryptoapp
+        tags: $GITHUB_REF # optional
+        dockerfile: backend/Dockerfile

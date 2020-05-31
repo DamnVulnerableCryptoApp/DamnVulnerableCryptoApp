@@ -4,12 +4,12 @@ For this section is important that you read and understand the [XOR docs](xor)
 
 ## The Basics
 
-A Kown Plaintext can happen when an attacker as access to both the plain text content and the encrypted content.
+A Known Plaintext can happen when an attacker as access to both the plain text content and the encrypted content.
 These can be used to find other information like the secret key used in the encryption process.
 
-As seen in the XOR documentation where  A⊕B=C  and A⊕C=B an attacker can use the same logic with weak cryptographic algorithms to retrieve the key being used, or even to decrypt other messages
+As seen in the [XOR documentation](xor) where  A⊕B=C  and A⊕C=B an attacker can use the same logic with weak cryptographic algorithms to retrieve the key being used, or even to decrypt other messages
 
-With RC4 This same principle applies.
+With RC4 this same principle applies.
 
 So if you encrypt a plaintext message with a key and use that output (the encrypted text) and encrypt it again with the same key, you will get the plain text value.
 
@@ -21,10 +21,10 @@ M1⊕K=C1
 M2⊕K=C2
 
 C1⊕C2=(M1⊕K)⊕(M2⊕K) = M1⊕M2 (Xoring two times the key, will null the key)
-M1⊕M2⊕M2 = M1
+(M1⊕M2)⊕M2 = M1
 ```
 
-Putting this into words, assuming there's a message M1, unknown to us but we know the ciphertext of it (C1), and that an attacker can encrypt a message (M2) and that he knows the encrypted content of M2 it's C2 then if an attacker XOR's both encrypted messages he will get a result which is the same as XORing of the two original plaintext's. And since the attacker knows its own plaintext, which is M2, if he XOR's it back it will get M1, which is the unknown message
+Putting this into words, assuming there's a message M1, unknown to us but we know the ciphertext of it (C1), and that an attacker can encrypt a message (M2) and that he knows the encrypted content of M2 it's C2 then if an attacker XOR's both encrypted messages he will get a result which is the same as the XORing of the two original plaintext's. And since the attacker knows its own plaintext, which is M2, if he XOR's it back it will get M1, which is the unknown message
 
 ## Solving the challenge
 
@@ -49,7 +49,7 @@ But again, this is being json encoded, which means that \x will be treated as tw
 
 
 **Now lets see how to do this the harder way**
-So we need an encrypted content, and to be easier lets encrypted the same number of bytes as the encrypted flag (72bytes which is 36 characters)
+So we need an encrypted content, and to be easier lets encrypted the same number of bytes as the encrypted flag (36 bytes which is 36 characters)
 
 Submit the following string to be encrypted:
 ```
@@ -61,6 +61,8 @@ This will give you:
 ```
 892c899950814477ce2339f4c2b37692bdc0d7054d45b8de3bfb3ce7c1cb415456598468
 ```
+
+Note that this output is in hex, and that every two characters in hex mode represent one byte, that represent one character
 
 Now you have your encrypted string, and the flag encrypted in history:
 ```

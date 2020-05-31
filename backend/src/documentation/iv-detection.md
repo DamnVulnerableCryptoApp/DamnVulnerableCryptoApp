@@ -13,29 +13,28 @@ To exploit this scenario there are a few conditions that need to be met.
 2 - Access to decrypt data  
 3 - Padding check disabled
 
-There's a *magic payload* to exploit this, and its like:
 
 Lets recap first how CBC decryption works
 
 ![CBC Decryption](img/cbc_decrypt.png "CBC Decryption")
 
-As you can see the first encrypted block is xorted with the 2nd decrypted block, giving us the second block of plain text. And the second encrypted block is xored with the decrypted 3rd block, and so on 
+As you can see the first encrypted block is XORed with the 2nd decrypted block, giving us the second block of plain text. And the second encrypted block is XORed with the decrypted 3rd block, and so on ...
 
 
-A specially crafter ciphertext can be used to exploit this way of working, to give us the IV. 
+A specially crafted ciphertext can be used to exploit this way of working, to give us the IV. 
 
-Lets see by example, how this works. Again lets assume a custom CBC  encryption, and since we are going to see this in binary (which is easier to understand) lets assume that each block takes 4 digits.
+Lets see by example, how this works. Again lets assume a custom CBC  encryption, and since we are going to see this in binary (which is easier to understand) lets assume that each block takes 4 digits (bits).
 
 
 
 For this example lets also say that the encrypted content of a random string, in binary, is 011000010111.
 
-The specially crafter payload is calculated by using the first block, then a block filled with zeros, followed by the first block again:
+The specially crafted payload is calculated by using the first block, then a block filled with zeros, followed by the first block again:
 
 ```
-0110 - First Block
+0110 - First Block Of Encrypted Content
 0000 - Null Block
-0110 - First Block
+0110 - First Block Of Encrypted Content
 
 Final Payload: 011000000110
 ```
@@ -50,7 +49,7 @@ Decrypted3rdBlock = Decrypt(ThirdBlock)  ⊕ SecondBlock  | 1101 ⊕ 0000 = 1101
 
 
 
-Remember that xoring something with 0000, you end up with the original content, so Decrypted3rdBlock is the same as Decrypt(ThirdBlock) which is the same as Decrypt(FirstBlock)
+Remember that XORing something with 0000, you end up with the original content, so Decrypted3rdBlock is the same as Decrypt(ThirdBlock) which is the same as Decrypt(FirstBlock)
 
 And Decrypted1stBlock is the same as Decrypt(FirstBlock) ⊕ IV 
 
@@ -60,7 +59,7 @@ If we xor both:
 (Decrypt(FirstBlock)  ⊕ IV ) ⊕  Decrypt(FirstBlock)
 ```
 
-Since xoring the same value twice, its the same as not having them in the equation, we end up with the IV
+Since XORing the same value twice, its the same as not having them in the equation, we end up with the IV
 
 
 

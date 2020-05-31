@@ -53,6 +53,7 @@ export default class ApiRequest {
 
   public static getApiOrigin(): string {
     const port = ApiRequest.serverPort();
+
     return `${window.location.hostname}:${port}`;
   }
 
