@@ -23,7 +23,8 @@ COPY backend/dist ./dist
 
 # COPY ./resources ./resources
 # COPY ./spec ./spec
-RUN yarn install --production
+#RUN yarn install --production
+COPY backend/node_modules .
 
 EXPOSE 8081
 ENV PORT 8081
