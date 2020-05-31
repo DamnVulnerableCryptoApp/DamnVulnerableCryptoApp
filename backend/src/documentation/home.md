@@ -5,8 +5,10 @@
 ## Modern Cryptography
 
 ### Basics
+* [About Encodings](about-encodings)
 * [Xor Basics](xor)
 * [Block Ciphers Basics](block-ciphers)
+
 
 ### Symmetric Encryption
 * [Known Plaintext and Key Reuse](known-plaintext-and-key-reuse) 

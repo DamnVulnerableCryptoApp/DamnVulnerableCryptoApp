@@ -5,6 +5,7 @@ const useStyles = makeStyles({
   chatContainer: {
     border: '1px solid ' + red[400],
 
+
   },
   chatTitle: {
     display: 'flex',
