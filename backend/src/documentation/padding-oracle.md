@@ -123,7 +123,7 @@ Decrypted value
 
 The output is another padding but with a different decrypted value **2D** since we change the last byte of C1.
 
-If we continue to increment the last of C1 (until FF) we will find for sure a value that matches a valid padding sequence. When this value is hit it will produce a successful response. This value is unique, so the response will be different than the other 255 values.
+If we continue to increment the last byte of C1 (until FF) we will find for sure a value that matches a valid padding sequence. When this value is hit it will produce a successful response. This value is unique, so the response will be different than the other 255 values.
 
 Pay attention to the following case.
 
@@ -135,11 +135,11 @@ Decrypted value
 
 > 47 | D4 | 12 | 73 | A8 | 09 | F7 | **01** 
 
-The last byte of C1 with the value of **2D** decrypted to a valid padding because the last byte of decrypted is **01**. According to the PKCS#7 standard this a valid padding so, we found the value we want!
+The last byte of C1 with the value of **2D** decrypted to a valid padding because the last byte of the decrypted value is **01**. According to the PKCS#7 standard this is a valid padding so, we found the value we want!
 
 > But how can we use this information to decrypt the C2 block?
 
-Now is the easy part. We know the C1 last bytes that outputs a valid padding **2D** and we know the plaintext output of it which is **01**. Now we can infer the value of X, the output of D(E,C2). If you have noticed, we can do that because the X value XORed with C1 to output the plaintext. At this point, you may know XOR is a commutative operation. 
+Now is the easy part. We know the C1 last byte that outputs a valid padding (**2D**) and we know the plaintext output of it which is **01**. Now we can infer the value of X, the output of D(E,C2). If you have noticed, we can do that because the X value XORed with C1 outputs the plaintext. At this point, you may know XOR is a commutative operation. 
 
 If,
 
