@@ -19,62 +19,46 @@ If you try to learn a little bit more about crypto, either because you want to k
 (Make sure you have node installed)
 
 ```
-
-npm run build-with-deps # which will install all needed dependencies (including yarn)
-# or
-# 'npm run build' if you already have all dependencies
+npm run build-with-deps
 ```
+
+Or if you already have the dependencies installed you can just run:
+
+```
+npm run build
+```
+
 
 ## Run
 
-
-### Running in Production mode
 ```
 npm run start
 ```
 
-If you want to change the port:
+You can change the port with an environment variable: 
 ```
 PORT=4000 npm run start
 ```
 
-### Running for development
-
-**NOTE:** This process will change in the near future
-
-**In one terminal start the backend:**
-```
-cd backend 
-yarn start
-```
-Or to run in a different port (default is 1234)
-```
-PORT=5000 yarn start
-```
-
-**And in another terminal start the frontend:**
-```
-cd frontend
-yarn start
-```
-
-
-if you want to change the port (default is 4000):
-```
-PORT=3000
-```
-If you changed the server port you need to specify it here as well:
-```
-REACT_APP_SERVER_PORT=5000 yarn start
-```
 
 ## Docker
 
-To build the docker image run:
+### From DockerHub
+
+You can download the latest docker image with:
+```
+docker pull damnvulnerablecryptoapp1/damnvulnerablecryptoapp
+```
+
+### Build
+
+If you prefer to build the docker image yourself run:
 
 ```
 npm build:docker
 ```
+
+### Run
 
 By default port 8081 is being exported,
 So you can map it to your own port:
@@ -84,10 +68,50 @@ docker run -p 8081:8081 <IMAGE_ID>
 ```
 
 
-## Documentation
-You can find project documentation on github's [wiki page](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki)
+# Developing
 
-## Some other nice projects crypto related
+If you want to to develop new features, or just run without building the app you can start by installing dependencies with:
+
+```
+npm run install-deps
+```
+
+Then you need to run independently the frontend and the backend apps.
+
+## Backend
+```
+cd backend 
+yarn start
+```
+
+If you want to change the default port (1234), you can use an environment variable:  
+```
+PORT=5000 yarn start
+```
+
+## Frontend
+```
+cd frontend
+yarn start
+```
+
+
+if you want to change the frontend port (default is 4000) you can set an environment variable:
+```
+PORT=3000 yarn start
+```
+If you changed the server port you need to specify it when booting the frontend, again, as an environment variable:
+```
+REACT_APP_SERVER_PORT=5000 yarn start
+```
+
+
+
+
+# Documentation
+You can find project's documentation on [github wiki](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki)
+
+# Some other nice projects crypto related
 * [Crypton](https://github.com/ashutosh1206/Crypton)
 * [RSACtfTool](https://github.com/Ganapati/RsaCtfTool)
 * [CryptoHack](http://cryptohack.org/)
@@ -96,7 +120,7 @@ You can find project documentation on github's [wiki page](https://github.com/Da
 
 
 
-## License
+# License
 
 DamnVulnerableCryptoApp is [MIT](https://tldrlegal.com/license/mit-license) licensed 
 
