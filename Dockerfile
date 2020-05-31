@@ -16,11 +16,11 @@
 FROM node:12.13.0-alpine
 
 RUN apk update && apk add build-base git python
-RUN npm run build-with-deps
 COPY backend/package.json .
 COPY backend/yarn.lock .
 COPY backend/src ./src
 COPY backend/dist ./dist
+RUN npm run build-with-deps
 # COPY ./resources ./resources
 # COPY ./spec ./spec
 
