@@ -34,6 +34,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: damnvulnerablecryptoapp/damnvulnerablecryptoapp
-        tags: ${GITHUB_REF##*/}
+        repository: damnvulnerablecryptoapp1/damnvulnerablecryptoapp
+        #tags: ${GITHUB_REF##*/}
+        tag_with_ref: true
         dockerfile: backend/Dockerfile
