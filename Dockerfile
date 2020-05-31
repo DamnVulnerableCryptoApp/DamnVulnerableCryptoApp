@@ -23,7 +23,7 @@ COPY backend/dist ./dist
 
 # COPY ./resources ./resources
 # COPY ./spec ./spec
-#RUN yarn install --production
+RUN yarn run pre-install-deps
 COPY backend/node_modules .
 
 EXPOSE 8081
