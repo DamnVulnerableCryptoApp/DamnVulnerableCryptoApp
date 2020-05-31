@@ -14,7 +14,7 @@
     "build": "yarn run build-react && yarn run build-be && yarn run merge-projects",
     "copy-fe-to-public": "cp -r frontend/build/ backend/dist/public",
     "merge-projects": "yarn run copy-fe-to-public",
-    "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts",
+    "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts cross-env",
     "install-deps:be": "cd backend && yarn install",
     "install-deps:react": "cd frontend && yarn install",
     "install-deps": "yarn run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
