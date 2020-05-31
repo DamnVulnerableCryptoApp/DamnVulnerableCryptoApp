@@ -1,16 +1,19 @@
 import { makeStyles } from "@material-ui/core";
-import { green, indigo } from "@material-ui/core/colors";
+import { indigo } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   chatContainer: {
-    border: '1px solid #DDD',
+    border: '1px solid ' + indigo[500],
 
   },
   chatTitle: {
     display: 'flex',
     borderBottom: '1px solid #DDD',
-    marginBottom: '50px',
-    padding: '20px'
+
+    padding: '20px',
+    backgroundColor: indigo[500],
+    color: '#FFF'
+
   },
   chatInput: {
     padding: '20px',
@@ -38,7 +41,7 @@ const useStyles = makeStyles({
     }
   },
   lockIcon: {
-    color: green[500]
+    color: 'white'
   },
   participantName: {
     marginTop: '10px',
