@@ -19,7 +19,6 @@
     "install-deps:react": "cd frontend && yarn install",
     "install-deps": "yarn run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
-    "start:docker": "cross-env NODE_ENV=production node dist/index.js",
     "clean": "rm -rf dist && rm -rf backend/dist && rm -rf frontend/build",
     "docker:build": "RUN npm run build-with-deps && docker build"
   },

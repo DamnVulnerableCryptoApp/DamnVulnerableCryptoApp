@@ -16,18 +16,18 @@
 FROM node:12.13.0-alpine
 
 RUN apk update && apk add build-base git python
-COPY ./package.json .
+COPY backend/package.json .
 COPY backend/yarn.lock .
 COPY backend/src ./src
 COPY backend/dist ./dist
 
 # COPY ./resources ./resources
 # COPY ./spec ./spec
-RUN yarn run pre-install-deps
-COPY backend/node_modules .
+RUN yarn install --production
+RUN yarn install -g cross-env
 
 EXPOSE 8081
 ENV PORT 8081
 ENV NODE_ENV production
 
-CMD ["yarn", "start:docker"]
+CMD ["yarn", "start:prod"]
