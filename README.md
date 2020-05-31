@@ -1,7 +1,9 @@
-![Build](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/workflows/Build/badge.svg)
-
+**IMPORTANT: This project is under heavy developed and features may be incomplete or unstable**
 
 ![Logo](/frontend/src/Images/logo.png)
+
+![Build](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/workflows/Build/badge.svg)
+
 
 ## Why?
 
