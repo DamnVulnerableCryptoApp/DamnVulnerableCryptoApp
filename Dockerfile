@@ -20,11 +20,10 @@ COPY ./package.json .
 COPY backend/yarn.lock .
 COPY backend/src ./src
 COPY backend/dist ./dist
-RUN npm run build-with-deps
 
 # COPY ./resources ./resources
 # COPY ./spec ./spec
-#RUN yarn install --production
+RUN yarn install --production
 
 EXPOSE 8081
 ENV PORT 8081

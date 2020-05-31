@@ -28,7 +28,6 @@ jobs:
           CI: ""
 
 
-
     - name: Build Docker image and push Docker images
       uses: docker/build-push-action@v1.1.0
       with:

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "react-scripts": "^3.4.1",
     "yarn": "^1.22.4"
   },
   "scripts": {
@@ -19,7 +20,7 @@
     "install-deps": "yarn run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
     "clean": "rm -rf dist && rm -rf backend/dist && rm -rf frontend/build",
-    "docker:build": "docker build"
+    "docker:build": "RUN npm run build-with-deps && docker build"
   },
   "repository": {
     "type": "git",

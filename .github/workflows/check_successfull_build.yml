@@ -1,23 +1,20 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build App
+name: Check Successfull Build
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,8 +24,4 @@ jobs:
     - run: npm run build-with-deps
       env:
         CI: ""
-#     - name: Run Snyk to check for vulnerabilities
-#       uses: snyk/actions/node@master
-#       env:
-#         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       
