@@ -1,12 +1,12 @@
 name: Deploy New Release
 
+# on:
+#   push:
+#     branches: [ master ]
 on:
-  push:
-    branches: [ master ]
-#on:
-#  create:
-#    tags:
-#      - v*
+ create:
+   tags:
+     - v*
 jobs:
   
      
