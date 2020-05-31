@@ -8,7 +8,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import ApiRequest from "../../Common/ApiRequest";
-import TabPanel from "../../Common/TabPanel";
+import TabPanel from "../../Common/TabPanel/TabPanel";
 import faklerLogo from "../../Images/fakler.png";
 import { ByteAtATimeService } from "./ByteAtATimeService";
 import IRequest from "./IRequest";

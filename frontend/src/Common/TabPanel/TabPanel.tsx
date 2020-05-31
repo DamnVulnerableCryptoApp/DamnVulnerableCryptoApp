@@ -1,12 +1,8 @@
 import { Box } from "@material-ui/core";
 import React from "react";
+import ITabPanelProps from "./ITabPanelProps";
 
-interface ITabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  selectedTabIndex: number;
-  className: any;
-}
+
 
 
 const TabPanel = (panelProps: ITabPanelProps) => {

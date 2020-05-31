@@ -1,11 +1,11 @@
 import { Box, Button, Card, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@material-ui/core';
+import PublicIcon from '@material-ui/icons/Public';
 import Alert from '@material-ui/lab/Alert';
 import React, { useContext, useState } from 'react';
 import { LayoutContext } from '../../App/LayoutContext';
 import { IChallengeProps } from '../../Challenge/IChallengeProps';
 import useStyles from './styles';
 import { WeakHashingService } from './WeakHashingService';
-
 
 
 const LoginScreen = (props: IChallengeProps) => {
@@ -45,10 +45,12 @@ const LoginScreen = (props: IChallengeProps) => {
 
     <Box className={classes.container} p={10} pt={5}>
       <Typography variant="h4" className={classes.title} gutterBottom>FakeAndInsecureWebsite</Typography>
-      <Box pt={10}>
+      <Box pt={2}>
         <Container maxWidth="sm">
+
           <Card raised={true}>
             <Box p={5}>
+              <Box textAlign="center"><PublicIcon className={classes.siteLogo} /></Box>
               <Grid container spacing={8} alignItems="flex-end">
                 <Grid item md={true} sm={true} xs={true}>
                   <TextField id="username" label="Username" type="email" variant="filled" fullWidth required value={username} onChange={onUsernameChange} />

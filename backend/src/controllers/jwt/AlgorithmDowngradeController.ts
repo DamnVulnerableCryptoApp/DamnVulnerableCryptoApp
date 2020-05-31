@@ -29,7 +29,7 @@ export class AlgorithmDowngradeController {
     { public: true, author: "Anon7!92", content: 'Aute sint culpa irure laboris id ea in qui dolor laboris commodo ullamco ullamco in sunt velit cupidatat consectetur sunt dolor ad fugiat ut cillum tempor proident.' }
   ];
 
-  private static ADMIN_PASTE: IPaste = { public: false, author: "Anon7!92", content: AlgorithmDowngradeController.FLAG };
+  private static ADMIN_PASTE: IPaste = { public: false, author: "Admin", content: AlgorithmDowngradeController.FLAG };
 
 
 
