@@ -24,7 +24,7 @@ COPY backend/dist ./dist
 # COPY ./resources ./resources
 # COPY ./spec ./spec
 RUN yarn install --production
-RUN yarn install -g cross-env
+RUN yarn global add global cross-env
 
 EXPOSE 8081
 ENV PORT 8081
