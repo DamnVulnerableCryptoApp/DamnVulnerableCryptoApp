@@ -24,10 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn
-    - run: yarn add -g typescript react-scripts
-    - run: yarn run install-deps
-    - run: yarn run build
+    - run: npm run build-with-deps
       env:
         CI: ""
 #     - name: Run Snyk to check for vulnerabilities

@@ -9,12 +9,14 @@
   "scripts": {
     "build-react": "cd frontend && yarn run test:lint && yarn run build",
     "build-be": "cd backend && yarn run test:lint && yarn build",
-    "build": "yarn install-deps && yarn run build-react && yarn run build-be && yarn run merge-projects",
+    "build-with-deps": "yarn install-deps && yarn run build",
+    "build": "yarn run build-react && yarn run build-be && yarn run merge-projects",
     "copy-fe-to-public": "cp -r frontend/build/ backend/dist/public",
     "merge-projects": "yarn run copy-fe-to-public",
+    "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts",
     "install-deps:be": "cd backend && yarn install",
     "install-deps:react": "cd frontend && yarn install",
-    "install-deps": "yarn run install-deps:be && yarn run install-deps:react",
+    "install-deps": "yarn run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
     "clean": "rm -rf dist && rm -rf backend/dist && rm -rf frontend/build",
     "docker:build": "yarn build && cd backend && docker build"

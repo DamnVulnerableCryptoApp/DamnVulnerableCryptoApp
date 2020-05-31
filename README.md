@@ -21,10 +21,10 @@ If you try to learn a little bit more about crypto, either because you want to k
 (Make sure you have node installed)
 
 ```
-npm install -g yarn 
-yarn add -g typescript react-scripts
-yarn run install-deps
-yarn run build
+
+npm run build-with-deps # which will install all needed dependencies (including yarn)
+# or
+# 'npm run build' if you already have all dependencies
 ```
 
 ## Run
@@ -32,12 +32,12 @@ yarn run build
 
 ### Running in Production mode
 ```
-yarn run start
+npm run start
 ```
 
 If you want to change the port:
 ```
-PORT=4000 yarn run start
+PORT=4000 npm run start
 ```
 
 ### Running for development
@@ -75,7 +75,7 @@ REACT_APP_SERVER_PORT=5000 yarn start
 To build the docker image run:
 
 ```
-yarn build:docker
+npm build:docker
 ```
 
 By default port 8081 is being exported,
