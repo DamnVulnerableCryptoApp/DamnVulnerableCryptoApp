@@ -2,7 +2,14 @@
 
 ![Logo](/frontend/src/Images/logo.png)
 
-![Build](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/workflows/Build/badge.svg)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/damnvulnerablecryptoapp/damnvulnerablecryptoapp?style=flat-square&label=Version)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/Build?style=flat-square&label=Build)
+![GitHub](https://img.shields.io/github/license/damnvulnerablecryptoapp/damnvulnerablecryptoapp?style=flat-square&label=License)
+![GitHub repo size](https://img.shields.io/github/repo-size/damnvulnerablecryptoapp/damnvulnerablecryptoapp?style=flat-square&label=Repo%20Size)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/damnvulnerablecryptoapp1/damnvulnerablecryptoapp?style=flat-square&label=Docker%20Image)
+![GitHub contributors](https://img.shields.io/github/contributors/damnvulnerablecryptoapp/damnvulnerablecryptoapp?style=flat-square&label=Contributors)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/damnvulnerablecryptoapp/damnvulnerablecryptoapp?style=flat-square&label=Commit%20Activity)
+
 
 
 ## Why?
