@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "yarn tsc && mkdir -p dist/uploads && cp -r src/documentation dist && cp -r src/config dist",
+    "build": "yarn tsc && mkdirp dist/uploads && yarn run copy-docs && yarn run copy-configs",
+    "copy-docs": "copyfiles \"src/documentation/**/*\" dist -a -u 1",
+    "copy-configs": "copyfiles \"src/config/**/*\" dist -a -u 1",
     "tsc": "tsc --project tsconfig.compile.json",
     "tsc:w": "tsc --project tsconfig.json -w",
     "start": "cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
@@ -24,10 +26,12 @@
     "body-parser": "1.19.0",
     "compression": "1.7.4",
     "concurrently": "5.1.0",
+    "copyfiles": "^2.3.0",
     "cors": "2.8.5",
     "cross-env": "7.0.2",
     "express": "4.17.1",
     "method-override": "3.0.0",
+    "mkdirp": "^1.0.4",
     "multer": "^1.4.2",
     "supertest": "^4.0.2",
     "ts-httpexceptions": "^4.1.0"
