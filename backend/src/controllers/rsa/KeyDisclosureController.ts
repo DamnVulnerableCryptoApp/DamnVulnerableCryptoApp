@@ -1,13 +1,12 @@
 import { BodyParams, Controller, Post } from '@tsed/common';
-import * as crypto from 'crypto';
-import * as fs from 'fs';
-import * as path from 'path';
+import { KeyDisclosureService } from '../../services/KeyDisclosureService';
 
-interface IDecryptInbox {
+
+export interface IDecryptInbox {
   privateKey: string;
 }
 
-interface IEmail {
+export interface IEmail {
   from: string;
   to: string;
   subject: string;
@@ -15,7 +14,7 @@ interface IEmail {
   date: string;
 }
 
-interface IDecryptInboxResponse {
+export interface IDecryptInboxResponse {
   emails: IEmail[];
   success: boolean;
   flag: string;
@@ -23,18 +22,18 @@ interface IDecryptInboxResponse {
 
 
 @Controller("/rsa/key-disclosure")
-export class KeyDisclosure {
+export class KeyDisclosureController {
 
 
-  static FLAG = "b9e8b602-0cbe-4300-abff-9deac3cac27d";
-  static PRIVATE_KEY_PATH = path.join(__dirname, "../../config/privatekey.pem");
-  static PUBLIC_KEY_PATH = path.join(__dirname, "../../config/publickey.pem");
 
+  // this is used to validate if the decryption was successfull.
+  // assuming each mailbox has a string (MAILBOX_CHECK) that needs to be decrypted and checked with the original content (MAILBOX_CHECK_STRING)
+  // if they match, decryption was successfull
   static MAILBOX_CHECK_STRING = "pleasefindme";
-  static MAILBOX_CHECK = KeyDisclosure.encrypt(KeyDisclosure.MAILBOX_CHECK_STRING);
+  static MAILBOX_CHECK = KeyDisclosureService.encrypt(KeyDisclosureController.MAILBOX_CHECK_STRING);
 
   static EMAILS: IEmail[] = [{
-    body: `Hi mate,\n has you requested: ${KeyDisclosure.FLAG}`,
+    body: `Hi mate,\n has you requested: ${KeyDisclosureService.FLAG}`,
     date: new Date().toISOString(),
     from: "Fake Reporter <fake.reporter@fakecryptomail.com>",
     subject: "Got a flag for you",
@@ -53,37 +52,23 @@ export class KeyDisclosure {
   @Post("/decrypt-mailbox")
   public decrypt(@BodyParams() body: IDecryptInbox): IDecryptInboxResponse {
     const key = body.privateKey;
-    console.log(KeyDisclosure.decrypt(key, KeyDisclosure.MAILBOX_CHECK));
     let decryptionSuccess = false;
 
     try {
-      if (KeyDisclosure.decrypt(key, KeyDisclosure.MAILBOX_CHECK) === KeyDisclosure.MAILBOX_CHECK_STRING)
+      if (KeyDisclosureService.decrypt(KeyDisclosureController.MAILBOX_CHECK, key) === KeyDisclosureController.MAILBOX_CHECK_STRING)
         decryptionSuccess = true;
     } catch (ex) { }
 
 
     if (decryptionSuccess)
-      return { emails: KeyDisclosure.EMAILS, success: true, flag: KeyDisclosure.FLAG };
+      return { emails: KeyDisclosureController.EMAILS, success: true, flag: KeyDisclosureService.FLAG };
     else
       return { emails: [], success: false, flag: "" };
 
   }
 
 
-  private static encrypt(content: string) {
 
-    const publicKey = fs.readFileSync(KeyDisclosure.PUBLIC_KEY_PATH, "utf8");
-    const buffer = Buffer.from(content);
-
-    return crypto.publicEncrypt(publicKey, buffer).toString("hex");
-  }
-
-  private static decrypt(privatekey: string, content: string) {
-
-    const buffer = Buffer.from(content, "hex");
-
-    return crypto.privateDecrypt(privatekey, buffer).toString();
-  }
 
 
 }

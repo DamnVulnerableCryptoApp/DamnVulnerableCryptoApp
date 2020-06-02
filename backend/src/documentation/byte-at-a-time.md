@@ -49,14 +49,12 @@ So you repeat this until you get the entire block. When you get the entire block
 
 ## Solving the challenge
 
-If you look at the captured requests in the challenge, the first one checks if you have permissions to access something.
+If you look at the captured requests in the challenge, the first one is asking for permissions, and this one returned a weird string... probably our encrypted content.
 
-The second request is asking for permissions, and this one returned a weird string... probably our encrypted content.
-
-And the third is checking if a user is admin. Looks like the authentication mechanism is basic auth, with a username and password in base64. Since its not the admin (because the login failed), we can just ignore the password from the requests... But knowing that the username is 'admin' is a good info.
+And the second is checking if a user is admin. Looks like the authentication mechanism is basic auth, with a username and password in base64. Since its not the admin (because the login failed), we can just ignore the password from the requests... But knowing that the username is 'admin' is a good info.
 
 
-Back to the second request, a username is provided in the request, to get the token, maybe if we change the username, the token can change as well
+Back to the first request, a username is provided in the request, to get the token, maybe if we change the username, the token can change as well
 To prove it we can repeat the same request, and expect the exact same token, then if we change the username and the token is a new one, then the username is included in the token
 
 After checking that username is in fact being used in the token we now know our attack vector, and we can start bruteforcing.

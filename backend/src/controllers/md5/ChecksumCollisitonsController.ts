@@ -1,7 +1,7 @@
 import { Controller, Post } from "@tsed/common";
 import { MultipartFile } from "@tsed/multipartfiles";
-import * as crypto from 'crypto';
 import * as fs from 'fs';
+import { ChecksumCollisionService } from '../../services/ChecksumCollisionService';
 
 interface ICheckResponse {
   success: boolean;
@@ -30,13 +30,13 @@ export class ChecksumCollisitonsController {
 
     let success = false;
     let flag = "";
-    const md51 = await (this.getMd5FileChecksum(file1));
-    const md52 = await (this.getMd5FileChecksum(file2));
+    const md51 = await (ChecksumCollisionService.getMd5FileChecksum(file1.path));
+    const md52 = await (ChecksumCollisionService.getMd5FileChecksum(file2.path));
 
     if (md51 === md52) {
 
-      const sha11 = await (this.getSha1FileChecksum(file1));
-      const sha12 = await (this.getSha1FileChecksum(file1));
+      const sha11 = await (ChecksumCollisionService.getSha1FileChecksum(file1.path));
+      const sha12 = await (ChecksumCollisionService.getSha1FileChecksum(file2.path));
 
 
       if (sha11 === sha12) {
@@ -51,31 +51,6 @@ export class ChecksumCollisitonsController {
     return { flag, success };
 
   }
-
-
-  private getMd5FileChecksum(file: Express.Multer.File): Promise<string> {
-    const hash = crypto.createHash('md5');
-
-    return this.getFileChecksum(hash, file);
-  }
-
-  private getSha1FileChecksum(file: Express.Multer.File): Promise<string> {
-    const hash = crypto.createHash('sha1');
-
-    return this.getFileChecksum(hash, file);
-  }
-
-  private getFileChecksum(hash: crypto.Hash, file: Express.Multer.File): Promise<string> {
-
-    return new Promise((resolve, reject) => {
-
-      const stream = fs.createReadStream(file.path);
-      stream.on('data', (data) => hash.update(data));
-      stream.on('end', () => resolve(hash.digest('hex')));
-
-    });
-  }
-
 
 
 }
