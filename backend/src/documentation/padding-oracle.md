@@ -11,40 +11,43 @@ Firstly, to understand the _padding oracle attack_ also known as _Vaudenay attac
 
 The CBC mode encrypts blocks with the same block length. As you may think, certainly not all the plaintext messages length are a multiple of the cipher block length. So, how this problem can be solved? How a 14-byte message is encrypted where cipher blocks are 8 bytes? One of the techniques used is **padding**.
 
-The **padding** makes the ciphertext longer than the plaintext to maintain each block with the same size allowing to encrypt a message of any length. For block ciphers, padding is applied according to the [PKCS#7](https://en.wikipedia.org/wiki/Padding_(cryptography)#PKCS#5_and_PKCS#7) standard and [RFC 5652](https://tools.ietf.org/html/rfc5652#section-6.3). The standard says, the value to pad with is the number of bytes of padding that remains to fill a block. More technically, the message is expanded and extra bytes are added to the plaintext in order to complete a block. 
+The **padding** makes the plaintext longer with extra bytes to maintain each block with the same size allowing to encrypt a message of any length. For block ciphers, padding is applied according to the [PKCS#7](https://en.wikipedia.org/wiki/Padding_(cryptography)#PKCS#5_and_PKCS#7) standard and [RFC 5652](https://tools.ietf.org/html/rfc5652#section-6.3). The standard says, the value to pad with is the number of bytes of padding that remains to fill a block. More technically, the message is expanded and extra bytes are added to the plaintext in order to complete a block. 
 
 > Take in mind that one char is one byte in size. As an example, 8 chars are equal to 8 bytes. 
 
-For example, let's try to encrypt `FAKEGUY` with a block size of 8 bytes (or 8 characters). The message would be padded to `FAKEGUY\x01`. Why `\x01` at the end? According to the standard mentioned above, if there is one byte to complete the block, the message is padded with `\x01`. If there were two bytes the pad would be with `\x02`. Let's show a practical example of how this works with different message lengths and their pads.
+For example, let's try to encrypt `FAKEGUY`(0x46414b45475559) with a block size of 8 bytes (or 8 characters). The message would be padded to 0x46414b45475559**01**. Why `01` at the end? According to the standard mentioned above, if there is one byte to complete the block, the message is padded with `01`. If there were two bytes the pad would be with `02`. Let's show a practical example of how this works with different message lengths and their pads.
 
 
 
 ```
 Block size: 8 bytes
+Message: FAKEGUY --> 0x46414b45475559 (Hexadecimal)
 
-     Message                     Padded Message
+     Message                              Padded Message
      
-     FAKEGUY (7 bytes)   -->      FAKEGUY\x01
+     0x46414b45475559 (7 bytes)   -->     0x46414b45475559
      
-     FAKEGU (6 bytes)    -->      FAKEGU\x02\x02
+     0x46414b454755   (6 bytes)   -->     0x46414b454755\x02\x02
      
-     FAKE   (4 bytes)    -->      FAKE\x04\x04\x04\x04
+     0x46414b4547     (4 bytes)   -->     0x46414b4547\x04\x04\x04\x04
 ```
 
 Now with a message longer than 8 bytes.
 
 ```
-     FAKEGUYROCKS (12 bytes)     -->    FAKEGUYROCKS\x04\x04\x04\x04
+Message: FAKEGUYROCKS --> 0x46414b45475559524f434b53 (12 bytes)
 
 ```
+Becomes,
+> 0x46414b45475559524f434b53**04040404**
 
-The message `FAKEGUYROCKS` is 12 bytes (or 12 characters) long so, the message is split into two blocks with a total of 16 bytes (8 + 8 bytes). The padding was added due to in the last block was not complete. Thus, a pad of `\x04\x04\x04\x04` was added because four bytes were remaining.
+The message `0x46414b45475559524f434b53` is 12 bytes (or 12 characters) long so, the message is split into two blocks with a total of 16 bytes (8 + 8 bytes). The padding was added due to in the last block was not complete. Thus, a pad of `04040404` was added because four bytes were remaining.
 
 Additionally, if the message is a complete multiple of the size block, **padding is still added**, an empty block to be more precise. This looks a nonsense feature, I can feel your brain-blowing, right now.
 
 > _Why adding a pad if the message length is a multiple of the block size?_ 
 
-Well, imagine if your plaintext is literally `POTATO\x02\x02`. How could you distinguish a plaintext which content is `POTATO` (6 bytes) and `POTATO\x02\x02` (the `\x02\x02` at the end it seems  padding, but in reality it's part of the string). As a result, a full length block like `POTATOES` (8 bytes or chars) is padded to `POTATOES\x08\x08\x08\x08\x08\x08\x08\x08`.
+Well, imagine if your plaintext is literally `POTATO\x02\x02`. How could you distinguish a plaintext which content is `POTATO` (6 bytes) and `POTATO\x02\x02` (the `\x02\x02` at the end it seems  padding, but in reality it's part of the string). As a result, a full length block like `POTATOES` (8 bytes or chars) is padded to `POTATOES\x08\x08\x08\x08\x08\x08\x0\x08` which in hexadecimal is `0x504f5441544f45530808080808080808`.
 
 ### **Oracle**
 
@@ -58,7 +61,7 @@ An Oracle is a system (e.g. Web Application) that accepts arbitrary ciphertexts 
 
 To perform this attack is not needed to know the key, any plaintext or be an expert in math. Just access to a ciphertext you want to decrypt is enough. Firstly, pay attention to the diagram shown below of how the CBC mode decrypts a given ciphertext.
 
-![CBC Decryption](img/cbc_decrypt.png "CBC Decryption")
+![CBC Decryption](/documentation/img/cbc_decrypt.png "CBC Decryption")
 
 The most relevant point is how each block decryption ends. 
 
@@ -85,27 +88,35 @@ To conclude, the goal is to find the correct ciphertext payload to get a success
 
 Look for the example below, where the ciphertext is divided through the different blocks. 
 
-![Ciphertext Block Division](img/cipher_padding_oracle.png "Ciphertext Block Division")
+![Ciphertext Block Division](/documentation/img/cipher_padding_oracle.png "Ciphertext Block Division")
 
 As you can see the second cipher block drcyption output is directly XORed with the first cipher block which the attacker has control. So, let's try to decrypt the second cipher block.
 
-You can pickup a random C1 and substitutes it with the original ciphertext first block (**C1** || C2 || C3) and send to the oracle. The **X** points to the output of D(E,C2), the decrypted value of C2 which the value we are trying to figure out.
+You can pickup a random C1 and substitutes it with the original ciphertext first block (**C1** || C2 || C3) and send to the oracle. The **X** points to the output of **D(K,C2)**, the decrypted value of C2 which the value we are trying to figure out. 
 
-An example for the ciphertext payload is shown in the image below.
+**C1, C2, C3** are blocks of the ciphertext.
+
+**D(K,C)** --> **D** is the decryption function, **K** is the key and **C** a ciphertext block. 
+
+An example for the ciphertext payload is shown in the image below. 
+
+For explanation purposes each block is 4 byte size.
 
 > The payload: **00000000**4529238AA323D4D562B35056
 
-![Padding Oracle Attack Payload](img/payload_padding_oracle.png "Padding Oracle Attack Payload")
+![Padding Oracle Attack Payload](/documentation/img/payload_padding_oracle.png "Padding Oracle Attack Payload")
+
+The value of P1 is irrelevant because our goal is to decrypt C2 so, we don´t care the output of P1. P3 has not changed its output since we had only changed the first cipher block. Let's focus into decrypt the C2 block.
 
 With C1 = 00000000, the cipher decrypted to the following plaintext value.
 
 C1 block
 
-> 00 | 00 | 00 | 00 | 00 | 00 | 00 | 00
+> 00 | 00 | 00 | 00
 
 Decrypted Value
 
-> 47 | D4 | 12 | 73 | A8 | 09 | F7 | **2C** 
+> A8 | 09 | F7 | **2C** 
 
 Notice that that the last  byte of C1 decrypts to a plaintext with invalid padding, **2C**.
 
@@ -114,11 +125,11 @@ Let's try another value by incrementing the last byte.
 
 C1 block
 
-> 00 | 00 | 00 | 00 | 00 | 00 | 00 | **01**
+> 00 | 00 | 00 | **01**
 
 Decrypted value
 
-> 47 | D4 | 12 | 73 | A8 | 09 | F7 | **2D** 
+> A8 | 09 | F7 | **2D** 
 
 
 The output is another padding but with a different decrypted value **2D** since we change the last byte of C1.
@@ -129,17 +140,17 @@ Pay attention to the following case.
 
 C1 block
 
-> 00 | 00 | 00 | 00 | 00 | 00 | 00 | **2D**
+> 00 | 00 | 00 | **2D**
 
 Decrypted value
 
-> 47 | D4 | 12 | 73 | A8 | 09 | F7 | **01** 
+> A8 | 09 | F7 | **01** 
 
 The last byte of C1 with the value of **2D** decrypted to a valid padding because the last byte of decrypted is **01**. According to the PKCS#7 standard this a valid padding so, we found the value we want!
 
 > But how can we use this information to decrypt the C2 block?
 
-Now is the easy part. We know the C1 last bytes that outputs a valid padding **2D** and we know the plaintext output of it which is **01**. Now we can infer the value of X, the output of D(E,C2). If you have noticed, we can do that because the X value XORed with C1 to output the plaintext. At this point, you may know XOR is a commutative operation. 
+Now is the easy part. We know the C1 last bytes that outputs a valid padding **2D** and we know the plaintext output of it which is **01**. Now we can infer the value of X, the output of D(K,C2). If you have noticed, we can do that because the X value XORed with C1 to output the plaintext. At this point, you may know XOR is a commutative operation. 
 
 If,
 
@@ -149,7 +160,7 @@ Then,
 
 > C1 XOR Plaintext = X
 
-And that's how we get the value of X (D(E,C2)).
+And that's how we get the value of X (D(K,C2)).
 
 In our example,
 
@@ -167,5 +178,6 @@ Finally,
 
 We know the value of X (2C) and we are able to deduce the final value of the plaintext last byte. Simply XOR X with the previous original ciphertext block which is **6A211E23**. Confused? Compare these steps with the diagram of CBC decryption shown above.
 
+At this time, the last byte of C2 is known; to find the rest of it, we can work backward through the entire block until every byte of X function is cracked, thus letting us decrypt the C2 plaintext one byte at a time. For the other blocks, it is just applying the same method to crack the full message.
 
 
