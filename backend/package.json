@@ -10,7 +10,7 @@
     "tsc:w": "tsc --project tsconfig.json -w",
     "start": "cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
-    "tests": "mocha --require ts-node/register tests/**/*Test.ts --timeout 50000 --exit",
+    "tests": "mocha --require ts-node/register \"tests/**/*Test.ts\" --timeout 50000 --exit",
     "test:lint": "tslint --project tsconfig.json",
     "test:lint:fix": "tslint --project tsconfig.json --fix"
   },
