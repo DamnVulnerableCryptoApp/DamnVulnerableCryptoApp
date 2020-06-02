@@ -16,15 +16,7 @@ import useStyles, { StyledTableCell, StyledTableRow } from "./styles";
 
 // TODO: make this data more dynamic, its kinda ugly this way with all the replaces and repeated info
 const defaultRequests = [
-  {
-    status: 200,
-    protocol: window.location.protocol.replace(":", ""),
-    host: ApiRequest.getApiOrigin(),
-    url: '/aes/ecb/byte-at-a-time/hasAccess',
-    method: 'GET',
-    rawContent: "GET http://localhost:1234/aes/ecb/byte-at-a-time/hasAccess HTTP/1.1\ncontent-type: application/json\nAuthorization: a8166bc7fae23569dabab787a640a938ce4beec081c2022f66d78926618e514595d9b3b684b55e0709aa7144903b12fb".replace("127.0.0.1:1234", ApiRequest.getApiOrigin()),
-    rawResponse: 'HTTP/1.1 200 OK\n\nfalse'
-  },
+
   {
     status: 200,
     protocol: window.location.protocol.replace(":", ""),
