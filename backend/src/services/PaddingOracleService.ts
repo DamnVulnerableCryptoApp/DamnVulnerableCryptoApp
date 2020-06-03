@@ -9,11 +9,15 @@ export class PaddingOracleService {
 
 
   public static getAnonymousToken(): string {
-    const tokenContent = `lastRequestAt=${new Date().toISOString()};isAdmin=false;username=Anonymous`;
+    const tokenContent = PaddingOracleService.createTokenString();
     const encrypted = this.encryptToken(tokenContent);
     $log.info("Encrypted anonymous token " + encrypted);
 
     return encrypted;
+  }
+
+  public static createTokenString(user = "Anonymous", isAdmin = false) {
+    return `lastRequestAt=${new Date().toISOString()};isAdmin=${isAdmin};username=${user}`;
   }
 
   public static encryptToken(token: string): string {
@@ -38,8 +42,7 @@ export class PaddingOracleService {
     return t;
   }
 
-  public static isAdmin(token: string): boolean {
-    $log.info("Decrypting token " + token);
+  public static parseTokenString(token: string): any {
     const tokenObj: any = {};
     const decryptedToken = this.decryptToken(token);
     const tokenPars = decryptedToken.split(";");
@@ -50,7 +53,14 @@ export class PaddingOracleService {
       tokenObj[key] = value;
     });
 
-    return tokenObj.isAdmin === true;
+    return tokenObj;
+  }
+
+  public static isAdmin(token: string): boolean {
+    $log.info("Decrypting token " + token);
+    const t = this.parseTokenString(token);
+
+    return t.isAdmin === 'true';
 
   }
 }
