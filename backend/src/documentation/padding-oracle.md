@@ -180,9 +180,35 @@ We know the value of X (2C) and we are able to deduce the final value of the pla
 
 At this time, the last byte of C2 is known; to find the rest of it, we can work backward through the entire block until every byte of X function is cracked, thus letting us decrypt the C2 plaintext one byte at a time. For the other blocks, it is just applying the same method to crack the full message.
 
+## Put the attack in practice
+
+There are a bunch of available scripts over the internet to automate this attack. We will using [this](https://github.com/KishanBagaria/padding-oracle-attacker)  to perform the attack. 
+
+According to the toll documentation, we need the **target URL**, **ciphertext encoding**, **block size** and the **HTTP code error**.
+
+Example:
+
+
+> poattack encrypt http://localhost:2020/decrypt?ciphertext= hex:666f6f2062617220f09fa684 16 400
+
+* **poattack** - name of the program
+* **encrypt** -  the operation
+* **http://localhost:2020/decrypt?ciphertext=** - URL
+* **hex:666f6f2062617220f09fa684** - encoding and payload
+* **16** - block size
+* **400** - HTTP error
+
+In the end execution, the output should the similar to:
+
+![poattack script output](/documentation/img/poattack.png "poattack script output")
+
+Now you have the flag!
+
+
 ## Lesson Learned
 
 * A Padding Oracle Attack is a well known devastating attack against CBC and it will try to **break anything that uses CBC mode**.
 
-* In the context of an application, It depends on how the user implementation of CBC mode because, if an attacker can modify the ciphertext, there are high chances he can break the encrypted message.
+* In the context of an application, it depends on how the user implementation of CBC mode because, if an attacker can modify the ciphertext or can trigger an error, there are high chances he can break the encrypted message.
 
+* [Encrypt and MAC your data](https://security.stackexchange.com/questions/38942/how-to-protect-against-padding-oracle-attacks).
