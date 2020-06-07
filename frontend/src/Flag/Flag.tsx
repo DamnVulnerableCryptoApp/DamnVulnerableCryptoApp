@@ -1,27 +1,17 @@
-import { Box, CardContent, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Box, CardContent, IconButton, Typography } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import amber from '@material-ui/core/colors/amber';
 import grey from '@material-ui/core/colors/grey';
 import FlagIcon from '@material-ui/icons/Flag';
 import ReplayIcon from '@material-ui/icons/Replay';
 import React from "react";
-
-interface FlagProps {
-  flag?: string;
-  resetChallenge: () => void;
-}
+import IFlagProps from "./IFlagProps";
+import useStyles from "./styles";
 
 
-const useStyles = makeStyles({
-  root: {
-    marginBottom: '50px',
-    textAlign: 'center',
-    border: '1px solid #CCC'
-  },
-});
 
 
-const Flag = (props: FlagProps) => {
+const Flag = (props: IFlagProps) => {
   const classes = useStyles();
 
 

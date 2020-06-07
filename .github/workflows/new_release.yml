@@ -1,0 +1,50 @@
+name: Deploy New Release
+
+# on:
+#   push:
+#     branches: [ master ]
+on:
+ create:
+   tags:
+     - v*
+jobs:
+  BuildAndPublish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - name: Extract tag name
+      id: tag
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+          
+          
+    - uses: actions/checkout@v2
+    - name: Build Application
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm run build-with-deps
+      env:
+          CI: ""
+    #- name: Create a Github Release
+    #  uses: actions/create-release@v1
+    #  env:
+    #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+    #  with:       
+    #    tag_name: ${{ steps.tag.outputs.VERSION }}
+    #    release_name: Release ${{ steps.date.outputs.date }}
+    #    body: Automated release
+
+
+
+    - name: Build Docker image and push Docker images
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        repository: damnvulnerablecryptoapp1/damnvulnerablecryptoapp
+        #tags: ${GITHUB_REF##*/}
+        tag_with_ref: true
+        dockerfile: ./Dockerfile

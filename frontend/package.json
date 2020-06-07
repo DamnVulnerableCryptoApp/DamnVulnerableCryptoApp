@@ -1,5 +1,5 @@
 {
-  "name": "damn-vulnerable-crypto-app-frontned",
+  "name": "damn-vulnerable-crypto-app-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

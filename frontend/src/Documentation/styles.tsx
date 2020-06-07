@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     padding: '200px',
     paddingTop: '100px',
     '& code': {
-      wordBreak: 'break-all'
+      wordBreak: 'break-all',
     },
     '& pre': {
       border: '1px solid #ccc'

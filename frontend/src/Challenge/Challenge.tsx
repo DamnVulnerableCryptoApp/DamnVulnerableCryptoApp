@@ -1,9 +1,10 @@
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
-import DescriptionIcon from '@material-ui/icons/Description';
+import { AppBar, Box, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { LayoutContext } from "../App/LayoutContext";
-import { ProgressService } from "../App/ProgressService";
 import Flag from "../Flag/Flag";
+import { ProgressService } from "../Progress/ProgressService";
 import { IChallengeContainerProps } from "./IChallengeContainerProps";
 import useStyles from "./styles";
 
@@ -13,7 +14,9 @@ const validFlag = (flag: string) => flag && flag.match(/\w{8}-\w{4}-\w{4}-\w{4}-
 const Challenge = (props: IChallengeContainerProps) => {
 
   const [flag, _setFlag] = useState("");
+  const [warning, setWarning] = useState("");
   const { setChallengesDone } = useContext(LayoutContext);
+  const history = useHistory();
 
   const challengeData = props.obj || { description: "", explanation: "", name: "", objective: "", url: "" };
   const Component = props.obj.component;
@@ -28,12 +31,28 @@ const Challenge = (props: IChallengeContainerProps) => {
     setChallengesDone(ProgressService.done());
   };
 
-  const resetChallange = () => {
+  const resetChallenge = () => {
     _setFlag("");
     ProgressService.updateProgress(props.obj.url, "");
     setChallengesDone(ProgressService.done());
   };
 
+  const onGoToDocsClicked = (path: string) => {
+    return () => history.push(path);
+  };
+
+  const displayWarning = () => {
+    return (
+      <Box>
+        <AppBar position="static" className={classes.warningTitle}>
+          <Typography variant="h6">Warning</Typography>
+        </AppBar>
+        <Paper role="tabpanel" className={classes.warning}>
+          {warning.split("\n").map((l, i) => <Typography key={i}>{l}</Typography>)}
+        </Paper>
+      </Box>
+    );
+  };
 
   useEffect(() => {
     const f = ProgressService.getFoundFlag(props.obj.url);
@@ -49,16 +68,19 @@ const Challenge = (props: IChallengeContainerProps) => {
 
         <Paper className={classes.mainContainer}>
           <Typography variant="h4" gutterBottom className={classes.title}> {challengeData.name}</Typography>
-          <Component flag={flag} setFlag={setFlag} />
+          <Component flag={flag} setFlag={setFlag} setWarning={setWarning} />
         </Paper>
       </Grid>
       <Grid item md={4}>
-        <Flag flag={flag} resetChallenge={resetChallange} />
-        <Paper className={classes.documentation}>
-          <Typography variant="h6">Documentation</Typography>
-          <DescriptionIcon style={{ fontSize: 200, color: '#EEE' }} />
-          <Typography>If you are having trouble with this challenge take a look at our documentation</Typography>
-          <Button size="small" fullWidth variant="contained" color="primary" href={"docs" + props.obj.url}>Docs</Button>
+        <Flag flag={flag} resetChallenge={resetChallenge} />
+
+        {warning ? displayWarning() : ""}
+
+        <AppBar position="static" className={classes.documentationTitle}>
+          <Typography variant="h6">Docs</Typography>
+        </AppBar>
+        <Paper role="tabpanel" className={classes.documentation}>
+          <Typography>If you are having trouble with this challenge take a look at our documentation <Link to={"docs" + props.obj.url}>here</Link> </Typography>
         </Paper>
       </Grid>
     </Grid>

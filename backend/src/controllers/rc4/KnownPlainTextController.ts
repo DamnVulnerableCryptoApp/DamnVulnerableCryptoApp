@@ -1,9 +1,13 @@
 import { $log, BodyParams, Controller, Get, Post } from '@tsed/common';
 import * as crypto from 'crypto';
 
-interface HistoryEntry {
+interface IHistoryEntry {
   encryptedContent: string;
   date: string;
+}
+
+interface IRequest {
+  data: string;
 }
 
 
@@ -11,7 +15,7 @@ interface HistoryEntry {
 export class KnownPlainTextController {
 
   // 78961849-2949-4a7b-ab4a-ea951bd91d32
-  static encryptedHistory: HistoryEntry[] = [
+  static encryptedHistory: IHistoryEntry[] = [
     { encryptedContent: 'df75d1ce00d8112f827061a19aff2392ebc39b054e10b8923ffb64b391c8440c065cd63b', date: '2020-04-16T18:30:48.809Z' },
     { encryptedContent: '37383936313834392d323934392d346137622d616234612d656139353162643931643332', date: '2019-09-20T15:31:45.129Z' }
   ];
@@ -23,7 +27,7 @@ export class KnownPlainTextController {
   // message XOR key == encrypted && message XOR encrypted = key &&  key XOR encrypted == message
   // so if we know the encrypted content and try to encrypt it again with the key, we end up with the original plaintext
   @Post("/encrypt")
-  public async encrypt(@BodyParams() body: any): Promise<HistoryEntry> {
+  public encrypt(@BodyParams() body: IRequest): IHistoryEntry {
 
     const plaintext = body.data;
     $log.info("Received content to encrypt: " + plaintext);
@@ -39,7 +43,7 @@ export class KnownPlainTextController {
   }
 
   @Get("/history")
-  public async history() {
+  public history(): IHistoryEntry[] {
     return KnownPlainTextController.encryptedHistory;
   }
 

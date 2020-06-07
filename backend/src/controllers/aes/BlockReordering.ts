@@ -2,6 +2,15 @@ import { $log, Controller, Get, HeaderParams } from '@tsed/common';
 import * as crypto from 'crypto';
 import { InternalServerError } from 'ts-httpexceptions';
 
+interface IAdminResponse {
+  isAdmin: boolean;
+  flag: string;
+}
+
+interface IAccessResponse {
+  token: string;
+}
+
 @Controller("aes/ecb/block-reordering/")
 export class BlockReorderingController {
 
@@ -11,14 +20,14 @@ export class BlockReorderingController {
   static FLAG = "531f6323-4643-47f7-b6e3-96d48c7274a8";
 
   @Get("/")
-  public async index(@HeaderParams("username") username: string) {
+  public index(@HeaderParams("username") username: string): IAccessResponse {
     const token = this.createToken(username);
 
     return { token };
   }
 
   @Get("/isAdmin")
-  public async admin(@HeaderParams("token") token: string) {
+  public admin(@HeaderParams("token") token: string): IAdminResponse {
 
     let isAdmin = false;
 

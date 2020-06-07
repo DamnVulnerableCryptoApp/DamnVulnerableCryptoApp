@@ -1,7 +1,6 @@
 import "@tsed/ajv";
 import { GlobalAcceptMimesMiddleware, ServerLoader, ServerSettings } from "@tsed/common";
 import { $log } from "@tsed/logger";
-import "@tsed/swagger";
 import * as bodyParser from "body-parser";
 import * as compress from "compression";
 import * as cors from "cors";
@@ -9,7 +8,7 @@ import * as methodOverride from "method-override";
 import * as path from 'path';
 
 const rootDir = __dirname;
-const frontend = path.join(rootDir, "../../frontend/build");
+const frontend = (process.env.NODE_ENV === "development") ? path.join(rootDir, "../../frontend/build") : path.join(rootDir, "public");
 
 $log.level = "info";
 $log.name = "DamnVulnerableCryptoApp";
@@ -26,7 +25,7 @@ $log.name = "DamnVulnerableCryptoApp";
   componentsScan: [
     `${rootDir}/middlewares/**/**.ts`
   ],
-  swagger: [{ path: "/swagger" }],
+  // swagger: [{ path: "/swagger" }],
   exclude: ["**/*.spec.ts"],
   uploadDir: `${rootDir}/uploads`,
   statics: {

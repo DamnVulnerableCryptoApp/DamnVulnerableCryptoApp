@@ -1,0 +1,22 @@
+# Based on decathlon action
+# https://github.com/Decathlon/wiki-page-creator-action
+name: Wiki Update
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: chmod +x .github/workflows/wiki_script.sh
+    - run: .github/workflows/wiki_script.sh
+      env:
+        GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
+        ACTION_MAIL: luisfontes101@gmail.com
+        ACTION_NAME: wikiautomation
+        OWNER: DamNVulnerableCryptoApp
+        REPO_NAME: damn_vulnerable_crypto_app
+        MD_FOLDER: backend/src/documentation/
