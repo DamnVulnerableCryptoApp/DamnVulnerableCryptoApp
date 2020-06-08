@@ -1,4 +1,4 @@
 node_modules
 frontend/build
 backend/dist
-.nyc_output
+*/.nyc_output

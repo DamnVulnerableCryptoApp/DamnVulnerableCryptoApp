@@ -32,7 +32,7 @@ if [ -z "$WIKI_PUSH_MESSAGE" ]; then
   WIKI_PUSH_MESSAGE='Auto Publish new pages'
 fi
 
-
+# get source code of the wiki
 mkdir $TEMP_CLONE_FOLDER
 cd $TEMP_CLONE_FOLDER
 git init
@@ -43,30 +43,44 @@ cd ..
 
 rm -rf $TEMP_CLONE_FOLDER/* # make sure we remove everyting first. In case files were deleted/renamed
 
-for i in $MD_FOLDER*; do
-  echo "Processing $i"
+
+
+function processFile {
+  echo "   Processing $1"
 
   if [[ $i == *.md ]]; then
-    realFileName=`basename $i` # filename 'block-reordering' will end up with the name 'Block Reordering'
+    realFileName=`basename $1` # filename 'block-reordering' will end up with the name 'Block Reordering'
     newFileName=`echo $realFileName | tr - " "` # replace - with spaces
     newFileName=`echo $newFileName | sed -e "s/\b\(.\)/\u\1/g"` #capitalize
     
     
     if [[ $i == *.md ]]; then
-      echo "Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/$newFileName"
+      echo "   Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/$newFileName"
 
       # Replacing image urls, to relative paths in the wiki. 
       # This may give some problems if text /documentation/ is present in markdown...
       # We can create a more restrictive rule
-      sed 's/\/documentation\///g' "$i" > "$TEMP_CLONE_FOLDER/$newFileName" 
+      sed 's/\/documentation\///g' "$1" > "$TEMP_CLONE_FOLDER/$newFileName" 
     else
 
       # If its not markdown just copy the file. No need to change it
-      echo "copying $i to $TEMP_CLONE_FOLDER/$newFileName"
-      cp "$i" "$TEMP_CLONE_FOLDER/$newFileName"
+      echo "   copying $i to $TEMP_CLONE_FOLDER/$newFileName"
+      cp "$1" "$TEMP_CLONE_FOLDER/$newFileName"
     fi
   fi
-    
+}
+
+
+echo "Copying challenge docs"
+# Challenge documentation
+for i in $MD_FOLDER*; do
+  processFile $i
+done
+
+echo "Copying app docs"
+# Project documentation
+for i in docs/*; do
+  processFile $i
 done
 
 
