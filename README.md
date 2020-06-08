@@ -30,8 +30,7 @@ If you try to learn a little bit more about crypto, either because you want to k
 (Make sure you have node installed)
 
 ```
-sudo npm install
-npm run build
+npm run build-with-deps
 ```
 
 Or if you already have the dependencies installed you can just run:

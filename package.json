@@ -19,18 +19,17 @@
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "preinstall": "npm run pre-install-deps",
     "build-react": "cd frontend && yarn run test:lint && yarn run build",
     "build-be": "cd backend && yarn run test:lint && yarn build",
-    "build-with-deps": "npm install && yarn install-deps && yarn run build",
+    "build-with-deps": "yarn install-deps && yarn run build",
     "build:docker": "npm run build-with-deps && docker build",
     "build": "yarn run build-react && yarn run build-be && yarn run merge-projects",
     "copy-fe-to-public": "copyfiles \"frontend/build/**/*\" backend/dist/public -a -u 2",
     "merge-projects": "yarn run copy-fe-to-public",
-    "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts cross-env rimraf copyfiles mkdirp tslint",
+    "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts cross-env rimraf copyfiles mkdirp",
     "install-deps:be": "cd backend && yarn install",
     "install-deps:react": "cd frontend && yarn install",
-    "install-deps": "yarn run install-deps:be && yarn run install-deps:react",
+    "install-deps": "yarn run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
     "clean": "rimraf backend/dist && rimraf frontend/build"
   },
