@@ -34,7 +34,7 @@ const Appbar = () => {
           <img className={classes.menuLogo} src={LogoMenu} onClick={onLogoClicked} alt="DamnVulnerableCryptoApp Logo" />
         </Box>
         <Box display="flex">
-          <Link to={"/docs/home"} className={classes.docsLink}>Docs</Link>
+          <Link to={"/docs/crypto"} className={classes.docsLink}>Docs</Link>
           <Progress />
         </Box>
       </Toolbar>
