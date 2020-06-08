@@ -1,5 +1,8 @@
 {
-  "name": "damn_vulnerable_crypto_app",
+  "name": "@damnvulnerablecryptoapp/damn_vulnerable_crypto_app",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.1.0",
   "description": "",
   "main": "bin/index.js",
@@ -12,10 +15,11 @@
     "cross-env": "^7.0.2",
     "mkdirp": "^1.0.4",
     "react-scripts": "^3.4.1",
+    "rimraf": "^3.0.2",
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "preinstall": "npm run pre-install-deps",
+    "install": "npm run pre-install-deps",
     "build-react": "cd frontend && yarn run test:lint && yarn run build",
     "build-be": "cd backend && yarn run test:lint && yarn build",
     "build-with-deps": "yarn install-deps && yarn run build",
