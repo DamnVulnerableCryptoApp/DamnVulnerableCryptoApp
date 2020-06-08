@@ -3,7 +3,7 @@
 ## Creating a challenge
 
 
-- Choose a scenario for your challenge. You can use one of the ideas in [Challenge Ideas](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki/About-Encodings/Challenge-Ideas)
+- Choose a scenario for your challenge. You can use one of the ideas in [Challenge Ideas](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki/Challenge-Ideas)
 
 - duplicate the challenge template folder at /frontend/src/Challenges/ChallengeTemplate, rename it and adapt it to your needs.
 
