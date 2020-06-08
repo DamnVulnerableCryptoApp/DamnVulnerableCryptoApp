@@ -1,4 +1,4 @@
-This issue serves only to document themes to use when developing new challenges
+This page serves only to document themes/ideas to use when developing new challenges
 
 - [ ] Crypto protocol to encrypt http traffic, like a self made HTTPS. Use a browser frame, and show a self contained custom webpage in the challenge
 
