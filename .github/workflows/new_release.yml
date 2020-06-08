@@ -48,3 +48,10 @@ jobs:
         #tags: ${GITHUB_REF##*/}
         tag_with_ref: true
         dockerfile: ./Dockerfile
+    
+    
+    
+    - name: Push to NPM Registry
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
