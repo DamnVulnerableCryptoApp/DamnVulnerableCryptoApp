@@ -2,10 +2,10 @@
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Please note we have a code of conduct, please follow it in all your interactions with the project.
+Please note we have a [code of conduct](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
 ## Bugs and Improvements
-* Bugs and improvement requests can be reported on Github under [issues](https://github.com/luisfontes19/damn_vulnerable_crypto_app/issues)
+* Bugs and improvement requests can be reported on Github under [issues](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/issues)
 * Before opening an issue make sure there isn't already one opened with the same topic as yours.
 * If an issue is not created yet, be sure to follow the issue templates  provided and expose your issue in a clear way.
 * Be sure you provide enough information so that the team can understand your problem and work on solving it
@@ -21,9 +21,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 
 ## New Challenge Process
-- After getting approval to a new challenge concept, copy the folder in /frontend/src/challenges/ChallengeTemplate and adapt it as you wish.
-- For the backend part follow the structure used. In controllers folder, create or use the folder for the crypto algorithm you are using, and inside a controller file with the name of the vulnerability.
-- Add the relevant documentation for the challenge you wrote. The docs should be stored in backend/src/documentation and the filename should be the same as the url for the challenge, defined in /frontend/src/challenges/challenges.tsx
+Check how to create a new challenge on our [wiki](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki/Creating-Challenges)
 
 ## Pull Request Process
 - Ensure any install or build dependencies are removed before the end of the layer when doing a build.
