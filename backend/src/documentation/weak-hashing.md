@@ -13,5 +13,13 @@ So, how do I know if a hashing algorithm is good?
 Several entities publish official standards for hash functions, undergoing rigorous testing to ensure they are cryptographically strong, such as NIST, RIPEMD, Tiger, and SWIFFT. However, the algorithms most commonly required for government-related work are those of NIST. The National Institute of Standards and Technology (NIST) publishes official standards for hash functions called the Secure Hash Standard (SHS).
 
 ## Solving the Challenge
+In this lesson, we are presented with a database leak with the username in plaintext and the password hashed with a weak algorithm.  
+
+After looking into the table, we can easily grab the admin's hashed password. Notice that there are several online services that have millions of MD5/SHA-1entries stored such as,  [md5online](https://www.md5online.org/), [crackstation](https://crackstation.net/). For this solution, we have used [crackstation](https://crackstation.net/). After dehashing the password, we have the admin's credentials!
+
+Just login with those credentials and the flag is all yours!
 
 ## Lesson Learned
+
+* Do not use weak cryptographic hashes in security contexts
+* Search for public official standards before using a crypto hash for security purposes, for example, NIST's Secure Hash Standard
