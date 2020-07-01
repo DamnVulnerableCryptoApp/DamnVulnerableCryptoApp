@@ -12,9 +12,13 @@ export class AlgorithmDowngradeService {
   private static JWT_SIGNING_KEY = "kd8ehais9)i3n!na";
   public static FLAG = "1adc2fea-ed42-4e70-808e-c201cae5d17b";
 
-  public static generateJWT(username: string, admin = false): JWT {
-    const oneYearFromNow = new Date();
-    const timestamp = oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+
+  public static generateJWT(username: string, admin = false, timestamp = -1): JWT {
+
+    if (timestamp === -1) {
+      const oneYearFromNow = new Date();
+      timestamp = oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+    }
 
     const jwt: JWT = {
       header: { alg: "HS256", typ: "JWT" },
