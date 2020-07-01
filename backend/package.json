@@ -10,9 +10,9 @@
     "tsc:w": "tsc --project tsconfig.json -w",
     "start": "cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
-    "test": "nyc --reporter=text mocha --require ts-node/register \"tests/**/*Test.ts\" --timeout 50000 --exit",
-    "test:lint": "tslint --project tsconfig.json",
-    "test:lint:fix": "tslint --project tsconfig.json --fix"
+    "tests": "mocha --require ts-node/register \"tests/**/*Test.ts\" --timeout 50000 --exit",
+    "tests:lint": "tslint --project tsconfig.json",
+    "tests:lint:fix": "tslint --project tsconfig.json --fix"
   },
   "dependencies": {
     "@tsed/ajv": "^5.56.0",

@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build-react": "cd frontend && yarn run test:lint && yarn run build",
-    "build-be": "cd backend && yarn run test:lint && yarn build",
+    "build-be": "cd backend && yarn run tests:lint && yarn run tests && yarn build",
     "build-with-deps": "yarn install-deps && yarn run build",
     "build:docker": "npm run build-with-deps && docker build",
     "build": "yarn run build-react && yarn run build-be && yarn run merge-projects",

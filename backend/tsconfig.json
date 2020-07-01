@@ -16,6 +16,7 @@
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "newLine": "LF",
+    "rootDir": "src",
     "noEmit": true,
     "lib": [
       "es7",
@@ -41,7 +42,7 @@
     "node_modules",
     "./public",
     "dist",
-    "test"
+    "tests"
   ],
   "linterOptions": {
     "exclude": []
