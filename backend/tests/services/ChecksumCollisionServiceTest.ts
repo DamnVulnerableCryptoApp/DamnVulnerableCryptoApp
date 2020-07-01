@@ -17,7 +17,7 @@ describe("ChecksumCollisionService", () => {
 
 
   it("Should calculate sha1 hash", async () => {
-    const r = await ChecksumCollisionService.getSha1FileChecksum(__dirname + "/../../src/config/publickey.pem")
+    const r = await ChecksumCollisionService.getSha1FileChecksum(__dirname + "/../../src/config/publickey.pem");
     expect(r).to.be.equal("0d6f4912f5b2800cba5d79d5f036a1a79ee61303");
   });
 });
