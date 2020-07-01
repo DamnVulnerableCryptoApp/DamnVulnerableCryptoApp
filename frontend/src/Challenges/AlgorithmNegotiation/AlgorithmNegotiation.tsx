@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
 import faklerPastes from "../../Images/fakepastes.png";
-import { AlgorithmDowngradeService, IPaste } from "./AlgorithmDowngradeService";
+import { AlgorithmNegotiationService, IPaste } from "./AlgorithmNegotiationService";
 import useStyles from "./styles";
 
 
@@ -12,7 +12,7 @@ import useStyles from "./styles";
 
 
 
-const AlgorithmDowngrade = (props: IChallengeProps) => {
+const AlgorithmNegotiation = (props: IChallengeProps) => {
   const classes = useStyles();
   const layoutContext = useContext(LayoutContext);
   const [pastes, setPastes] = useState<IPaste[]>([]);
@@ -20,8 +20,8 @@ const AlgorithmDowngrade = (props: IChallengeProps) => {
   useEffect(() => {
     layoutContext.setLoading(true);
 
-    AlgorithmDowngradeService.initAsAnonymous().then(() =>
-      AlgorithmDowngradeService.getPastes().then((res) => {
+    AlgorithmNegotiationService.initAsAnonymous().then(() =>
+      AlgorithmNegotiationService.getPastes().then((res) => {
         setPastes(res);
         res.forEach(p => {
           props.setFlag(p.content); // check if the content of the paste is the flag.
@@ -58,4 +58,4 @@ const AlgorithmDowngrade = (props: IChallengeProps) => {
   );
 };
 
-export default AlgorithmDowngrade;
+export default AlgorithmNegotiation;

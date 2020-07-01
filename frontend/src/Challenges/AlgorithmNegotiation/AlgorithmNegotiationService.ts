@@ -7,10 +7,10 @@ export interface IPaste {
   public: boolean;
 }
 
-export class AlgorithmDowngradeService extends ApiRequest {
+export class AlgorithmNegotiationService extends ApiRequest {
 
   // private static STORAGE_KEY = "";
-  public static CHALLENGEPATH = `/jwt/downgrade`;
+  public static CHALLENGEPATH = `/jwt/negotiation`;
   public static STORAGE_KEY = "alg-down-token";
 
 
@@ -19,12 +19,12 @@ export class AlgorithmDowngradeService extends ApiRequest {
   public static async initAsAnonymous(): Promise<string> {
     return new Promise((resolve, reject) => {
 
-      if (localStorage.getItem(AlgorithmDowngradeService.STORAGE_KEY)) resolve(); // not need to create a new session
+      if (localStorage.getItem(AlgorithmNegotiationService.STORAGE_KEY)) resolve(); // not need to create a new session
 
-      const path = `${AlgorithmDowngradeService.CHALLENGEPATH}/anonymousAccess`;
+      const path = `${AlgorithmNegotiationService.CHALLENGEPATH}/anonymousAccess`;
 
       super.do(path, { method: 'post' }).then((res) => {
-        localStorage.setItem(AlgorithmDowngradeService.STORAGE_KEY, res.token);
+        localStorage.setItem(AlgorithmNegotiationService.STORAGE_KEY, res.token);
         resolve();
       }).catch(() => reject());
 
@@ -32,9 +32,9 @@ export class AlgorithmDowngradeService extends ApiRequest {
   }
 
   public static async getPastes(): Promise<IPaste[]> {
-    const path = `${AlgorithmDowngradeService.CHALLENGEPATH}/`;
+    const path = `${AlgorithmNegotiationService.CHALLENGEPATH}/`;
 
-    const token = localStorage.getItem(AlgorithmDowngradeService.STORAGE_KEY);
+    const token = localStorage.getItem(AlgorithmNegotiationService.STORAGE_KEY);
     const headers = { 'Authorization': token } as any;
 
     return super.do(path, { headers });

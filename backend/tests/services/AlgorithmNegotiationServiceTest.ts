@@ -1,10 +1,10 @@
 
 import { TestContext } from '@tsed/testing';
 import { expect } from 'chai';
-import { AlgorithmDowngradeService, JWT } from '../../src/services/AlgorithmDowngradeService';
+import { AlgorithmNegotiationService, JWT } from '../../src/services/AlgorithmNegotiationService';
 
 
-describe("AlgorithmDowngradeService", () => {
+describe("AlgorithmNegotiationService", () => {
 
   before(TestContext.create);
   after(TestContext.reset);
@@ -14,7 +14,7 @@ describe("AlgorithmDowngradeService", () => {
       const oneYearFromNow = new Date();
       const timestamp = 123123123;
 
-      const jwt = AlgorithmDowngradeService.generateJWT("dvca", true, timestamp);
+      const jwt = AlgorithmNegotiationService.generateJWT("dvca", true, timestamp);
 
       expect(jwt);
       expect(jwt.header.alg).to.equal("HS256");
@@ -29,8 +29,8 @@ describe("AlgorithmDowngradeService", () => {
       const oneYearFromNow = new Date();
       const timestamp = 123123123;
 
-      const jwt = AlgorithmDowngradeService.generateJWT("dvca", true, timestamp);
-      expect(AlgorithmDowngradeService.JWTToString(jwt)).to.be.equal("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkdmNhIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxMjMxMjN9.7c55y69UKqGX59tWMP-rFJ93vag3tqvpWoCyaC7sxyk");
+      const jwt = AlgorithmNegotiationService.generateJWT("dvca", true, timestamp);
+      expect(AlgorithmNegotiationService.JWTToString(jwt)).to.be.equal("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkdmNhIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxMjMxMjN9.7c55y69UKqGX59tWMP-rFJ93vag3tqvpWoCyaC7sxyk");
 
     });
   });
@@ -38,7 +38,7 @@ describe("AlgorithmDowngradeService", () => {
   describe("parseToken", () => {
     it("Should parse and validate jwt", () => {
       const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkdmNhIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxMjMxMjN9.7c55y69UKqGX59tWMP-rFJ93vag3tqvpWoCyaC7sxyk";
-      const parsed = AlgorithmDowngradeService.parseToken(jwt);
+      const parsed = AlgorithmNegotiationService.parseToken(jwt);
 
       expect(parsed);
       expect(parsed.header.alg).to.equal("HS256");
@@ -51,15 +51,15 @@ describe("AlgorithmDowngradeService", () => {
 
     it("Should throw error because of bad signature", () => {
       const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkdmNhIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxMjMxMjN9.7c55y69UKqGX59tWMP-rFJ93vag3tqvpWoCyaC7sxy";
-      expect(() => AlgorithmDowngradeService.parseToken(jwt)).to.throw();
+      expect(() => AlgorithmNegotiationService.parseToken(jwt)).to.throw();
     });
 
     it("Should parse successfully token with alg none", () => {
 
       const jwt: JWT = { header: { alg: 'none', typ: "JWT", }, payload: { sub: 'dvca', iat: 123123, isAdmin: true }, signature: "" };
 
-      const jwtString = AlgorithmDowngradeService.JWTToString(jwt);
-      const parsed = AlgorithmDowngradeService.parseToken(jwtString);
+      const jwtString = AlgorithmNegotiationService.JWTToString(jwt);
+      const parsed = AlgorithmNegotiationService.parseToken(jwtString);
 
       expect(parsed);
       expect(parsed.header.alg).to.equal("none");

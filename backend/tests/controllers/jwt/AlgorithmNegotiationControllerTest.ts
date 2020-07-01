@@ -3,12 +3,12 @@ import { ExpressApplication } from '@tsed/common';
 import { TestContext } from '@tsed/testing';
 import { expect } from 'chai';
 import * as SuperTest from "supertest";
-import { IAccessRequest, IPaste } from '../../../src/controllers/jwt/AlgorithmDowngradeController';
+import { IAccessRequest, IPaste } from '../../../src/controllers/jwt/AlgorithmNegotiationController';
 import { Server } from "../../../src/Server";
-import { AlgorithmDowngradeService, JWT } from '../../../src/services/AlgorithmDowngradeService';
+import { AlgorithmNegotiationService, JWT } from '../../../src/services/AlgorithmNegotiationService';
 
 
-describe("AlgorithmDowngradeController", () => {
+describe("AlgorithmNegotiationController", () => {
 
   let request: SuperTest.SuperTest<SuperTest.Test>;
   before(TestContext.bootstrap(Server));
@@ -16,7 +16,7 @@ describe("AlgorithmDowngradeController", () => {
     request = SuperTest(expressApplication);
   }));
 
-  const path = "/jwt/downgrade";
+  const path = "/jwt/negotiation";
 
   after(TestContext.reset);
 
@@ -40,7 +40,7 @@ describe("AlgorithmDowngradeController", () => {
 
     it("Should get public pastes", async () => {
 
-      const token = AlgorithmDowngradeService.JWTToString(AlgorithmDowngradeService.generateJWT("ANONYMOUSUSER"));
+      const token = AlgorithmNegotiationService.JWTToString(AlgorithmNegotiationService.generateJWT("ANONYMOUSUSER"));
       const res = await request.get(path).set("Authorization", token);
       const content: IPaste[] = res.body;
 
@@ -53,7 +53,7 @@ describe("AlgorithmDowngradeController", () => {
     it("Should get all pastes with signed jwt", async () => {
 
 
-      const token = AlgorithmDowngradeService.JWTToString(AlgorithmDowngradeService.generateJWT("admin", true));
+      const token = AlgorithmNegotiationService.JWTToString(AlgorithmNegotiationService.generateJWT("admin", true));
       const res = await request.get(path).set("Authorization", token);
       const content: IPaste[] = res.body;
 
@@ -77,7 +77,7 @@ describe("AlgorithmDowngradeController", () => {
       };
 
 
-      const token = AlgorithmDowngradeService.JWTToString(jwt);
+      const token = AlgorithmNegotiationService.JWTToString(jwt);
       const res = await request.get(path).set("Authorization", token);
       const content: IPaste[] = res.body;
 

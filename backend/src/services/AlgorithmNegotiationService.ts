@@ -7,7 +7,7 @@ export interface JWT {
 }
 
 
-export class AlgorithmDowngradeService {
+export class AlgorithmNegotiationService {
 
   private static JWT_SIGNING_KEY = "kd8ehais9)i3n!na";
   public static FLAG = "1adc2fea-ed42-4e70-808e-c201cae5d17b";
@@ -30,7 +30,7 @@ export class AlgorithmDowngradeService {
       signature: ""
     };
 
-    jwt.signature = this.signJwt(jwt, AlgorithmDowngradeService.JWT_SIGNING_KEY);
+    jwt.signature = this.signJwt(jwt, AlgorithmNegotiationService.JWT_SIGNING_KEY);
 
     return jwt;
   }
@@ -43,14 +43,14 @@ export class AlgorithmDowngradeService {
     let parts: any = jwt.split(".");
 
     parts = parts.map((p: string, i: number) => {
-      return i === 2 ? p : JSON.parse(AlgorithmDowngradeService.fromBase64Url(p));
+      return i === 2 ? p : JSON.parse(AlgorithmNegotiationService.fromBase64Url(p));
     });
 
     const parsedJWT: JWT = { header: parts[0], payload: parts[1], signature: parts[2] };
 
     switch (parsedJWT.header.alg) {
       case 'HS256':
-        if (AlgorithmDowngradeService.signJwt(parsedJWT, AlgorithmDowngradeService.JWT_SIGNING_KEY) !== parsedJWT.signature)
+        if (AlgorithmNegotiationService.signJwt(parsedJWT, AlgorithmNegotiationService.JWT_SIGNING_KEY) !== parsedJWT.signature)
           throw new Error("Invalid Signature");
         break;
       case 'none':
@@ -64,21 +64,21 @@ export class AlgorithmDowngradeService {
   }
 
   public static JWTToString(jwt: JWT): string {
-    const header = AlgorithmDowngradeService.toBase64URL(JSON.stringify(jwt.header));
-    const payload = AlgorithmDowngradeService.toBase64URL(JSON.stringify(jwt.payload));
-    // const signature = AlgorithmDowngradeController.toBase64URL(JSON.stringify(jwt.signature));
+    const header = AlgorithmNegotiationService.toBase64URL(JSON.stringify(jwt.header));
+    const payload = AlgorithmNegotiationService.toBase64URL(JSON.stringify(jwt.payload));
+    // const signature = AlgorithmNegociationController.toBase64URL(JSON.stringify(jwt.signature));
 
     // jwt.signature is already in base64
     return `${header}.${payload}.${jwt.signature}`;
   }
 
   public static signJwt(jwt: JWT, signingKey: string): string {
-    const header = AlgorithmDowngradeService.toBase64URL(JSON.stringify(jwt.header));
-    const payload = AlgorithmDowngradeService.toBase64URL(JSON.stringify(jwt.payload));
+    const header = AlgorithmNegotiationService.toBase64URL(JSON.stringify(jwt.header));
+    const payload = AlgorithmNegotiationService.toBase64URL(JSON.stringify(jwt.payload));
     const toSign = `${header}.${payload}`;
 
     const signedBase64 = crypto.createHmac('sha256', signingKey).update(toSign).digest("base64");
-    const signedbase64Url = AlgorithmDowngradeService.base64ToBase64Url(signedBase64);
+    const signedbase64Url = AlgorithmNegotiationService.base64ToBase64Url(signedBase64);
 
     return signedbase64Url;
   }

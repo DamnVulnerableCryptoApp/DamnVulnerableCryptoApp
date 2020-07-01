@@ -1,5 +1,5 @@
 import { IChallengeProps } from "../Challenge/IChallengeProps";
-import AlgorithmDowngrade from "./AlgorithmDowngrade/AlgorithmDowngrade";
+import AlgorithmNegotiation from "./AlgorithmNegotiation/AlgorithmNegotiation";
 import BlockReordering from "./BlockReordering/BlockReordering";
 import ByteAtATime from "./ByteAtATime/ByteAtATime";
 import ChecksumCollision from "./ChecksumCollision/ChecksumCollision";
@@ -42,10 +42,10 @@ const Challenges: ChallengeData[] = [
 
   },
   {
-    name: "Algorithm Downgrade",
-    component: AlgorithmDowngrade,
+    name: "Algorithm Negotiation",
+    component: AlgorithmNegotiation,
     description: "It is worth nothing if you have the best and more secure algorithms in place, if you still accept old or insecure ones. Choosing an older álgorithm or version may lead to some security issues.",
-    url: "/algorithm-downgrade"
+    url: "/algorithm-negotiation"
   },
   {
     name: "Known Plaintext",

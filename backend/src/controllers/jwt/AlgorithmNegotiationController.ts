@@ -1,6 +1,6 @@
 
 import { $log, Controller, Get, HeaderParams, Post } from '@tsed/common';
-import { AlgorithmDowngradeService } from '../../services/AlgorithmDowngradeService';
+import { AlgorithmNegotiationService } from '../../services/AlgorithmNegotiationService';
 
 
 export interface IPaste {
@@ -13,8 +13,8 @@ export interface IAccessRequest {
   token: string;
 }
 
-@Controller("/jwt/downgrade")
-export class AlgorithmDowngradeController {
+@Controller("/jwt/negotiation")
+export class AlgorithmNegotiationController {
 
 
 
@@ -23,20 +23,20 @@ export class AlgorithmDowngradeController {
     { public: true, author: "Anon7!92", content: 'Aute sint culpa irure laboris id ea in qui dolor laboris commodo ullamco ullamco in sunt velit cupidatat consectetur sunt dolor ad fugiat ut cillum tempor proident.' }
   ];
 
-  public static ADMIN_PASTE: IPaste = { public: false, author: "Admin", content: AlgorithmDowngradeService.FLAG };
+  public static ADMIN_PASTE: IPaste = { public: false, author: "Admin", content: AlgorithmNegotiationService.FLAG };
 
 
 
   @Get("/")
   public getPastes(@HeaderParams("Authorization") jwt: string): IPaste[] {
-    let pastes = AlgorithmDowngradeController.PUBLIC_PASTES;
+    let pastes = AlgorithmNegotiationController.PUBLIC_PASTES;
 
     try {
-      const parsedJwt = AlgorithmDowngradeService.parseToken(jwt);
+      const parsedJwt = AlgorithmNegotiationService.parseToken(jwt);
       const isAdmin = parsedJwt.payload.isAdmin as boolean;
 
       if (isAdmin)
-        pastes = pastes.concat(AlgorithmDowngradeController.ADMIN_PASTE);
+        pastes = pastes.concat(AlgorithmNegotiationController.ADMIN_PASTE);
 
       return pastes;
 
@@ -53,9 +53,9 @@ export class AlgorithmDowngradeController {
   @Post("/anonymousAccess")
   public requestAccess(): IAccessRequest {
 
-    const jwt = AlgorithmDowngradeService.generateJWT("ANONYMOUSUSER");
+    const jwt = AlgorithmNegotiationService.generateJWT("ANONYMOUSUSER");
 
-    return { token: AlgorithmDowngradeService.JWTToString(jwt) };
+    return { token: AlgorithmNegotiationService.JWTToString(jwt) };
 
   }
 

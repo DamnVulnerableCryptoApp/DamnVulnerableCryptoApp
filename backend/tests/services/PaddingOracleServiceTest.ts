@@ -24,15 +24,6 @@ describe("PaddingOracleService", () => {
       expect(token).to.match(/;isAdmin=true;username=admin$/);
     });
 
-    it("should create encrypted token", () => {
-      const token = PaddingOracleService.getAnonymousToken();
-
-      const tokenRaw = PaddingOracleService.createTokenString();
-      const encToken = PaddingOracleService.encryptToken(tokenRaw);
-
-      expect(token).to.be.equal(encToken);
-    });
-
   });
 
 
