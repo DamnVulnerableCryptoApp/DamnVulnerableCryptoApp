@@ -41,8 +41,7 @@
   "exclude": [
     "node_modules",
     "./public",
-    "dist",
-    "tests"
+    "dist"
   ],
   "linterOptions": {
     "exclude": []
