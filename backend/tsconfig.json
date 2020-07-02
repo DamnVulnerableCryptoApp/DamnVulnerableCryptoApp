@@ -36,12 +36,12 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./tests/**/*.ts",
   ],
   "exclude": [
     "node_modules",
     "./public",
-    "dist"
+    "dist",
+    "./tests/"
   ],
   "linterOptions": {
     "exclude": []

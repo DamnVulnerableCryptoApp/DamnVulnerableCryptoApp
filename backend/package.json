@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "yarn run tests && yarn tsc && mkdirp dist/uploads && yarn run copy-docs && yarn run copy-configs",
+    "build": "yarn tsc && mkdirp dist/uploads && yarn run copy-docs && yarn run copy-configs",
     "copy-docs": "copyfiles \"src/documentation/**/*\" dist -a -u 1",
     "copy-configs": "copyfiles \"src/config/**/*\" dist -a -u 1",
     "tsc": "tsc --project tsconfig.compile.json",
