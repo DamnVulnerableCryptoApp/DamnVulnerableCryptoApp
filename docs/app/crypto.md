@@ -1,6 +1,6 @@
 ## Classic cryptography
 
-* [Classic Ciphers](classic-ciphers)  
+* [Classic Ciphers](classic-cipher)  
 
 ## Modern Cryptography
 
