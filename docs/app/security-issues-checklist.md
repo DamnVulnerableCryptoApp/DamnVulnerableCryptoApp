@@ -72,3 +72,9 @@
 ## Weak Random
 * Using preditable random algorithms
 * Promotion Code bypass
+
+## Algorithm Negotiation
+* Hardcoded crypto key 
+* Auth token being stored in local storage
+* No validation of jwt algorithm
+* Privilege escalation
