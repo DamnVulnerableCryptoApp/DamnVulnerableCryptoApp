@@ -2,3 +2,4 @@ node_modules
 frontend/build
 backend/dist
 */.nyc_output
+backend/src/documentation

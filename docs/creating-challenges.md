@@ -13,19 +13,19 @@
 
 - Added the necessary unit tests. 
 
-- Document all the security issues of your challenge at backend/src/documentation/security-issues-checklist.md
+- Document all the security issues of your challenge at docs/app/security-issues-checklist.md
 
 - Write the necessary documentation. All challenges should have a nice to read documentation, explaining the issue being exploited in the challenge, as well as step by step hpw to solve it. 
 
-  - Store your doc at backend/src/documentation/URL-OF-YOU-CHALLENGE-DEFINED-IN-FRONTEND.md
+  - Store your doc at docs/app/URL-OF-YOU-CHALLENGE-DEFINED-IN-FRONTEND.md
 
   - Do not show the final flag in the doc
 
   - Use the same structure as the other files. ("The Basics", "Solving the challenge" and "Lesson learned")
 
-  - To add images, make sure the images are stored in backend/src/documentation/img and **use a relative path** in the markdown
+  - To add images, make sure the images are stored in docs/app/img and **use a relative path** in the markdown (ex: img/myimage.png)
 
-  - Make sure you link your documentation in file backend/src/documentation/home.md
+  - Make sure you link your documentation in file docs/app/crypto.md
 
 - If your challenge has some easter eggs let us know so we can keep track of all the nice things :) 
 

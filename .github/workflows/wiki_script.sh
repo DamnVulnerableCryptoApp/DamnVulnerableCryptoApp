@@ -71,11 +71,12 @@ function processFile {
 }
 
 
-echo "Copying challenge docs"
-# Challenge documentation
-for i in $MD_FOLDER*; do
-  processFile $i
-done
+#Deprecated when moved app documentation to /docs
+#echo "Copying challenge docs"
+## Challenge documentation
+#for i in $MD_FOLDER*; do
+#  processFile $i
+#done
 
 echo "Copying app docs"
 # Project documentation
