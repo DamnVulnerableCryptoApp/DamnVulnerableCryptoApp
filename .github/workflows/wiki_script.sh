@@ -22,11 +22,6 @@ if [ -z "$REPO_NAME" ]; then
   exit 1
 fi
 
-if [ -z "$MD_FOLDER" ]; then
-  echo "MD_FOLDER ENV is missing, using the default one"
-  MD_FOLDER='.'
-fi
-
 if [ -z "$WIKI_PUSH_MESSAGE" ]; then
   echo "WIKI_PUSH_MESSAGE ENV is missing, using the default one"
   WIKI_PUSH_MESSAGE='Auto Publish new pages'
@@ -78,15 +73,22 @@ function processFile {
 #  processFile $i
 #done
 
-echo "Copying app docs"
+echo "Copying docs"
 # Project documentation
 for i in docs/*; do
   processFile $i
 done
 
+echo "Copying app docs"
+# Project documentation
+for i in docs/app/*; do
+  processFile $i
+done
+
 
 echo "Copying images folder"
-cp -r "$MD_FOLDER/img" "$TEMP_CLONE_FOLDER"
+cp -r "docs/app/img" "$TEMP_CLONE_FOLDER"
+
 
 echo "Pushing new pages"
 cd $TEMP_CLONE_FOLDER
