@@ -48,8 +48,8 @@ export class AlgorithmNegotiationService {
 
     const parsedJWT: JWT = { header: parts[0], payload: parts[1], signature: parts[2] };
 
-    switch (parsedJWT.header.alg) {
-      case 'HS256':
+    switch (parsedJWT.header.alg.toString().toLocaleLowerCase()) {
+      case 'hS256':
         if (AlgorithmNegotiationService.signJwt(parsedJWT, AlgorithmNegotiationService.JWT_SIGNING_KEY) !== parsedJWT.signature)
           throw new Error("Invalid Signature");
         break;
