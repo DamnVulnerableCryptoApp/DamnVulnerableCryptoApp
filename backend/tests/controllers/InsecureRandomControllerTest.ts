@@ -49,7 +49,7 @@ describe("InsecureRandomController", () => {
       const content: ICheckResponse = res.body;
 
       expect(res.status).to.equal(200);
-      expect(content.flag).to.eq(InsecureRandomService.FLAG);
+      expect(content.flag).to.eq(InsecureRandomService.getFlag());
       expect(content.valid).to.be.true;
 
     });

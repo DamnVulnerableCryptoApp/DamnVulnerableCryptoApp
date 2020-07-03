@@ -1,9 +1,9 @@
 import { $log } from '@tsed/common';
 import * as crypto from 'crypto';
+import { ChallengeService } from './ChallengeService';
 
-export class ByteAtATimeService {
+export class ByteAtATimeService extends ChallengeService {
   public static KEY = "3jc^aijs/jzn%nai";
-  public static FLAG = "362eea88-8868-11ea-bc55-0242ac130003";
 
   public static encrypt(data: string): string {
     const cipher = crypto.createCipheriv('aes-128-ecb', Buffer.from(this.KEY), '');

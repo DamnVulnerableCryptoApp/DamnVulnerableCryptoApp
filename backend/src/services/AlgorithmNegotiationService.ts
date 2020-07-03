@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import { ChallengeService } from './ChallengeService';
 
 export interface JWT {
   header: Record<string, string | number | boolean>;
@@ -6,12 +7,9 @@ export interface JWT {
   signature: string;
 }
 
-
-export class AlgorithmNegotiationService {
+export class AlgorithmNegotiationService extends ChallengeService {
 
   private static JWT_SIGNING_KEY = "kd8ehais9)i3n!na";
-  public static FLAG = "1adc2fea-ed42-4e70-808e-c201cae5d17b";
-
 
   public static generateJWT(username: string, admin = false, timestamp = -1): JWT {
 

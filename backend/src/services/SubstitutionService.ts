@@ -1,5 +1,6 @@
-export class SubstitutionService {
-  public static FLAG = "1595832a-563e-414b-9c0c-a7dd9b6975a0";
+import { ChallengeService } from './ChallengeService';
+
+export class SubstitutionService extends ChallengeService {
   public static SUBSTITUTIONS: Record<string, string> = {
     "a": "z",
     "b": "y",

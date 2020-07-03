@@ -21,7 +21,7 @@ export class WeakHashingController {
     // https://crackstation.net/ - securepassword = b0439fae31f8cbba6294af86234d5a28
 
     if (body.username === "admin" && WeakHashingService.hashPassowrd(body.password) === WeakHashingService.ADMIN_PASSWORD_HASHED)
-      return { success: true, flag: WeakHashingService.FLAG };
+      return { success: true, flag: WeakHashingService.getFlag() };
     else
       return { success: false, flag: "" };
   }

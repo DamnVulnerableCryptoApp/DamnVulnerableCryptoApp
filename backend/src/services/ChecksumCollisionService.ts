@@ -1,7 +1,8 @@
 import * as crypto from 'crypto';
 import * as fs from 'fs';
+import { ChallengeService } from './ChallengeService';
 
-export class ChecksumCollisionService {
+export class ChecksumCollisionService extends ChallengeService {
 
   public static getMd5FileChecksum(file: string): Promise<string> {
     const hash = crypto.createHash('md5');

@@ -50,7 +50,7 @@ describe("IVDetectionController", () => {
       expect(res.status).to.equal(200);
 
       const body: IResponse = res.body;
-      expect(body.flag).to.eq(IvDetectionService.FLAG);
+      expect(body.flag).to.eq(IvDetectionService.getFlag());
     });
 
   });

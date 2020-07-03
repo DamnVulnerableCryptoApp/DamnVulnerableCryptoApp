@@ -32,7 +32,7 @@ describe("KeyDisclosureController", () => {
 
       expect(res.status).to.equal(200);
       expect(content.success).to.be.true;
-      expect(content.flag).to.equal(KeyDisclosureService.FLAG);
+      expect(content.flag).to.equal(KeyDisclosureService.getFlag());
       expect(content.emails.length).to.eq(2);
 
     });

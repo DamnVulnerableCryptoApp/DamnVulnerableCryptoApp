@@ -18,7 +18,7 @@ export class IvDetectionController {
 
   @Post("/encrypt")
   public encrypt(@BodyParams("data") data: string): IResponse {
-    const f = data === IvDetectionService.IV ? IvDetectionService.FLAG : "";
+    const f = data === IvDetectionService.IV ? IvDetectionService.getFlag() : "";
 
     return { data: IvDetectionService.encryptData(data), flag: f };
   }

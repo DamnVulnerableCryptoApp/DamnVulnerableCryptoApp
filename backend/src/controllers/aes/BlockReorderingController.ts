@@ -36,7 +36,7 @@ export class BlockReorderingController {
     }
 
     if (isAdmin)
-      return { isAdmin, flag: BlockReorderingService.FLAG };
+      return { isAdmin, flag: BlockReorderingService.getFlag() };
     else
       return { isAdmin, flag: "" };
 

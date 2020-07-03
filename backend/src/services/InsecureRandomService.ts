@@ -1,5 +1,6 @@
-export class InsecureRandomService {
-  public static FLAG = "83939130-daa9-4878-ab18-5d5edac5fead";
+import { ChallengeService } from './ChallengeService';
+
+export class InsecureRandomService extends ChallengeService {
 
   public static generate5RandomValues(numberOfValues = 5): number[] {
     const numbers = [];

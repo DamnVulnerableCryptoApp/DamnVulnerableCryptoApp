@@ -1,9 +1,9 @@
 import * as crypto from 'crypto';
+import { ChallengeService } from './ChallengeService';
 
-export class IvDetectionService {
+export class IvDetectionService extends ChallengeService {
   public static KEY = "123321123321asdx";
   public static IV = "super_secure_iv2";
-  public static FLAG = "485e40a2-8c8a-11ea-bc55-0242ac130003";
 
 
   public static encryptData(data: string): string {

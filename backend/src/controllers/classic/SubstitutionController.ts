@@ -25,7 +25,7 @@ export class SubstitutionController {
   @Get("/check")
   public check(@QueryParams("answer") answer: string): ICheckResponse {
     if (answer === "iwbodteld")
-      return { flag: SubstitutionService.FLAG, success: true };
+      return { flag: SubstitutionService.getFlag(), success: true };
     else
       return { flag: "", success: false };
   }

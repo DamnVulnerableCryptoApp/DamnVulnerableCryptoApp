@@ -12,10 +12,6 @@ interface ICheckResponse {
 @Controller("/md5")
 export class ChecksumCollisitonsController {
 
-  static FLAG = "2e1e19ae-8674-11ea-bc55-0242ac130003";
-
-
-
   // to exploit this there are a few tools, and script to automate them.
   // I like to use https://github.com/thereal1024/python-md5-collision. its a small and automated python script on top of fastcol
   // to make it work smoothly you need to:
@@ -41,7 +37,7 @@ export class ChecksumCollisitonsController {
 
       if (sha11 === sha12) {
         success = true;
-        flag = ChecksumCollisitonsController.FLAG;
+        flag = ChecksumCollisionService.getFlag();
       }
     }
 

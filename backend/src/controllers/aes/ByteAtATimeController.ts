@@ -37,7 +37,7 @@ export class ByteAtATimeController {
 
     let flag = "", success = false;
     if (user === "admin" && password === ByteAtATimeController.ADMIN_PASSWORD) {
-      flag = ByteAtATimeService.FLAG;
+      flag = ByteAtATimeService.getFlag();
       success = true;
     }
 

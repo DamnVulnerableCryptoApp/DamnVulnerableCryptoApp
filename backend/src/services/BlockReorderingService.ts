@@ -1,10 +1,10 @@
 import { $log } from '@tsed/logger';
 import * as crypto from 'crypto';
+import { ChallengeService } from './ChallengeService';
 
-export class BlockReorderingService {
+export class BlockReorderingService extends ChallengeService {
 
   static KEY = "aneuck27sSi2m3b$";
-  static FLAG = "531f6323-4643-47f7-b6e3-96d48c7274a8";
 
   // TODO: DO NOT LET BYTE AT A TIME HERE
   public static createToken(username: string, isAdmin = false): string {
