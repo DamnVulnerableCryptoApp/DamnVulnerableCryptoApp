@@ -75,6 +75,9 @@ const useStyles = makeStyles({
   receivedMessage: {
     backgroundColor: '#e0e0e0',
     color: '#000'
+  },
+  auhtorImg: {
+    borderRadius: '200px'
   }
 });
 
