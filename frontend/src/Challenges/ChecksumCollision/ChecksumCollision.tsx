@@ -41,7 +41,8 @@ const string4 = 'Hurry uo';
 const string5 = 'Hurry ul';
 const string6 = 'F*ck';
 const string7 = 'Hurry up^1000';
-
+const stringFixed = "`" + string31 + string32 + string33 + "`";
+let typed: Typed;
 
 
 const ChecksumCollision = (props: IChallengeProps) => {
@@ -49,19 +50,17 @@ const ChecksumCollision = (props: IChallengeProps) => {
   const layoutContext = useContext(LayoutContext);
   const noFileSelected = "No File Selected";
 
-
   const [file1, setFile1] = useState<File>(new File([], ""));
   const [file2, setFile2] = useState<File>(new File([], ""));
-  let typed: Typed;
-
 
   const typedError = () => {
     typed.destroy();
     typed = new Typed('#console', {
       strings: [
-        '$ Hello Eon,^1000 `<br>`' +
-        '$ Something is not right... Isn\'t it possible or is it a mistake? ^1000 `<br>`' +
-        '$ I will wait for another try...^1000 `<br>`'
+        'Hello Eon,^1000 `<br>`' +
+        'Something is not right... Was this a mistake? ^1000 `<br>`' +
+        'We will wait for another try...^1000 `<br>`',
+        stringFixed
       ],
       typeSpeed: 50,
       loop: false
@@ -90,9 +89,7 @@ const ChecksumCollision = (props: IChallengeProps) => {
   useEffect(() => {
 
     typed = new Typed('#console', {
-      strings: [string1, string2, string3, string4, string5, string6, string7,
-        "`" + string31 + string32 + string33 + "`"
-      ],
+      strings: [string1, string2, string3, string4, string5, string6, string7, stringFixed],
       typeSpeed: 50,
       loop: false
     });
