@@ -1,7 +1,7 @@
 import { TestContext } from '@tsed/testing';
 import { expect } from 'chai';
 import { FlagService } from '../../src/services/FlagService';
-import { IvDetectionService } from '../../src/services/IVDetectionService';
+import { IvDetectionService } from '../../src/services/IvDetectionService';
 import { KnownPlainTextService } from '../../src/services/KnownPlainTextService';
 import { PaddingOracleService } from '../../src/services/PaddingOracleService';
 
