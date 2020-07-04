@@ -13,7 +13,8 @@
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
     "tests": "mocha --require ts-node/register \"tests/**/*Test.ts\" --timeout 50000 --exit",
     "tests:lint": "tslint --project tsconfig.json",
-    "tests:lint:fix": "tslint --project tsconfig.json --fix"
+    "tests:lint:fix": "tslint --project tsconfig.json --fix",
+    "tests:coverage": "nyc yarn run tests && nyc report --reporter=text-lcov > coverage.lcov"
   },
   "dependencies": {
     "@tsed/ajv": "^5.56.0",
