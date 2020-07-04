@@ -10,7 +10,8 @@ on:
 
 
 jobs:
-  build:
+
+  install_deps:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,7 +22,46 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm run build-with-deps
+    - run: yarn install-deps
+  
+  
+  tests:
+    runs-on: ubuntu-latest
+    needs: install_deps
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn run tests:lint && yarn run tests:coverage
+
+  codecov:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+    - uses: actions/checkout@v2
+    - run: cd backend && yarn run tests:coverage
+    - uses: codecov/codecov-action@v1
+      with:
+        file: backend/coverage.lcov
+
+  build:
+    runs-on: ubuntu-latest
+    needs: codecov
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm run build
       env:
         CI: ""
       
