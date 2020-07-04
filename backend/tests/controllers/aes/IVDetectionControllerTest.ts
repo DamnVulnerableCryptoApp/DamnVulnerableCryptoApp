@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import * as SuperTest from "supertest";
 import { IResponse } from '../../../src/controllers/aes/IvDetectionController';
 import { Server } from "../../../src/Server";
-import { IvDetectionService } from '../../../src/services/IVDetectionService';
+import { IvDetectionService } from '../../../src/services/IvDetectionService';
 
 
 describe("IVDetectionController", () => {
