@@ -30,7 +30,7 @@ const MessageBlock = (props: IMessageBlockProps) => {
           ownMessage ? "" : <img className={classes.auhtorImg} src={firstMessage.author.avatar} width="40" />
         }
       </Box>
-      <Box className={classes.messageContent} textAlign={ownMessage || systemMessage ? "right" : "left"}>
+      <Box className={classes.messageContent} textAlign={ownMessage ? "right" : "left"}>
         <Box className={classes.participantNameMessage}><Typography variant="caption">{firstMessage.author.username} {firstMessage.date}</Typography></Box>
         {
           props.messages.map((m, i) => {
