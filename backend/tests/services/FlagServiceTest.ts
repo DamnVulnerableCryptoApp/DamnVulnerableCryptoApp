@@ -46,7 +46,7 @@ describe("FlagService", () => {
 
     });
 
-    it("Should create flags", () => {
+    it("Should read flags", () => {
       FlagService.forceCreateFlags();
       // @ts-ignore
       const flags = FlagService.readFlags();
