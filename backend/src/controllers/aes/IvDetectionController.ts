@@ -1,5 +1,5 @@
 import { BodyParams, Controller, Post } from "@tsed/common";
-import { IvDetectionService } from '../../services/IVDetectionService';
+import { IvDetectionService } from '../../services/IvDetectionService';
 
 
 export interface IResponse {
