@@ -8,12 +8,39 @@ import ChecksumCollisionService from "./ChecksumCollisionService";
 import useStyles from "./styles";
 
 const banner =
-  '___________       __        ___________                   \n' +
-  '\\_   _____/____  |  | __ ___\\__    ___/__________  _____  \n' +
-  ' |    __) \\__  \\ |  |/ // __ \\|    |_/ __ \\_  __ \\/     \\ \n' +
-  ' |     \\   / __ \\|    <\\  ___/|    |\\  ___/|  | \\/  Y Y  \\\n' +
-  ' \\___  /  (____  /__|_ \\\\___  >____| \\___  >__|  |__|_|  /\n' +
-  '     \\/        \\/     \\/    \\/           \\/            \\/ \n';
+  "                   ___________       __        ___________                   \n" +
+  "                   \\_   _____/____  |  | __ ___\\__    ___/__________  _____  \n" +
+  "                    |    __) \\__  \\ |  |/ // __ \\|    |_/ __ \\_  __ \\/     \\ \n" +
+  "                    |     \\   / __ \\|    <\\  ___/|    |\\  ___/|  | \\/  Y Y  \\\n" +
+  "                    \\___  /  (____  /__|_ \\\\___  >____| \\___  >__|  |__|_|  /\n" +
+  "                        \\/        \\/     \\/    \\/           \\/            \\/ \n" +
+  "                   \n" +
+  "                                              (`.         ,-,\n" +
+  "                                              `\\ `.    ,;' /\n" +
+  "                                               \\`. \\ ,'/ .'\n" +
+  "                                         __     `.\\ Y /.'\n" +
+  "                                      .-'  ''--.._` ` (\n" +
+  "                                    .'            /   `\n" +
+  "                                   ,           ` '   Q '\n" +
+  "                                   ,         ,   `._    \\\n" +
+  "                                   |         '     `-.;_'\n" +
+  "                                   `  ;    `  ` --,.._;\n" +
+  "                                   `    ,   )   .'\n" +
+  "                                    `._ ,  '   /_\n" +
+  "                                       ; ,''-,;' ``-\n" +
+  "                                        ``-..__\\``--`  fl\n";
+
+
+const string1 = 'Wake up Oen^1000';
+const string2 = 'We found a way in^1000';
+const string31 = 'We need you to create two executables, one is a completely normal file`<br>`';
+const string32 = 'But the other is the actual malware.<br>';
+const string33 = 'Here\'s the catch: they both need to have the same checksum. The target uses md5 checksums<br>';
+const string3 = string31 + '^500' + string32 + '^500' + string33 + '^2000';
+const string4 = 'Hurry uo';
+const string5 = 'Hurry ul';
+const string6 = 'F*ck';
+const string7 = 'Hurry up^1000';
 
 
 
@@ -32,7 +59,7 @@ const ChecksumCollision = (props: IChallengeProps) => {
     typed.destroy();
     typed = new Typed('#console', {
       strings: [
-        '$ Hello Fak3Ag3n7,^1000 `<br>`' +
+        '$ Hello Eon,^1000 `<br>`' +
         '$ Something is not right... Isn\'t it possible or is it a mistake? ^1000 `<br>`' +
         '$ I will wait for another try...^1000 `<br>`'
       ],
@@ -61,18 +88,10 @@ const ChecksumCollision = (props: IChallengeProps) => {
 
 
   useEffect(() => {
+
     typed = new Typed('#console', {
-      strings: [
-
-        '$ Hello Fak3Ag3n7,^1000 `<br>`' +
-        '$ Your services are required again `<br>`' +
-        '$ I need you need to create two applications^200, one completly normal and doing nothing wrong, but the other... the other will do nasty things... `<br>`^500' +
-        '$ I want to use this other app to take control of a computer. `<br>`^500' +
-        '$ There\'s on catch. I need to supply the checksum of the executable in the website, and it will be audited... `<br>`' +
-        '$ To make sure the guy trusts and runs the executable I need it to have the same checksum as the \'normal\' one `<br>`' +
-        '$ Create me a test to see it is possible, and we\'ll continue from there.'
-
-
+      strings: [string1, string2, string3, string4, string5, string6, string7,
+        "`" + string31 + string32 + string33 + "`"
       ],
       typeSpeed: 50,
       loop: false
