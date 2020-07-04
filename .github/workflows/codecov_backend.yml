@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Codecov Backend
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -10,10 +10,11 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: cd backend && yarn run tests:coverage
     - uses: codecov/codecov-action@v1
       with:
-        file: coverage.lcov
+        file: backend/coverage.lcov
