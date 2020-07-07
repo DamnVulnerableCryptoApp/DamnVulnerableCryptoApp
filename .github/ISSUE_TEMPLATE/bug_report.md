@@ -1,3 +1,12 @@
+---
+name: 'Bug Report '
+about: Report a bug in the application
+title: ''
+labels: bug
+assignees: ''
+
+---
+
 **Describe the bug**
 A clear and concise description of what the bug is and what should be expected. If you want to propose a way of fixing it go ahead
 
