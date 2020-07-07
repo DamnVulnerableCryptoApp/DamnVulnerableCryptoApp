@@ -35,7 +35,7 @@ export class ChecksumCollisitonsController {
       const sha12 = await (ChecksumCollisionService.getSha1FileChecksum(file2.path));
 
 
-      if (sha11 === sha12) {
+      if (sha11 !== sha12) {
         success = true;
         flag = ChecksumCollisionService.getFlag();
       }
