@@ -38,7 +38,7 @@ export class PaddingOracleController {
     }
 
     if (isAdmin)
-      return { isAdmin, flag: PaddingOracleService.FLAG };
+      return { isAdmin, flag: PaddingOracleService.getFlag() };
     else
       return { isAdmin, flag: "" };
 

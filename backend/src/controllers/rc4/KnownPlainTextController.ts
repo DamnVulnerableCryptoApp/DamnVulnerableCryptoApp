@@ -16,7 +16,7 @@ export class KnownPlainTextController {
 
   // 78961849-2949-4a7b-ab4a-ea951bd91d32
   static encryptedHistory: IHistoryEntry[] = [
-    { encryptedContent: KnownPlainTextService.encrypt(KnownPlainTextService.FLAG), date: '2020-04-16T18:30:48.809Z' },
+    { encryptedContent: KnownPlainTextService.encrypt(KnownPlainTextService.getFlag()), date: '2020-04-16T18:30:48.809Z' },
     { encryptedContent: KnownPlainTextService.encrypt("Some random data"), date: '2019-09-20T15:31:45.129Z' }
   ];
 

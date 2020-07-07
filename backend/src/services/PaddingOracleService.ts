@@ -1,11 +1,11 @@
 import { $log } from '@tsed/logger';
 import * as crypto from 'crypto';
+import { ChallengeService } from './ChallengeService';
 
-export class PaddingOracleService {
+export class PaddingOracleService extends ChallengeService {
 
   public static KEY = "SUP3RS3CUR3K3Y123456789012345678";
   public static IV = "super_secure_iv1";
-  public static FLAG = "ab194c44-b2f7-4c3e-a2e8-d2601cafe73f";
 
 
   public static getAnonymousToken(): string {

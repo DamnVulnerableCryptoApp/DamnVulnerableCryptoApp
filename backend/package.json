@@ -9,8 +9,9 @@
     "copy-docs": "copyfiles \"../docs/app/**/*\" src/documentation -a -u 3",
     "tsc": "tsc --project tsconfig.compile.json",
     "tsc:w": "tsc --project tsconfig.json -w",
-    "start": "yarn run copy-docs && cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
+    "start": "yarn run generate:flags && yarn run copy-docs && cross-env NODE_ENV=development nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
+    "generate:flags": "ts-node src/bin/generateFlags.ts",
     "tests": "mocha --require ts-node/register \"tests/**/*Test.ts\" --timeout 50000 --exit",
     "tests:lint": "tslint --project tsconfig.json",
     "tests:lint:fix": "tslint --project tsconfig.json --fix",
@@ -33,7 +34,8 @@
     "express": "4.17.1",
     "method-override": "3.0.0",
     "multer": "^1.4.2",
-    "ts-httpexceptions": "^4.1.0"
+    "ts-httpexceptions": "^4.1.0",
+    "uuid": "^8.2.0"
   },
   "devDependencies": {
     "@tsed/testing": "^5.56.0",
@@ -47,6 +49,7 @@
     "@types/multer": "^1.4.3",
     "@types/node": "13.11.1",
     "@types/supertest": "^2.0.9",
+    "@types/uuid": "^8.0.0",
     "chai": "^4.2.0",
     "copyfiles": "^2.3.0",
     "mkdirp": "^1.0.4",

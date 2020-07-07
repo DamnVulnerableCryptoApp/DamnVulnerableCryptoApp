@@ -1,9 +1,9 @@
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
+import { ChallengeService } from './ChallengeService';
 
-export class KeyDisclosureService {
-  static FLAG = "b9e8b602-0cbe-4300-abff-9deac3cac27d";
+export class KeyDisclosureService extends ChallengeService {
   static PRIVATE_KEY_PATH = path.join(__dirname, "../config/privatekey.pem");
   static PUBLIC_KEY_PATH = path.join(__dirname, "../config/publickey.pem");
 

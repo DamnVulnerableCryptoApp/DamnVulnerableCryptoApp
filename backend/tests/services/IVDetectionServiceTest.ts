@@ -1,7 +1,7 @@
 
 import { TestContext } from '@tsed/testing';
 import { expect } from 'chai';
-import { IvDetectionService } from '../../src/services/IVDetectionService';
+import { IvDetectionService } from '../../src/services/IvDetectionService';
 
 
 describe("IVDetectionService", () => {

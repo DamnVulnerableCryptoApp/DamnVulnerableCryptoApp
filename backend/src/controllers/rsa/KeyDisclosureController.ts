@@ -33,7 +33,7 @@ export class KeyDisclosureController {
   static MAILBOX_CHECK = KeyDisclosureService.encrypt(KeyDisclosureController.MAILBOX_CHECK_STRING);
 
   static EMAILS: IEmail[] = [{
-    body: `Hi mate,\n has you requested: ${KeyDisclosureService.FLAG}`,
+    body: `Hi mate,\n has you requested: ${KeyDisclosureService.getFlag()}`,
     date: new Date().toISOString(),
     from: "Fake Reporter <fake.reporter@fakecryptomail.com>",
     subject: "Got a flag for you",
@@ -61,7 +61,7 @@ export class KeyDisclosureController {
 
 
     if (decryptionSuccess)
-      return { emails: KeyDisclosureController.EMAILS, success: true, flag: KeyDisclosureService.FLAG };
+      return { emails: KeyDisclosureController.EMAILS, success: true, flag: KeyDisclosureService.getFlag() };
     else
       return { emails: [], success: false, flag: "" };
 

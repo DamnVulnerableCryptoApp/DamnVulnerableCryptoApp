@@ -39,7 +39,7 @@ export class InsecureRandomController {
     if (InsecureRandomController.currentCoupons.includes(code))
       return { valid: true, flag: "" };
     else if (InsecureRandomController.nextCoupons.includes(code))
-      return { valid: true, flag: InsecureRandomService.FLAG };
+      return { valid: true, flag: InsecureRandomService.getFlag() };
     else
       return { flag: "", valid: false };
   }

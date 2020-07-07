@@ -1,7 +1,10 @@
-import {$log, ServerLoader} from "@tsed/common";
-import {Server} from "./Server";
+import { $log, ServerLoader } from "@tsed/common";
+import { Server } from "./Server";
+import { FlagService } from './services/FlagService';
 
 async function bootstrap() {
+
+  await FlagService.createOrLoadFlags();
   try {
     $log.debug("Start server...");
     const server = await ServerLoader.bootstrap(Server);
