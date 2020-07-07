@@ -3,14 +3,11 @@ import LockIcon from '@material-ui/icons/Lock';
 import React, { useContext, useEffect, useState } from "react";
 import { LayoutContext } from "../../App/LayoutContext";
 import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import DetectiveImg from '../../Images/detective.png';
 import { IvDetectionService } from "./IvDetectionService";
+import { chatName, firstResponseMessage, InitialMessages, me, successMessage } from "./Messages/ChatData";
 import { IMessage } from "./Messages/IMessage";
-import initialMessages, { participantName } from "./Messages/InitialMessages";
 import MessageBlock from "./Messages/MessageBlock";
 import useStyles from "./styles";
-
-
 
 const displayMessages = (history: IMessage[]) => {
   if (history.length === 0) return;
@@ -22,7 +19,7 @@ const displayMessages = (history: IMessage[]) => {
 
 
   history.forEach((m, i) => {
-    left = m.author !== "me";
+    left = m.author !== me;
 
     if (lastMessageFrom !== m.author) { // if different sender, create a new block
       blocks.push(<MessageBlock key={i} left={left} messages={messageGroup} />);
@@ -55,7 +52,7 @@ const IvDetection = (props: IChallengeProps) => {
 
 
   useEffect(() => {
-    setHistory(initialMessages);
+    setHistory(InitialMessages);
   }, []);
 
 
@@ -66,62 +63,53 @@ const IvDetection = (props: IChallengeProps) => {
 
   }, [history]);
 
+  const onMesageChange = (e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value);
+
+
+  const createMessage = (messageContent: string) => {
+    const msg: IMessage = { author: me, content: messageContent, date: "now", type: "message" };
+    appendToHistory(msg);
+    setMessage("");
+  };
+
   const onMessageSent = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     layoutContext.setLoading(true);
 
-    // if the user sends the IV as a message, the flag will be returned
     IvDetectionService.sendMessage(message).then(res => {
       layoutContext.setLoading(false);
+
       if (res.flag) {
         props.setFlag(res.flag);
         sendThanks();
       }
-      else {
-        if (firstResponse)
-          sendThreat();
-      }
+      else
+        if (firstResponse) sendFirstReply();
 
       setFistResponse(false);
-
     }).catch(() => layoutContext.setLoading(false));
 
-    const msg: IMessage = { author: "me", authorImg: "", content: message, date: "now", type: "message" };
-    appendToHistory(msg);
-    setMessage("");
-
-
+    createMessage(message);
 
   };
 
-  const sendThreat = () => {
-
-    setTimeout(() => {
-      const m = "We got your friend. Give us what we want!";
-      const msg: IMessage = { author: participantName, authorImg: DetectiveImg, content: m, date: "now", type: "message" };
-      appendToHistory(msg);
-    }, 10000);
-
+  const sendFirstReply = () => {
+    setTimeout(() => appendToHistory(firstResponseMessage), 10000);
   };
 
   const sendThanks = () => {
-    setTimeout(() => {
-      const m = "Now you're talking!";
-      const msg: IMessage = { author: participantName, authorImg: DetectiveImg, content: m, date: "now", type: "message" };
-      appendToHistory(msg);
-    }, 3000);
+    setTimeout(() => appendToHistory(successMessage), 3000);
   };
 
-  const onMesageChange = (e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value);
+
 
 
   return (
     <Box className={classes.chatContainer}>
       <Box className={classes.chatTitle}>
-        <img src={DetectiveImg} alt="Icon made by Freepik from flaticon.com" width="50" />
         <Box className={classes.participantName}>
-          <Typography variant="h5" ><LockIcon className={classes.lockIcon} /> {participantName}</Typography>
+          <Typography variant="h5" ><LockIcon className={classes.lockIcon} /> #{chatName}</Typography>
         </Box>
       </Box>
       <Box className={classes.messageContainer} id="message-container">

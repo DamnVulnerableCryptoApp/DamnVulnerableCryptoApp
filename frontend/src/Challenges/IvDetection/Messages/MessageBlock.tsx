@@ -1,6 +1,7 @@
 import { Box, Chip, Typography } from "@material-ui/core";
 import React from "react";
 import useStyles from "../styles";
+import { me, system } from "./ChatData";
 import { IMessage } from "./IMessage";
 
 
@@ -8,8 +9,6 @@ export interface IMessageBlockProps {
   left: boolean;
   messages: IMessage[];
 }
-
-
 
 const MessageChip = (content: string, className: string) => (<Chip label={content} className={className} />);
 const NotificationChip = (content: string) => (<Chip label={content} variant="outlined" color="secondary" />);
@@ -19,7 +18,8 @@ const MessageBlock = (props: IMessageBlockProps) => {
 
   if (props.messages.length === 0) return (<div />);
   const firstMessage = props.messages[0];
-  const ownMessage = firstMessage.author === "me";
+  const ownMessage = firstMessage.author === me;
+  const systemMessage = firstMessage.author === system;
   const alignment = ownMessage ? classes.messageRight : classes.messageLeft;
   const className = ownMessage ? classes.ownMessage : classes.receivedMessage;
 
@@ -27,11 +27,11 @@ const MessageBlock = (props: IMessageBlockProps) => {
     <Box className={alignment}>
       <Box className={classes.messageAuthorImg}>
         {
-          ownMessage ? "" : <img src={firstMessage.authorImg} width="40" alt="Icon made by Freepik from flaticon.com" />
+          ownMessage ? "" : <img className={classes.auhtorImg} src={firstMessage.author.avatar} width="40" />
         }
       </Box>
       <Box className={classes.messageContent} textAlign={ownMessage ? "right" : "left"}>
-        <Box className={classes.participantNameMessage}><Typography variant="caption">{firstMessage.author} {firstMessage.date}</Typography></Box>
+        <Box className={classes.participantNameMessage}><Typography variant="caption">{firstMessage.author.username} {firstMessage.date}</Typography></Box>
         {
           props.messages.map((m, i) => {
             return (
@@ -46,7 +46,6 @@ const MessageBlock = (props: IMessageBlockProps) => {
       </Box>
     </Box>
   );
-
 };
 
 
