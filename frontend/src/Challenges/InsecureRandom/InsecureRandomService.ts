@@ -49,7 +49,7 @@ export class InsecureRandomService extends ApiRequest {
   }
 
   public static unformatCoupon(coupon: string): number {
-    coupon = coupon.replace("DVCAPP-", "0.").replace(/-/g, "");
+    coupon = coupon.toLowerCase().replace("dvcapp-", "0.").replace(/-/g, "");
 
     return parseFloat(coupon);
   }
