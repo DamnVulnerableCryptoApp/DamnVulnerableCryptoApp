@@ -1,14 +1,5 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: bug
-assignees: ''
-
----
-
 **Describe the bug**
-A clear and concise description of what the bug is.
+A clear and concise description of what the bug is and what should be expected. If you want to propose a way of fixing it go ahead
 
 **To Reproduce**
 Steps to reproduce the behavior:
@@ -17,10 +8,6 @@ Steps to reproduce the behavior:
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-If this is a vulnerability of the application (no crypto related) add the tag 'vulnerability'
