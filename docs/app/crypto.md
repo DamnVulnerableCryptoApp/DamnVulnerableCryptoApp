@@ -27,3 +27,4 @@
 
 * [Insecure Random](weak-random)
 * [Key Disclosure](key-disclosure)
+* [Algorithm Negotiation](algorithm-negotiation)

@@ -19,7 +19,11 @@ export class AlgorithmNegotiationService extends ApiRequest {
   public static async initAsAnonymous(): Promise<string> {
     return new Promise((resolve, reject) => {
 
-      if (localStorage.getItem(AlgorithmNegotiationService.STORAGE_KEY)) resolve(); // not need to create a new session
+      if (localStorage.getItem(AlgorithmNegotiationService.STORAGE_KEY)) {
+        resolve(); // not need to create a new session
+
+        return;
+      }
 
       const path = `${AlgorithmNegotiationService.CHALLENGEPATH}/anonymousAccess`;
 
