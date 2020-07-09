@@ -26,7 +26,11 @@ If you try to learn a little bit more about crypto, either because you want to k
 
 
 ## Build
-
+Change git config to use LF intead of CRLF
+```
+git config --global core.eol lf
+git config --global core.autocrlf input
+```
 (Make sure you have node installed)
 
 ```
