@@ -9,6 +9,7 @@ import IvDetection from "./IvDetection/IvDetection";
 import KeyDisclosure from "./KeyDisclosure/KeyDisclosure";
 import KnownPlaintextAndKeyReuse from "./KnownPlaintextAndKeyReuse/KnownPlaintextAndKeyReuse";
 import PaddingOracle from "./PaddingOracle/PaddingOracle";
+import TimingAttack from "./TimingAttack/TimingAttack";
 import WeakHashing from "./WeakHashing/WeakHashing";
 
 export interface ChallengeData {
@@ -39,6 +40,13 @@ const Challenges: ChallengeData[] = [
     component: WeakHashing,
     description: "Hashing is a good way of protect passwords, since data is lost in the process and its not reversible. Some algorithms are relatively easy to brute force, generate collisions and dictionaries are already available online for them.",
     url: "/weak-hashing",
+
+  },
+  {
+    name: "Timing Attack",
+    component: TimingAttack,
+    description: "",
+    url: "/timing-attack",
 
   },
   {
