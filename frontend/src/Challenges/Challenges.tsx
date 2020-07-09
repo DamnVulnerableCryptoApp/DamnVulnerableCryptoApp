@@ -45,7 +45,7 @@ const Challenges: ChallengeData[] = [
   {
     name: "Timing Attack",
     component: TimingAttack,
-    description: "",
+    description: "Having a strong algorithm sometimes is not enough. Depending on how you implement you code, an attacker can get some information just by the time the app takes to respond to different conditions",
     url: "/timing-attack",
 
   },
