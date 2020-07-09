@@ -43,7 +43,7 @@ In the challenge, there is a JWT token stored in localstorage
 
 You can start by using [jwt.io](https://jwt.io/) to decode the token, and understand whats there...
 
-In this case, since we are trying to exploit the algorithm downgrade we are going to use a nice tool called [TokenBreaker](https://github.com/Goron/TokenBreaker).
+In this case, since we are trying to exploit the algorithm negotiation we are going to use a nice tool called [TokenBreaker](https://github.com/Goron/TokenBreaker).
 
 This tool exploit the two issues mentioned before. 
 
