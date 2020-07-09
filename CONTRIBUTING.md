@@ -24,6 +24,10 @@ Please note we have a [code of conduct](https://github.com/DamnVulnerableCryptoA
 Check how to create a new challenge on our [wiki](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki/Creating-Challenges)
 
 ## Pull Request Process
+- There are multiple github actions running when you do a pull request. Only if they all pass your PR will be mergeable.
+- If you want to create a PR just to check how you are doing, to make sure the actions pass, or to get some review, you can create the PR with the tag WIP. When you fill its good to go, remove the tag, so that the PR can be merged.
+- If you need further tests add the label tests:needed and wait until somebody assists on it.
+- If you added a label from the above 2 steps, the PR won't be mergeable, but that's ok, as it is supposed to.
 - Ensure any install or build dependencies are removed before the end of the layer when doing a build.
 - Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
-- You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+
