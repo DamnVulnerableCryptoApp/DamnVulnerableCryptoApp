@@ -15,9 +15,9 @@ export interface ChallengeData {
   name: string;
   description: string;
   url: string;
+  tips?: string[];
   component: (props: IChallengeProps) => JSX.Element;
 }
-
 
 const Challenges: ChallengeData[] = [
   {
@@ -25,7 +25,7 @@ const Challenges: ChallengeData[] = [
     component: ClassicCipher,
     description: "The oldest form of cryptography takes us back to ancient egypt and the hieroglyph. Some time after some simple substitution ciphers have been created and used frequently during wars.",
     url: "/classic-cipher",
-
+    tips: ["do you know that classic cypher, and tyhat I can create a new pull request with the WIP tag, and noone will merge, but I can still test trhe actions on gh"]
   },
   {
     name: "Insecure Random",
