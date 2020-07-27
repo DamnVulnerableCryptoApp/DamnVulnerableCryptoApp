@@ -70,7 +70,7 @@ The most relevant point is how each block decryption ends.
 
 Imagine you have made a random request to a web application you use with the following **encrypted cookie value** and you want to decrypt it to know its content:
 
-> 6A211E234529238AA323D4D562B35056
+> 6A211E23A323D4D54529238A
 
 Assume the application is encrypting this value in CBC mode and PKCS#7 standard. The application receives this value, decrypts it, and sends the response based on it. The perfect scenario for a padding oracle attack! 
 
@@ -92,7 +92,7 @@ Look for the example below, where the ciphertext is divided through the differen
 
 As you can see the second cipher block decryption output is directly XORed with the first cipher block which the attacker has control. So, let's try to decrypt the second cipher block.
 
-You can pickup a random C1 and substitutes it with the original ciphertext first block (**C1** || C2 || C3) and send itto the oracle. The **X** points to the output of **D(K, C2)**, the decrypted value of C2 which the value we are trying to figure out. 
+You can pickup a random C2 and substitutes it with the original ciphertext second block (C1 || **C2** || C3) and send itto the oracle. The **X** points to the output of **D(K, C3)**, the decrypted value of C2 which the value we are trying to figure out. 
 
 **C1, C2, C3** are blocks of the ciphertext.
 
@@ -102,15 +102,15 @@ An example for the ciphertext payload is shown in the image below.
 
 For explanation purposes each block is 4 byte size.
 
-> The payload: **00000000**4529238AA323D4D562B35056
+> The payload: 6A211E23**00000000**4529238A
 
 ![Padding Oracle Attack Payload](/documentation/img/payload_padding_oracle.png "Padding Oracle Attack Payload")
 
-The value of P1 is irrelevant because our goal is to decrypt C2 so, we don´t care about the output of P1. P3 has not changed its output since we had only changed the first cipher block. Let's focus into decrypt the C2 block.
+The value of P1 and P2 is irrelevant because our goal is to decrypt C3 so, we don´t care about their output. P1 has not changed its output since we had only changed the first cipher block. Let's focus into decrypt the C3 block.
 
-With C1 = 00000000, the cipher decrypted to the following plaintext value.
+With C2 = 00000000, the cipher decrypted to the following plaintext value.
 
-C1 block
+C2 block
 
 > 00 | 00 | 00 | 00
 
@@ -118,12 +118,12 @@ Decrypted Value
 
 > A8 | 09 | F7 | **2C** 
 
-Notice that that the last  byte of C1 decrypts to a plaintext with invalid padding, **2C**.
+Notice that that the last  byte of C2 decrypts to a plaintext with invalid padding, **2C**.
 
 
 Let's try another value by incrementing the last byte.
 
-C1 block
+C2 block
 
 > 00 | 00 | 00 | **01**
 
@@ -132,13 +132,13 @@ Decrypted value
 > A8 | 09 | F7 | **2D** 
 
 
-The output is another padding but with a different decrypted value **2D** since we change the last byte of C1.
+The output is another padding but with a different decrypted value **2D** since we change the last byte of C2.
 
 If we continue to increment the last byte of C1 (until FF) we will find for sure a value that matches a valid padding sequence. When this value is hit, it will produce a successful response. This value is unique, so, the response will be different than the other 255 values.
 
 Pay attention to the following case.
 
-C1 block
+C2 block
 
 > 00 | 00 | 00 | **2D**
 
@@ -146,21 +146,21 @@ Decrypted value
 
 > A8 | 09 | F7 | **01** 
 
-The last byte of C1 with the value of **2D** decrypted to a valid padding because the last byte of the decrypted value is **01**. According to the PKCS#7 standard, this is valid padding, so, we found the value we want!
+The last byte of C2 with the value of **2D** decrypted to a valid padding because the last byte of the decrypted value is **01**. According to the PKCS#7 standard, this is valid padding, so, we found the value we want!
 
-> But how can we use this information to decrypt the C2 block?
+> But how can we use this information to decrypt the C3 block?
 
-Now is the easy part. We know the C1 last byte outputs valid padding (**2D**) and we know the plaintext output which is **01**. Now we can infer the value of X, the output of D(E,C2). If you have noticed, we can do that because the X value XORed with C1 outputs the plaintext. At this point, you may know XOR is a commutative operation. 
+Now is the easy part. We know the C1 last byte outputs valid padding (**2D**) and we know the plaintext output which is **01**. Now we can infer the value of X, the output of D(E,C3). If you have noticed, we can do that because the X value XORed with C2 outputs the plaintext. At this point, you may know XOR is a commutative operation. 
 
 If,
 
-> Plaintext = C1 XOR X
+> Plaintext = C2 XOR X
 
 Then,
 
-> C1 XOR Plaintext = X
+> C2 XOR Plaintext = X
 
-And that's how we get the value of X (D(K,C2)).
+And that's how we get the value of X (D(K,C3)).
 
 In our example,
 
@@ -174,17 +174,17 @@ Finally,
 
 > X = 0x2C
 
-0x01 is plaintext[15] and 0x2D is C1[15].
+0x01 is plaintext[15] and 0x2D is C2[15].
 
 We know the value of X (2C) and we are able to deduce the final value of the plaintext last byte. Simply XOR X with the previous original ciphertext block which is **6A211E23**. Confused? Compare these steps with the diagram of the CBC decryption shown above.
 
-At this time, the last byte of C2 is known; to find the rest of it, we can work backward through the entire block until every byte of X function is cracked, thus letting us decrypt the C2 plaintext one byte at a time. For the other blocks, it is just applying the same method to crack the full message.
+At this time, the last byte of C3 is known; to find the rest of it, we can work backward through the entire block until every byte of X function is cracked, thus letting us decrypt the C3 plaintext one byte at a time. For the other blocks, it is just applying the same method to crack the full message.
 
 ## Put the attack in practice
 
-There are a bunch of available scripts over the internet to automate this attack. We will using [this](https://github.com/KishanBagaria/padding-oracle-attacker)  to perform the attack. 
+There are a bunch of available scripts over the internet to automate this attack. We will using [this](https://github.com/KishanBagaria/padding-oracle-attacker) tool to get the flag. 
 
-According to the toll documentation, we need the **target URL**, **ciphertext encoding**, **block size** and the **HTTP code error**.
+According to the tool documentation, we need the **target URL**, **ciphertext encoding**, **block size** and the **HTTP code error**.
 
 Example:
 
