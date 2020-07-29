@@ -15,7 +15,7 @@ The **padding** makes the plaintext longer with extra bytes to maintain each blo
 
 > Take in mind that one char is one byte in size. As an example, 8 chars are equal to 8 bytes. 
 
-To compare how this is performed with a human-readable plaintext, the following example uses strings (read [About Encodings](/docs/about-encodings) docs if you have any doubt). Let's try to encrypt `FAKEGUY`  with a block size of 8 bytes (or 8 characters). The message would be padded to `FAKEGUY\x01`. Why `x\01` at the end? According to the standard mentioned above, if there is one byte missing to complete the block, the message is padded with `\x01`. If there were two bytes the pad would be with `x\02`. Let's show a practical example of how this works with different message lengths and their pads.
+To compare how this is performed with a human-readable plaintext, the following example uses strings (read [About Encodings](/docs/about-encodings) docs if you have any doubt). Let's try to encrypt `FAKEGUY`  with a block size of 8 bytes (or 8 characters). The message would be padded to `FAKEGUY\x01`. Why `x\01` at the end? According to the standard mentioned above, if there is one byte missing to complete the block, the message is padded with `\x01`. If there were two bytes the pad would be with `\x02`. Let's show a practical example of how this works with different message lengths and their pads.
 
 
 ```
