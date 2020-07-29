@@ -51,7 +51,7 @@ Well, imagine if your plaintext is literally `POTATO\x02\x02`. How could you dis
 
 ### **Oracle**
 
-An Oracle is a system (e.g. Web Application) that accepts arbitrary ciphertexts and it gives **different responses** where the padding in a CBC-encrypted ciphertext is **valid** or **not**. This system will perform cryptographic operations on behalf of the user or attackers like a black box which returns success or error responses. In other words, a padding oracle takes encrypted data or ciphertext from the user, tries to decrypt it, then responds if the padding was correct or not. The attacker can use this information to decrypt the original message.
+An Oracle is a system (e.g. Web Application) that accepts arbitrary ciphertexts and it gives **different responses** where the padding in a CBC-encrypted ciphertext is **valid** or **not**. This system will perform cryptographic operations on behalf of the user or attackers like a black box which returns success or error responses. In other words, a padding oracle takes encrypted data or ciphertext from the user, tries to decrypt it, then responds with an error if the padding is wrong. The attacker can use this information to decrypt the original message.
 
 
 > Now you have the main knowledge to understand how this attack is performed. Let's get to the point.
