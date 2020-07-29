@@ -29,7 +29,7 @@ Message: FAKEGUY --> 0x46414b45475559 (Hexadecimal)
      
      0x46414b454755   (6 bytes)   -->     0x46414b4547550202
      
-     0x46414b4547     (4 bytes)   -->     0x46414b454704040404
+     0x46414b4547     (5 bytes)   -->     0x46414b4547030303
 ```
 
 Now with a message longer than 8 bytes.
