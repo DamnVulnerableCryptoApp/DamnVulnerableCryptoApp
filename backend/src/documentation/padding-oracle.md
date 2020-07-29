@@ -200,7 +200,7 @@ Example:
 
 In the end execution, the output should the similar to:
 
-![poattack script output](/documentation/img/poattack.png "poattack script output")
+![poattack script output](img/poattack.png "poattack script output")
 
 Now you have the flag!
 
