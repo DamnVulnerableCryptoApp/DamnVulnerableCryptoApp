@@ -61,7 +61,7 @@ An Oracle is a system (e.g. Web Application) that accepts arbitrary ciphertexts 
 
 To perform this attack is not needed to know the key, any plaintext or be an expert in math. Just access to the cipher text and to the decryption method is enough. Firstly, pay attention to the diagram shown below of how the CBC mode decrypts a given ciphertext.
 
-![CBC Decryption](/documentation/img/cbc_decrypt.png "CBC Decryption")
+![CBC Decryption](img/cbc_decrypt.png "CBC Decryption")
 
 The most relevant point is how each block decryption ends. 
 
