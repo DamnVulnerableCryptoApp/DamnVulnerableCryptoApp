@@ -88,7 +88,7 @@ To conclude, the goal is to find the correct ciphertext payload to get a success
 
 Look for the example below, where the ciphertext is divided through the different blocks. 
 
-![Ciphertext Block Division](/documentation/img/cipher_padding_oracle.png "Ciphertext Block Division")
+![Ciphertext Block Division](img/cipher_padding_oracle.png "Ciphertext Block Division")
 
 As you can see the second cipher block decryption output is directly XORed with the first cipher block which the attacker has control. So, let's try to decrypt the second cipher block.
 
