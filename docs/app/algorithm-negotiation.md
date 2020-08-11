@@ -43,7 +43,7 @@ In the challenge, there is a JWT token stored in localstorage
 
 You can start by using [jwt.io](https://jwt.io/) to decode the token, and understand whats there...
 
-In this case, since we are trying to exploit the algorithm downgrade we are going to use a nice tool called [TokenBreaker](https://github.com/Goron/TokenBreaker).
+In this case, since we are trying to exploit the algorithm negotiation we are going to use a nice tool called [TokenBreaker](https://github.com/Goron/TokenBreaker).
 
 This tool exploit the two issues mentioned before. 
 
@@ -84,4 +84,3 @@ And the tool will give you a new token that you need to change in localstorage, 
 * Use a well known and proven JWT library to parse JWT tokens.
 * Do not accept JWT tokens with none algorithm
 * If you support different algorithms, specify a key for each algorithm
-* If you only support one algorithm, make sure you specify it in the verification method, to make sure an attacker can't change it
