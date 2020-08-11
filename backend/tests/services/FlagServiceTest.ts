@@ -1,5 +1,6 @@
 import { TestContext } from '@tsed/testing';
 import { expect } from 'chai';
+import { describe } from 'mocha';
 import { FlagService } from '../../src/services/FlagService';
 import { IvDetectionService } from '../../src/services/IvDetectionService';
 import { KnownPlainTextService } from '../../src/services/KnownPlainTextService';
