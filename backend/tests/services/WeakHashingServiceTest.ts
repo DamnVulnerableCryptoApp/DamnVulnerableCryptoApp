@@ -1,8 +1,8 @@
 
 import { TestContext } from '@tsed/testing';
 import { expect } from 'chai';
+import { describe } from 'mocha';
 import { WeakHashingService } from '../../src/services/WeakHashingService';
-
 
 describe("SubstitutionService", () => {
 

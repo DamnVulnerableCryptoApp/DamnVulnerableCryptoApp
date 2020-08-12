@@ -26,11 +26,6 @@ If you try to learn a little bit more about crypto, either because you want to k
 
 
 ## Build
-Change git config to use LF intead of CRLF
-```
-git config --global core.eol lf
-git config --global core.autocrlf input
-```
 (Make sure you have node installed)
 
 ```
@@ -41,6 +36,15 @@ Or if you already have the dependencies installed you can just run:
 
 ```
 npm run build
+```
+
+If you cloned the repo and are having issues in the test phase, it may be due to the line endings.
+Force linux like line endings in git with:
+
+Change git config to use LF intead of CRLF
+```
+git config --global core.eol lf
+git config --global core.autocrlf input
 ```
 
 
@@ -145,4 +149,3 @@ DamnVulnerableCryptoApp is [MIT](https://tldrlegal.com/license/mit-license) lice
 ![printscreen2](/docs/screenshots/2.png)
 ![printscreen3](/docs/screenshots/3.png)
 ![printscreen4](/docs/screenshots/4.png)
-

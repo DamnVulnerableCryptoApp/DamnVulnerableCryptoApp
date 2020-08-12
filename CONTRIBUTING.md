@@ -30,4 +30,3 @@ Check how to create a new challenge on our [wiki](https://github.com/DamnVulnera
 - If you added a label from the above 2 steps, the PR won't be mergeable, but that's ok, as it is supposed to.
 - Ensure any install or build dependencies are removed before the end of the layer when doing a build.
 - Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
-

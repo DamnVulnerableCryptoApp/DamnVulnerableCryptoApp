@@ -84,4 +84,3 @@ And the tool will give you a new token that you need to change in localstorage, 
 * Use a well known and proven JWT library to parse JWT tokens.
 * Do not accept JWT tokens with none algorithm
 * If you support different algorithms, specify a key for each algorithm
-* If you only support one algorithm, make sure you specify it in the verification method, to make sure an attacker can't change it
