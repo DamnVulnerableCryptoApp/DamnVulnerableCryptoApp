@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 TEMP_CLONE_FOLDER="temp_wiki2"
 
 if [ -z "$ACTION_MAIL" ]; then
