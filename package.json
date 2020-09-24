@@ -14,7 +14,7 @@
     "copyfiles": "^2.3.0",
     "cross-env": "^7.0.2",
     "mkdirp": "^1.0.4",
-    "react-scripts": "^3.4.2",
+    "react-scripts": "^3.4.3",
     "rimraf": "^3.0.2",
     "yarn": "^1.22.4"
   },
@@ -29,7 +29,7 @@
     "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts cross-env rimraf copyfiles mkdirp",
     "install-deps:be": "cd backend && yarn install",
     "install-deps:react": "cd frontend && yarn install",
-    "install-deps": "yarn run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
+    "install-deps": "npm run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
     "clean": "rimraf backend/dist && rimraf frontend/build"
   },
