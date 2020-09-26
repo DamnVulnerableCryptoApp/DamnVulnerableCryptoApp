@@ -20,7 +20,7 @@ export class TimingAttackService extends ChallengeService {
       // a real timming attack may have really low time differences, so we just exagerated it to make it easier of noticing
       // since we already 'simulated' hashing the password anc compared it we don't actually need to change to an actual password
       // as we don't want to have any valid login, just the possibility of finding an available user
-      await this.sleep(300);
+      await this.sleep(500);
 
       return false;
     }

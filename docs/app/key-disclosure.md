@@ -10,12 +10,10 @@ A common mistake is to do a new commit, removing the password/key but it is alre
 
 There are a lot of tools to crawl git repositories looking for sensitive information like passwords and keys like [TruffleHog](https://github.com/dxa4481/truffleHog) and [Gittyleaks](https://github.com/kootenpv/gittyleaks)
 
-
-
-
 ## Solving the challenge
 
 ## Lesson Learned
+
 * Do not hardcode sensitive information like password and crypto keys
 * Use environment variables, keystores or vaults to store your passwords/keys
 * Do not commit sensitive files like private keys and keystores

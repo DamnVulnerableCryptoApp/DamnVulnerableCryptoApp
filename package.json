@@ -31,7 +31,8 @@
     "install-deps:react": "cd frontend && yarn install",
     "install-deps": "npm run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
-    "clean": "rimraf backend/dist && rimraf frontend/build"
+    "clean": "rimraf backend/dist && rimraf frontend/build",
+    "markdown": "markdownlint docs/"
   },
   "repository": {
     "type": "git",
@@ -42,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/luisfontes19/damn_vulnerable_crypto_app/issues"
   },
-  "homepage": "https://github.com/luisfontes19/damn_vulnerable_crypto_app#readme" 
+  "homepage": "https://github.com/luisfontes19/damn_vulnerable_crypto_app#readme",
+  "devDependencies": {
+    "markdownlint-cli": "^0.23.2"
+  }
 }
