@@ -85,3 +85,12 @@
 * Auth token being stored in local storage
 * No validation of jwt algorithm
 * Privilege escalation
+
+## Timming Attack
+
+* Username Disclousure
+
+## Hash Length Extension Attack
+
+* Usage of hashing algorithm instead of MAC
+* Hardcoded secret
