@@ -37,7 +37,7 @@ const HashLengthExtension = (props: IChallengeProps) => {
       }).catch(err => {
         layoutContext.setSnackErrorMessage("Some error message");
         layoutContext.setLoading(false);
-      })
+      });
     }).catch(err => {
       layoutContext.setSnackErrorMessage("Some error message");
       layoutContext.setLoading(false);
