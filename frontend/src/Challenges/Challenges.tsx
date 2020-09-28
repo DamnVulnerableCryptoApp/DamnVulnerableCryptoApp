@@ -46,7 +46,7 @@ const Challenges: ChallengeData[] = [
   {
     name: "Hash Length Extension Attack",
     component: HashLengthExtension,
-    description: "",
+    description: "Using an hashing algorithm to authenticate data, instead of an HMAC is a bad idea. A faulty implementation can lead to data being manipulated by an attacker",
     url: "/hash-length-extension",
 
   },
