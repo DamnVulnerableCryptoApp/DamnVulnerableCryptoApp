@@ -4,6 +4,7 @@ import BlockReordering from "./BlockReordering/BlockReordering";
 import ByteAtATime from "./ByteAtATime/ByteAtATime";
 import ChecksumCollision from "./ChecksumCollision/ChecksumCollision";
 import ClassicCipher from "./ClassicCipher/ClassicCipher";
+import HashLengthExtension from "./HashLengthExtension/HashLengthExtension";
 import InsecureRandom from "./InsecureRandom/InsecureRandom";
 import IvDetection from "./IvDetection/IvDetection";
 import KeyDisclosure from "./KeyDisclosure/KeyDisclosure";
@@ -40,6 +41,13 @@ const Challenges: ChallengeData[] = [
     component: WeakHashing,
     description: "Hashing is a good way of protect passwords, since data is lost in the process and its not reversible. Some algorithms are relatively easy to brute force, generate collisions and dictionaries are already available online for them.",
     url: "/weak-hashing",
+
+  },
+  {
+    name: "Hash Length Extension Attack",
+    component: HashLengthExtension,
+    description: "",
+    url: "/hash-length-extension",
 
   },
   {
