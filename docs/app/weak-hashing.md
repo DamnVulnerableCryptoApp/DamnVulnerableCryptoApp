@@ -6,7 +6,7 @@ The term “hash” relates to a one-way hash function -  a mathematical formula
 
 The hash functions are widely used in many security backgrounds such as digital signatures, public-key encryption, message authentication, and many other contexts. 
 
-Moreover, since any hash function takes the input of arbitrary length but outputs to fixed-length value there exist infinite many collisions. That is different inputs that nevertheless result in the same output. Therefore, algorithms once thought of as secure and unbreakable have become either weak or breakable because many of its dependent on computational power. MD5 and SHA-1, for example, was seen as a secure and strong hashing algorithm that went from being an unbreakable hashing algorithm to a weak hashing algorithm to a broken hashing algorithm. These weak cryptographic hashes are susceptible to various attacks thus, been marked as obsolete according to coding standards because it represents a high risk of the integrity of security-critical data to be compromised.
+Moreover, since any hash function takes the input of arbitrary length but outputs a fixed-length value there can be collisions in theory. A collision is when different inputs that result in the same output. Therefore, algorithms once thought of as secure and unbreakable have become either weak or broken. MD5 and SHA-1, for example, were seen as a secure and strong hashing algorithms that went from being an unbreakable hashing algorithm to a weak hashing algorithm to a broken hashing algorithm. These weak cryptographic hashes are susceptible to various attacks thus, been marked as obsolete according to best coding standards because represent a high security risk.
 
 So, how do I know if a hashing algorithm is good?
 
