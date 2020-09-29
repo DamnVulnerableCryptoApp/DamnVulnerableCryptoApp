@@ -15,7 +15,7 @@ Several entities publish official standards for hash functions, undergoing rigor
 ## Solving the Challenge
 In this lesson, we are presented with a database leak with the username in plaintext and the password hashed with a weak algorithm.  
 
-After looking into the table, we can easily grab the admin's hashed password. Notice that there are several online services that have millions of MD5/SHA-1entries stored such as,  [md5online](https://www.md5online.org/), [crackstation](https://crackstation.net/). For this solution, we have used [crackstation](https://crackstation.net/). After dehashing the password, we have the admin's credentials!
+After looking into the table, we can easily grab the admin's hashed password. Notice that there are several online services that have millions of MD5/SHA-1 entries stored, such as  [md5online](https://www.md5online.org/) and [crackstation](https://crackstation.net/). For this solution, we have used [crackstation](https://crackstation.net/). After searching in the website with the hash, we have the admin's credentials!
 
 Just login with those credentials and the flag is all yours!
 
