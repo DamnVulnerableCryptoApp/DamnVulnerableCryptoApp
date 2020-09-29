@@ -2,7 +2,7 @@
 Weak cryptographic hashes should not be used in security contexts since they cannot guarantee data integrity.
 
 ## The Basics
-The term “hash” relates to a one-way hash function -  a mathematical formula that takes an arbitrary-length message and returns a fixed-length value. These hashing functions should have an easy to calculate the hash value and it should also be difficult to reverse the computed hash values back to the original message. Still, it must be hard/impossible to find two inputs that generate the same hash value.
+The term “hash” relates to a one-way hash function -  a mathematical formula that takes an arbitrary-length message and returns a fixed-length value. These hashing functions should have an easy to calculate the hash value and it should also be impossible to reverse the computed hash values back to the original message. Still, it must be impossible to find two inputs that generate the same hash value otherwise they are considered insecure.
 
 The hash functions are widely used in many security backgrounds such as digital signatures, public-key encryption, message authentication, and many other cryptographic contexts. 
 
