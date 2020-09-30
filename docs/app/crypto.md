@@ -1,29 +1,31 @@
-## Classic cryptography
+# Classic cryptography
 
-* [Classic Ciphers](classic-cipher)  
+* [Classic Ciphers](classic-cipher)
 
-## Modern Cryptography
+# Modern Cryptography
 
-### Basics
+## Basics
+
 * [About Encodings](about-encodings)
 * [Xor Basics](xor)
 * [Block Ciphers Basics](block-ciphers)
 
+## Symmetric Encryption
 
-### Symmetric Encryption
-* [Known Plaintext and Key Reuse](known-plaintext-and-key-reuse) 
+* [Known Plaintext and Key Reuse](known-plaintext-and-key-reuse)
 * [Byte at a Time](byte-at-a-time)
 * [Block Reordering](block-reordering)
 * [IV Detection](iv-detection)
 * [Padding Oracle](padding-oracle)
 
-### Asymmetric Encryption
+## Asymmetric Encryption
 
-### Hashing
+## Hashing
+
 * [Weak Hashing](weak-hashing)
 * [Checksum Collision](checksum-collisions)
 
-### Others
+## Others
 
 * [Insecure Random](weak-random)
 * [Key Disclosure](key-disclosure)

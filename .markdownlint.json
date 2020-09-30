@@ -1,0 +1,9 @@
+{
+    "MD004": {"style": "asterisk"},
+    "MD013": false,
+    "MD014": false,
+    "MD025": false,
+    "MD036": {
+        "punctuation": ".,;:!。"
+      }
+}

@@ -10,15 +10,13 @@ There are a lot of algorithms for generating random values, and you can find a l
 
 To understand the logic behind them, we are going to see how [Middle-square method](https://en.wikipedia.org/wiki/Middle-square_method) works. This is one of the first algorithms for generating pseudo random numbers.
 
-
 The idea of a PRG (Pseudo Random Generator) is that you supply a initial value, and the next value will be derived from it. This is called a seed.
 
-Lets assume that we seed Middle-square with value 937492. 
+Lets assume that we seed Middle-square with value 937492.
 The algorithm will calculate the square of the seed which is 878891250064 and then will grab the the middle six digits, so you end up with 891250. And this is the next generated pseudo random value.
 The next value will use 891250 as the seed
 
-
-```
+```plaintext
 937492 * 937492 = 878891250064 = 891250
 912500 * 912500 = 832656250000 = 656250
 656250 * 656250 = 430664062500 = 664062
@@ -27,19 +25,18 @@ The next value will use 891250 as the seed
 
 And so on.
 
-If you study a good amount of values you can easily understand how the values are being calculated. 
+If you study a good amount of values you can easily understand how the values are being calculated.
 Also, if you get one generated value, you can always predict the next ones, since the next value is based on the last one.
 
 That's why this algorithm and the other PRG are not suitable for sensitive operations. So every time you need to generate secure random values like generating keys, passwords, coupon codes, etc you should not use the default random mechanisms.
 
-Instead there are [Cryptographically secure pseudorandom number generator](https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator) which you usually find in most languages as a class called SecureRandom. 
+Instead there are [Cryptographically secure pseudorandom number generator](https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator) which you usually find in most languages as a class called SecureRandom.
 
-These generators (CSPRNG) may also use algorithms to generate the next values, but they have some stronger properties. 
+These generators (CSPRNG) may also use algorithms to generate the next values, but they have some stronger properties.
 
 For example, in a CSPRNG giving a generated value you should never be able to predict the next value.
 
 Also the seeds are obtained from a huge source of entropy, usually supplied from the operating system which uses user interactions, among other things, to generate random bytes.
-
 
 ## Solving the challenge
 
@@ -49,7 +46,7 @@ Usually each language uses one by default. So the first thing to do is to find i
 
 Since this is a webapp, maybe checking the server can help us understand the language being used. Lets do a request and see what we get
 
-```
+```bash
 curl http://localhost:1234 -v
 * Rebuilt URL to: http://localhost:1234/
 *   Trying 127.0.0.1...
@@ -80,18 +77,18 @@ curl http://localhost:1234 -v
 
 You can see in the X-Powered-By header that the server uses Express which is a NodeJS framework. So here we have it, its Node/JS.
 
-So the next step is to find which algorithm is used by Javascript, and after a little research you will see that the specification does not specify the algorithm to be used, so its up to the implementation to choose which one to use. 
-Since NodeJS uses [V8](https://v8.dev/blog/math-random?showComment=1450389868643#c2004131565745698275), we can try to find V8's implementation. You will find that they are using XorShift128+ or XorShift128 (depending on the versions) 
+So the next step is to find which algorithm is used by Javascript, and after a little research you will see that the specification does not specify the algorithm to be used, so its up to the implementation to choose which one to use.
+Since NodeJS uses [V8](https://v8.dev/blog/math-random?showComment=1450389868643#c2004131565745698275), we can try to find V8's implementation. You will find that they are using XorShift128+ or XorShift128 (depending on the versions)
 
 We are not going into the details on how the algorithm works or how to predict it, since it is a little bit more complex, although it's purely reverse engineer the algorithm's math formula.
 
-Anyway, if you do some searches you will find out that there are already projects to help you predict the next values. 
+Anyway, if you do some searches you will find out that there are already projects to help you predict the next values.
 
 The one we use is called [XorShift128Plus](https://github.com/TACIXAT/XorShift128Plus)
 
 According to the documentation, you just need to supply 5 generated numbers, and it will generate the next five for you.
 
-Well, 5 is exactly the number of coupon codes we have :) 
+Well, 5 is exactly the number of coupon codes we have :)
 
 But they have a weird format...
 If you look at the response being received from the server you will see the raw random numbers being received:
@@ -108,9 +105,9 @@ If you look at the response being received from the server you will see the raw 
 }
 ```
 
-and the corresponding coupon codes are 
+and the corresponding coupon codes are
 
-```
+```plaintext
 DVCAPP-7298-3105-4167-9336-0000
 DVCAPP-2693-8162-3315-0699-0000
 DVCAPP-2697-6403-3697-7747-0000
