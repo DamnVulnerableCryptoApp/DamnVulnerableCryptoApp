@@ -41,7 +41,9 @@ npm run build
 If you cloned the repo and are having issues in the test phase, it may be due to the line endings.
 Force linux like line endings in git with:
 
-Change git config to use LF intead of CRLF
+### Troubleshooting 
+
+If you get an error about an hash when running the tests, you may need to change your git line ending style:
 ```
 git config --global core.eol lf
 git config --global core.autocrlf input
