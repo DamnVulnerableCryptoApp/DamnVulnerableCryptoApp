@@ -1,5 +1,3 @@
-**IMPORTANT: This project is under heavy developed and features may be incomplete or unstable**
-
 ![Logo](/frontend/src/Images/logo.png)
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/damnvulnerablecryptoapp/damnvulnerablecryptoapp?style=flat-square&label=Version)
@@ -28,6 +26,12 @@ If you try to learn a little bit more about crypto, either because you want to k
 ## Build
 (Make sure you have node installed)
 
+install npx and yarn globally:
+```bash
+npm install -g yarn npx
+```
+
+
 ```
 npm run build-with-deps
 ```
@@ -41,9 +45,7 @@ npm run build
 If you cloned the repo and are having issues in the test phase, it may be due to the line endings.
 Force linux like line endings in git with:
 
-### Troubleshooting 
-
-If you get an error about an hash when running the tests, you may need to change your git line ending style:
+Change git config to use LF intead of CRLF
 ```
 git config --global core.eol lf
 git config --global core.autocrlf input
@@ -74,6 +76,13 @@ docker pull damnvulnerablecryptoapp1/damnvulnerablecryptoapp
 ### Build
 
 If you prefer to build the docker image yourself run:
+
+
+install npx and yarn globally:
+```bash
+npm install -g yarn npx
+```
+
 
 ```
 npm build:docker

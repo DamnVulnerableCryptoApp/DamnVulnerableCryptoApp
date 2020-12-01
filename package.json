@@ -24,15 +24,14 @@
     "build-with-deps": "yarn install-deps && yarn run build",
     "build:docker": "npm run build-with-deps && docker build",
     "build": "yarn run build-react && yarn run build-be && yarn run merge-projects",
-    "copy-fe-to-public": "copyfiles \"frontend/build/**/*\" backend/dist/public -a -u 2",
+    "copy-fe-to-public": "npx copyfiles \"frontend/build/**/*\" backend/dist/public -a -u 2",
     "merge-projects": "yarn run copy-fe-to-public",
-    "pre-install-deps": "npm install -g yarn && yarn add -g typescript react-scripts cross-env rimraf copyfiles mkdirp",
     "install-deps:be": "cd backend && yarn install",
     "install-deps:react": "cd frontend && yarn install",
-    "install-deps": "npm run pre-install-deps && yarn run install-deps:be && yarn run install-deps:react",
+    "install-deps": "yarn install && yarn run install-deps:be && yarn run install-deps:react",
     "start": "cd backend && yarn run start:prod",
-    "clean": "rimraf backend/dist && rimraf frontend/build",
-    "markdown": "markdownlint docs/"
+    "clean": "npx rimraf backend/dist && npx rimraf frontend/build",
+    "markdown": "npx markdownlint docs/"
   },
   "repository": {
     "type": "git",
