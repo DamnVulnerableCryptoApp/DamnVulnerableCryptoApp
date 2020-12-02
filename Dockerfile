@@ -23,6 +23,7 @@ COPY backend/dist ./dist
 
 # COPY ./resources ./resources
 # COPY ./spec ./spec
+RUN npm install -g yarn npx 
 RUN yarn install --production
 RUN yarn global add global cross-env
 
