@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn npx && npm run build-with-deps
+    - run: npm install -g -f yarn npx && npm run build-with-deps
       env:
         CI: ""
       
