@@ -16,6 +16,7 @@ export class ByteAtATimeService extends ChallengeService {
 
   public static decrypt(data: string): string {
     const decipher = crypto.createDecipheriv('aes-128-ecb', Buffer.from(this.KEY), '');
+    const decipher = crypto.createDecipheriv('aes-128-ecb', Buffer.from(this.KEY), '');
     const encryptedText = Buffer.from(data, 'hex');
     let decrypted = decipher.update(encryptedText);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
