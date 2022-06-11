@@ -34,7 +34,7 @@ cd $TEMP_CLONE_FOLDER
 git init
 git config user.name $ACTION_NAME
 git config user.email $ACTION_MAIL
-git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
+git pull https://${GITHUB_TOKEN}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
 rm -rf $TEMP_CLONE_FOLDER/* # make sure we remove everyting first. In case files were deleted/renamed
@@ -95,4 +95,4 @@ echo "Pushing new pages"
 cd $TEMP_CLONE_FOLDER
 git add .
 git commit -m "$WIKI_PUSH_MESSAGE"
-git push --set-upstream https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git master
+git push --set-upstream https://${GITHUB_TOKEN}@github.com/$OWNER/$REPO_NAME.wiki.git master

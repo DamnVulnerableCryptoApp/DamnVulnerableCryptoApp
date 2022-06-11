@@ -6,3 +6,4 @@ backend/build
 backend/src/documentation
 flags.json
 *.DS_Store
+Icon

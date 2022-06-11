@@ -23,7 +23,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: |
         npm install -g -f yarn 
+        yarn install
         yarn run build-with-deps
-        yarn run tests
+        cd backend && yarn run tests
       env:
         CI: ""  

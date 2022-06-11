@@ -14,7 +14,7 @@ jobs:
     - run: chmod +x .github/workflows/wiki_script.sh
     - run: .github/workflows/wiki_script.sh
       env:
-        GH_PAT: ${{ secrets.PERSONAL_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ACTION_MAIL: luisfontes101@gmail.com
         ACTION_NAME: wikiautomation
         OWNER: DamnVulnerableCryptoApp
