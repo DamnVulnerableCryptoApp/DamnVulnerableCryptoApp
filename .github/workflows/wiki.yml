@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        repository: ${{github.repository}}.wiki
-        path: markdown
     - run: chmod +x .github/workflows/wiki_script.sh
     - run: .github/workflows/wiki_script.sh
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ACTION_MAIL: luisfontes101@gmail.com
+        ACTION_NAME: wikiautomation
+        OWNER: DamnVulnerableCryptoApp
+        REPO_NAME: damn_vulnerable_crypto_app
