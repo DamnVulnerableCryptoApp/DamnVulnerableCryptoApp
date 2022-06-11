@@ -1,65 +1,65 @@
-import { Box, Button, Card, Grid, TextField, Typography } from "@material-ui/core";
-import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
-import SendIcon from '@material-ui/icons/Send';
-import Alert from "@material-ui/lab/Alert";
-import React, { useContext, useEffect, useState } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import fakeRoad from "../../Images/fake_road.png";
-import { InsecureRandomService } from "./InsecureRandomService";
-import useStyles from "./styles";
+import { Box, Button, Card, Grid, TextField, Typography } from "@material-ui/core"
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber'
+import SendIcon from '@material-ui/icons/Send'
+import Alert from "@material-ui/lab/Alert"
+import React, { useContext, useEffect, useState } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import fakeRoad from "../../Images/fake_road.png"
+import { InsecureRandomService } from "./InsecureRandomService"
+import useStyles from "./styles"
 
 
 
 
 const InsecureRandom = (props: IChallengeProps) => {
 
-  const classes = useStyles();
-  const [coupons, setCoupons] = useState<number[]>([]);
-  const [couponCheck, setCouponCheck] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const layoutContext = useContext(LayoutContext);
+  const classes = useStyles()
+  const [coupons, setCoupons] = useState<number[]>([])
+  const [couponCheck, setCouponCheck] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const layoutContext = useContext(LayoutContext)
 
   const checkCoupon = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    setErrorMessage("");
-    layoutContext.setLoading(true);
+    event.preventDefault()
+    setErrorMessage("")
+    layoutContext.setLoading(true)
 
     InsecureRandomService.checkCoupon(couponCheck).then(res => {
-      props.setFlag(res.flag);
+      props.setFlag(res.flag)
       if (res.valid) {
-        window.scrollTo(0, 200);
-        setErrorMessage("");
+        window.scrollTo(0, 200)
+        setErrorMessage("")
       }
-      else setErrorMessage("This coupon is not valid");
+      else setErrorMessage("This coupon is not valid")
 
-      layoutContext.setLoading(false);
+      layoutContext.setLoading(false)
 
     }).catch(ex => {
-      setErrorMessage("This coupon is not valid");
-      layoutContext.setLoading(false);
-    });
+      setErrorMessage("This coupon is not valid")
+      layoutContext.setLoading(false)
+    })
 
-  };
+  }
 
 
   useEffect(() => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
 
     props.setWarning("The publicly available POC for predicting Math.random numbers doesn't work properly with (at least) Node v10.\n" +
-      "This was tested successfully on Node v12, so if you want to keep it simple this is the recommended version to use for this challenge.");
+      "This was tested successfully on Node v12, so if you want to keep it simple this is the recommended version to use for this challenge.")
 
     InsecureRandomService.getCoupons().then(response => {
-      setCoupons(response);
-      layoutContext.setLoading(false);
-    }).catch(() => layoutContext.setLoading(false));
+      setCoupons(response)
+      layoutContext.setLoading(false)
+    }).catch(() => layoutContext.setLoading(false))
 
 
 
-  }, []);
+  }, [])
 
 
-  const onCouponChange = (e: React.ChangeEvent<HTMLInputElement>) => setCouponCheck(e.target.value);
+  const onCouponChange = (e: React.ChangeEvent<HTMLInputElement>) => setCouponCheck(e.target.value)
 
   return (
     <Box className={classes.container}>
@@ -115,8 +115,8 @@ const InsecureRandom = (props: IChallengeProps) => {
       </Box>
 
     </Box >
-  );
+  )
 
-};
+}
 
-export default InsecureRandom;
+export default InsecureRandom

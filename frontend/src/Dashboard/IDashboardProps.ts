@@ -1,5 +1,5 @@
-import { IChallengeCardProps } from "../ChallengeCard/IChallengeCardProp";
+import { IChallengeCardProps } from "../ChallengeCard/IChallengeCardProp"
 
 export interface IDashboardProps {
-  challenges: IChallengeCardProps[];
+  challenges: IChallengeCardProps[]
 }

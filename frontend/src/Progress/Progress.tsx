@@ -1,34 +1,34 @@
 
-import { Box, IconButton, LinearProgress, Typography } from "@material-ui/core";
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
-import React, { useContext, useState } from "react";
-import { LayoutContext } from "../App/LayoutContext";
-import Challenges from "../Challenges/Challenges";
-import Confirmation from "../Confirmation/Confirmation";
-import { ProgressService } from "./ProgressService";
-import useStyles from "./styles";
+import { Box, IconButton, LinearProgress, Typography } from "@material-ui/core"
+import RotateLeftIcon from '@material-ui/icons/RotateLeft'
+import React, { useContext, useState } from "react"
+import { LayoutContext } from "../App/LayoutContext"
+import Challenges from "../Challenges/Challenges"
+import Confirmation from "../Confirmation/Confirmation"
+import { ProgressService } from "./ProgressService"
+import useStyles from "./styles"
 
 const Progress = () => {
 
-  const context = useContext(LayoutContext);
-  const classes = useStyles();
+  const context = useContext(LayoutContext)
+  const classes = useStyles()
 
-  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
+  const [showResetConfirmation, setShowResetConfirmation] = useState(false)
 
   const onResetClicked = () => {
-    setShowResetConfirmation(true);
-  };
+    setShowResetConfirmation(true)
+  }
 
-  const onConfirmationCancel = () => { setShowResetConfirmation(false); };
-  const onConfirmationClose = () => { setShowResetConfirmation(false); };
+  const onConfirmationCancel = () => { setShowResetConfirmation(false) }
+  const onConfirmationClose = () => { setShowResetConfirmation(false) }
   const onConfirmationOk = () => {
-    context.setProgress({ challenges: {} });
-    context.setChallengesDone(0);
-    context.setProgressPercentage(0);
-    ProgressService.clearProgress();
-    setShowResetConfirmation(false);
+    context.setProgress({ challenges: {} })
+    context.setChallengesDone(0)
+    context.setProgressPercentage(0)
+    ProgressService.clearProgress()
+    setShowResetConfirmation(false)
 
-  };
+  }
 
   return (
     <Box className={classes.progressContainer}>
@@ -53,7 +53,7 @@ const Progress = () => {
         onPositiveButtonClick={onConfirmationOk}
         positiveButton="Sure!" />
     </Box>
-  );
-};
+  )
+}
 
-export default Progress;
+export default Progress

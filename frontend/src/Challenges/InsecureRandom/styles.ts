@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { grey, indigo } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core"
+import { grey, indigo } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   container: {
@@ -32,6 +32,6 @@ const useStyles = makeStyles({
   couponInput: {
     paddingLeft: '20px',
   }
-});
+})
 
-export default useStyles;
+export default useStyles

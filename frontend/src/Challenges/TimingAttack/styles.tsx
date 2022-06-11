@@ -1,5 +1,5 @@
-import { Button, makeStyles, TextField, withStyles } from "@material-ui/core";
-import { teal } from "@material-ui/core/colors";
+import { Button, makeStyles, TextField, withStyles } from "@material-ui/core"
+import { teal } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   bg: {
@@ -32,14 +32,14 @@ const useStyles = makeStyles({
     textAlign: "center",
     height: '50px'
   }
-});
+})
 
 export const WhiteOutlinedButton = withStyles({
   root: {
     borderColor: 'white',
     color: 'white'
   }
-})(Button);
+})(Button)
 
 export const WhiteTextField = withStyles({
   root: {
@@ -77,6 +77,6 @@ export const WhiteTextField = withStyles({
       },
     },
   },
-})(TextField);
+})(TextField)
 
-export default useStyles;
+export default useStyles

@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles({
   logo: {
@@ -21,6 +21,6 @@ const useStyles = makeStyles({
     'background-color': "#DDD",
     'border-radius': '5px'
   }
-});
+})
 
-export default useStyles;
+export default useStyles

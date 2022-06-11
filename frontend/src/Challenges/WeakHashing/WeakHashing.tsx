@@ -1,8 +1,8 @@
-import { Avatar, Box, Card, makeStyles, Typography } from "@material-ui/core";
-import React from "react";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import fakereporter from "../../Images/fakereporter.jpg";
-import LoginScreen from "./LoginScreen";
+import { Avatar, Box, Card, makeStyles, Typography } from "@material-ui/core"
+import React from "react"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import fakereporter from "../../Images/fakereporter.jpg"
+import LoginScreen from "./LoginScreen"
 
 
 const useStyles = makeStyles({
@@ -19,10 +19,10 @@ const useStyles = makeStyles({
   authorName: {
     'padding-left': '20px'
   }
-});
+})
 
 const WeakHashing = (props: IChallengeProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
 
   return (
@@ -86,8 +86,8 @@ const WeakHashing = (props: IChallengeProps) => {
 
       </Card>
     </div>
-  );
-};
+  )
+}
 
 
-export default WeakHashing;
+export default WeakHashing

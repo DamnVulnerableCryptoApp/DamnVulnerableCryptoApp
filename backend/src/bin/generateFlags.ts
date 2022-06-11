@@ -1,3 +1,3 @@
-import { FlagService } from "../services/FlagService";
+import { FlagService } from "../services/FlagService"
 
-FlagService.forceCreateFlags();
+FlagService.forceCreateFlags()

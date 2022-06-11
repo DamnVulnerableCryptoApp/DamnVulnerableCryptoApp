@@ -26,41 +26,29 @@ If you try to learn a little bit more about crypto, either because you want to k
 ## Build
 (Make sure you have node installed)
 
-install npx and yarn globally:
 ```bash
-npm install -g yarn npx
-```
+npm install -g yarn
 
+# This will install necessary dependencies
+# (in frontend and backend)
+yarn run build-with-deps
 
-```
-npm run build-with-deps
-```
-
-Or if you already have the dependencies installed you can just run:
-
-```
-npm run build
-```
-
-If you cloned the repo and are having issues in the test phase, it may be due to the line endings.
-Force linux like line endings in git with:
-
-Change git config to use LF intead of CRLF
-```
-git config --global core.eol lf
-git config --global core.autocrlf input
+# In case you already have dependencies 
+# or want to install them manually you can build it with:
+# yarn run build
 ```
 
 
 ## Run
 
-```
-npm run start
+```bash
+yarn run start
 ```
 
 You can change the port with an environment variable: 
-```
-PORT=4000 npm run start
+
+```bash
+PORT=4000 yarn run start
 ```
 
 
@@ -69,7 +57,8 @@ PORT=4000 npm run start
 ### From DockerHub
 
 You can download the latest docker image with:
-```
+
+```bash
 docker pull damnvulnerablecryptoapp1/damnvulnerablecryptoapp
 ```
 
@@ -77,24 +66,21 @@ docker pull damnvulnerablecryptoapp1/damnvulnerablecryptoapp
 
 If you prefer to build the docker image yourself run:
 
-
-install npx and yarn globally:
 ```bash
-npm install -g yarn npx
-```
+npm install -g yarn
 
-
-```
-npm build:docker
+yarn build:docker
+# or just:
+# docker build -t dvca .
 ```
 
 ### Run
 
-By default port 8081 is being exported,
+By default port 4000 is being exported,
 So you can map it to your own port:
 
-```
-docker run -p 8081:8081 <IMAGE_ID>
+```bash
+docker run -p 4000:4000 -t dvca
 ```
 
 
@@ -102,41 +88,37 @@ docker run -p 8081:8081 <IMAGE_ID>
 
 If you want to to develop new features, or just run without building the app you can start by installing dependencies with:
 
-```
-npm run install-deps
+```bash
+# installs deps  both for FE and BE
+yarn run install-deps
 ```
 
 Then you need to run independently the frontend and the backend apps.
 
 ## Backend
-```
+
+```bash
 cd backend 
-yarn start
+yarn start:dev
 ```
 
-If you want to change the default port (1234), you can use an environment variable:  
-```
-PORT=5000 yarn start
-```
+if you want to change the port (default is 4000) you can set an environment variable:
 
-## Frontend
-```
-cd frontend
-yarn start
-```
-
-
-if you want to change the frontend port (default is 4000) you can set an environment variable:
-```
+```bash
 PORT=3000 yarn start
 ```
+
 If you changed the server port you need to specify it when booting the frontend, again, as an environment variable:
-```
+```bash
 REACT_APP_SERVER_PORT=5000 yarn start
 ```
 
+## Frontend
 
-
+```bash
+cd frontend
+yarn start
+```
 
 # Documentation
 You can find project's documentation on [github wiki](https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp/wiki)

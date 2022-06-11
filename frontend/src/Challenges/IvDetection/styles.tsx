@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { red } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core"
+import { red } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   chatContainer: {
@@ -79,6 +79,6 @@ const useStyles = makeStyles({
   auhtorImg: {
     borderRadius: '200px'
   }
-});
+})
 
-export default useStyles;
+export default useStyles

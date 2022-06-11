@@ -1,28 +1,28 @@
-import { AppBar, Box, IconButton, Toolbar } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import React from 'react';
-import { useHistory } from 'react-router';
-import { Link } from "react-router-dom";
-import LogoMenu from '../Images/logo_menu.png';
-import Progress from '../Progress/Progress';
-import Loading from './Loading';
-import useStyles from './styles';
+import { AppBar, Box, IconButton, Toolbar } from '@material-ui/core'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import React from 'react'
+import { useHistory } from 'react-router'
+import { Link } from "react-router-dom"
+import LogoMenu from '../Images/logo_menu.png'
+import Progress from '../Progress/Progress'
+import Loading from './Loading'
+import useStyles from './styles'
 
 const Appbar = () => {
-  const classes = useStyles();
-  const history = useHistory();
+  const classes = useStyles()
+  const history = useHistory()
 
   const onLogoClicked = () => {
-    history.push("/");
-  };
+    history.push("/")
+  }
 
   const onBackClicked = () => {
-    history.goBack();
-  };
+    history.goBack()
+  }
 
   const isHomePage = () => {
-    return history.location.pathname === "/";
-  };
+    return history.location.pathname === "/"
+  }
 
   return (
     <AppBar position="sticky" className={classes.appbar}>
@@ -40,7 +40,7 @@ const Appbar = () => {
       </Toolbar>
       <Loading />
     </AppBar>
-  );
-};
+  )
+}
 
-export default Appbar;
+export default Appbar

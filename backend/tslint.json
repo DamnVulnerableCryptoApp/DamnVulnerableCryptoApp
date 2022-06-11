@@ -22,7 +22,7 @@
     ],
     "semicolon": [
       true,
-      "always",
+      "never",
       "ignore-bound-class-methods"
     ],
     "triple-equals": [

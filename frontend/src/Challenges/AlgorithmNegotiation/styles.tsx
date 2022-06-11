@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { cyan } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core"
+import { cyan } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   logo: {
@@ -20,6 +20,6 @@ const useStyles = makeStyles({
     marginTop: '20px'
 
   }
-});
+})
 
-export default useStyles;
+export default useStyles

@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import deepPurple from '@material-ui/core/colors/deepPurple';
+import { makeStyles } from "@material-ui/core"
+import deepPurple from '@material-ui/core/colors/deepPurple'
 
 const useStyles = makeStyles({
   mailbox: {
@@ -22,6 +22,6 @@ const useStyles = makeStyles({
     backgroundColor: deepPurple[500],
     color: '#FFF'
   }
-});
+})
 
-export default useStyles;
+export default useStyles

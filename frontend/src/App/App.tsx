@@ -1,33 +1,32 @@
-import { Box, Snackbar } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
-import Alert from "@material-ui/lab/Alert";
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Appbar from "../Appbar/Appbar";
-import Challenge from "../Challenge/Challenge";
-import Challenges, { ChallengeData } from "../Challenges/Challenges";
-import Dashboard from "../Dashboard/Dashboard";
-import Documentation from "../Documentation/Documentation";
-import { ProgressService } from "../Progress/ProgressService";
-import { LayoutContext } from "./LayoutContext";
+import { Box, Snackbar } from "@material-ui/core"
+import Container from "@material-ui/core/Container"
+import Alert from "@material-ui/lab/Alert"
+import React, { useState } from "react"
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import Appbar from "../Appbar/Appbar"
+import Challenge from "../Challenge/Challenge"
+import Challenges, { ChallengeData } from "../Challenges/Challenges"
+import Dashboard from "../Dashboard/Dashboard"
+import Documentation from "../Documentation/Documentation"
+import { ProgressService } from "../Progress/ProgressService"
+import { LayoutContext } from "./LayoutContext"
 
 
 const App = () => {
 
+  const p = ProgressService.createOrGet()
 
-  const p = ProgressService.createOrGet();
-
-  const [progress, setProgress] = useState(p);
-  const [challengesDone, setChallengesDone] = useState(ProgressService.done());
-  const [progressPercentage, setProgressPercentage] = useState(ProgressService.donePercentage());
-  const [loading, setLoading] = useState(false);
-  const [snackOpen, setSnackOpen] = useState(false);
-  const [snackErrorMessage, _setSnackErrorMessage] = useState("");
+  const [progress, setProgress] = useState(p)
+  const [challengesDone, setChallengesDone] = useState(ProgressService.done())
+  const [progressPercentage, setProgressPercentage] = useState(ProgressService.donePercentage())
+  const [loading, setLoading] = useState(false)
+  const [snackOpen, setSnackOpen] = useState(false)
+  const [snackErrorMessage, _setSnackErrorMessage] = useState("")
 
   const setSnackErrorMessage = (msg: string) => {
-    _setSnackErrorMessage(msg);
-    setSnackOpen(true);
-  };
+    _setSnackErrorMessage(msg)
+    setSnackOpen(true)
+  }
 
   const layoutInitialState = {
     progress, setProgress,
@@ -35,17 +34,17 @@ const App = () => {
     challengesDone, setChallengesDone,
     loading, setLoading,
     setSnackErrorMessage
-  };
+  }
 
   const renderChallenge = (c: ChallengeData) => {
-    return () => <Challenge obj={c} />;
-  };
+    return () => <Challenge obj={c} />
+  }
 
 
 
   const snackClose = () => {
-    setSnackOpen(false);
-  };
+    setSnackOpen(false)
+  }
 
   return (
     <div className="App">
@@ -59,7 +58,7 @@ const App = () => {
                   <Box key={c.name}>
                     <Route path={c.url} render={renderChallenge(c)} exact={true} />
                   </Box>
-                );
+                )
               })
             }
             <Route exact path="/"><Dashboard /></Route>
@@ -75,7 +74,7 @@ const App = () => {
       </Router>
 
     </div >
-  );
-};
+  )
+}
 
-export default App;
+export default App

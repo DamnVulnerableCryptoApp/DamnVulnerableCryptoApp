@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import oldPaper from "../../Images/oldPaper.jpg";
+import { makeStyles } from "@material-ui/core"
+import oldPaper from "../../Images/oldPaper.jpg"
 
 const useStyles = makeStyles({
 
@@ -21,6 +21,6 @@ const useStyles = makeStyles({
   input: {
     paddingLeft: '10px'
   }
-});
+})
 
-export default useStyles;
+export default useStyles

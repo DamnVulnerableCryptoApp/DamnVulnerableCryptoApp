@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core"
+import { green } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   consoleContainer: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     }
   }
 
-});
+})
 
 
-export default useStyles;
+export default useStyles

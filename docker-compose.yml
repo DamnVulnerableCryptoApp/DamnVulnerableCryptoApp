@@ -10,7 +10,7 @@ services:
         - no_proxy
     image: damn-vulnerable-crypto-app/server:latest
     ports:
-      - "8081:8081"
+      - "4000:4000"
     stdin_open: true  # -i
     tty: true         # -t
 

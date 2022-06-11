@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles({
   root: {
@@ -11,6 +11,6 @@ const useStyles = makeStyles({
     height: '390px',
     textAlign: "center"
   }
-});
+})
 
-export default useStyles;
+export default useStyles

@@ -1,106 +1,106 @@
-import { Box, TextField, Typography } from "@material-ui/core";
-import LockIcon from '@material-ui/icons/Lock';
-import React, { useContext, useEffect, useState } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import { IvDetectionService } from "./IvDetectionService";
-import { chatName, firstResponseMessage, InitialMessages, me, successMessage } from "./Messages/ChatData";
-import { IMessage } from "./Messages/IMessage";
-import MessageBlock from "./Messages/MessageBlock";
-import useStyles from "./styles";
+import { Box, TextField, Typography } from "@material-ui/core"
+import LockIcon from '@material-ui/icons/Lock'
+import React, { useContext, useEffect, useState } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import { IvDetectionService } from "./IvDetectionService"
+import { chatName, firstResponseMessage, InitialMessages, me, successMessage } from "./Messages/ChatData"
+import { IMessage } from "./Messages/IMessage"
+import MessageBlock from "./Messages/MessageBlock"
+import useStyles from "./styles"
 
 const displayMessages = (history: IMessage[]) => {
-  if (history.length === 0) return;
-  let lastMessageFrom = history[0].author;
+  if (history.length === 0) return
+  let lastMessageFrom = history[0].author
 
-  const blocks: any = [];
-  let left = false;
-  let messageGroup: IMessage[] = [];
+  const blocks: any = []
+  let left = false
+  let messageGroup: IMessage[] = []
 
 
   history.forEach((m, i) => {
-    left = m.author !== me;
+    left = m.author !== me
 
     if (lastMessageFrom !== m.author) { // if different sender, create a new block
-      blocks.push(<MessageBlock key={i} left={left} messages={messageGroup} />);
-      messageGroup = [m];
+      blocks.push(<MessageBlock key={i} left={left} messages={messageGroup} />)
+      messageGroup = [m]
     }
     else
-      messageGroup.push(m);
+      messageGroup.push(m)
 
-    lastMessageFrom = m.author;
-  });
+    lastMessageFrom = m.author
+  })
 
   // push the last changes
-  blocks.push(<MessageBlock key="last" left={left} messages={messageGroup} />);
+  blocks.push(<MessageBlock key="last" left={left} messages={messageGroup} />)
 
-  return blocks;
-};
+  return blocks
+}
 
 
 
 
 const IvDetection = (props: IChallengeProps) => {
 
-  const [history, setHistory] = useState<IMessage[]>([]);
-  const [message, setMessage] = useState("");
-  const [firstResponse, setFistResponse] = useState(true);
-  const layoutContext = useContext(LayoutContext);
+  const [history, setHistory] = useState<IMessage[]>([])
+  const [message, setMessage] = useState("")
+  const [firstResponse, setFistResponse] = useState(true)
+  const layoutContext = useContext(LayoutContext)
 
-  const appendToHistory = (m: IMessage) => setHistory((hstry) => [...hstry, m]);
-  const classes = useStyles();
-
-
-  useEffect(() => {
-    setHistory(InitialMessages);
-  }, []);
+  const appendToHistory = (m: IMessage) => setHistory((hstry) => [...hstry, m])
+  const classes = useStyles()
 
 
   useEffect(() => {
+    setHistory(InitialMessages)
+  }, [])
 
-    const c = document.getElementById('message-container');
-    c?.scrollTo(0, c.scrollHeight);
 
-  }, [history]);
+  useEffect(() => {
 
-  const onMesageChange = (e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value);
+    const c = document.getElementById('message-container')
+    c?.scrollTo(0, c.scrollHeight)
+
+  }, [history])
+
+  const onMesageChange = (e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)
 
 
   const createMessage = (messageContent: string) => {
-    const msg: IMessage = { author: me, content: messageContent, date: "now", type: "message" };
-    appendToHistory(msg);
-    setMessage("");
-  };
+    const msg: IMessage = { author: me, content: messageContent, date: "now", type: "message" }
+    appendToHistory(msg)
+    setMessage("")
+  }
 
   const onMessageSent = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
 
     IvDetectionService.sendMessage(message).then(res => {
-      layoutContext.setLoading(false);
+      layoutContext.setLoading(false)
 
       if (res.flag) {
-        props.setFlag(res.flag);
-        sendThanks();
+        props.setFlag(res.flag)
+        sendThanks()
       }
       else
-        if (firstResponse) sendFirstReply();
+        if (firstResponse) sendFirstReply()
 
-      setFistResponse(false);
-    }).catch(() => layoutContext.setLoading(false));
+      setFistResponse(false)
+    }).catch(() => layoutContext.setLoading(false))
 
-    createMessage(message);
+    createMessage(message)
 
-  };
+  }
 
   const sendFirstReply = () => {
-    setTimeout(() => appendToHistory(firstResponseMessage), 10000);
-  };
+    setTimeout(() => appendToHistory(firstResponseMessage), 10000)
+  }
 
   const sendThanks = () => {
-    setTimeout(() => appendToHistory(successMessage), 3000);
-  };
+    setTimeout(() => appendToHistory(successMessage), 3000)
+  }
 
 
 
@@ -120,8 +120,8 @@ const IvDetection = (props: IChallengeProps) => {
         <TextField fullWidth placeholder="Type our message here" variant="outlined" value={message} onChange={onMesageChange} />
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 
-export default IvDetection;
+export default IvDetection

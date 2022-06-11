@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3f47473c.css",
+    "main.js": "/static/js/main.95c287b0.js",
+    "static/media/fca_logo.png": "/static/media/fca_logo.362cb34ad1bb2746b4be.png",
+    "static/media/oldPaper.jpg": "/static/media/oldPaper.71965aa7cd22fd715164.jpg",
+    "static/media/logo.png": "/static/media/logo.f72d2811557dad418b14.png",
+    "static/media/chatsystem.png": "/static/media/chatsystem.1cee26a9896a95f8940f.png",
+    "static/media/fakepastes.png": "/static/media/fakepastes.e20c546cb490f62b5188.png",
+    "static/media/fake_road.png": "/static/media/fake_road.000e36c1a354987210cf.png",
+    "static/media/logo_menu.png": "/static/media/logo_menu.84d3cf11d421aa37ddd0.png",
+    "static/media/notauthorized.jpg": "/static/media/notauthorized.ad8a143fdf9fed431371.jpg",
+    "static/media/fakler.png": "/static/media/fakler.23941a8b395378495a68.png",
+    "static/media/detective.png": "/static/media/detective.8f0e09ecda7acd0b8d76.png",
+    "static/media/samsepi0l.jpg": "/static/media/samsepi0l.07db128182f6fb2dd4d5.jpg",
+    "index.html": "/index.html",
+    "main.3f47473c.css.map": "/static/css/main.3f47473c.css.map",
+    "main.95c287b0.js.map": "/static/js/main.95c287b0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f47473c.css",
+    "static/js/main.95c287b0.js"
+  ]
+}

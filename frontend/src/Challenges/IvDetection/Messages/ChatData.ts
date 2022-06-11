@@ -1,13 +1,13 @@
-import ChatSystemImg from '../../../Images/chatsystem.png';
-import Samsepi0lImg from '../../../Images/samsepi0l.jpg';
-import { IChatParticipant } from './IChatParticipant';
-import { IMessage } from './IMessage';
+import ChatSystemImg from '../../../Images/chatsystem.png'
+import Samsepi0lImg from '../../../Images/samsepi0l.jpg'
+import { IChatParticipant } from './IChatParticipant'
+import { IMessage } from './IMessage'
 
-export const me: IChatParticipant = { username: "D0loresH4ze", avatar: "" };
-export const samsepi0l: IChatParticipant = { username: "samsepi0l", avatar: Samsepi0lImg };
-export const system: IChatParticipant = { username: "system", avatar: ChatSystemImg };
+export const me: IChatParticipant = { username: "D0loresH4ze", avatar: "" }
+export const samsepi0l: IChatParticipant = { username: "samsepi0l", avatar: Samsepi0lImg }
+export const system: IChatParticipant = { username: "system", avatar: ChatSystemImg }
 
-export const chatName: string = "th3g3ntl3man";
+export const chatName: string = "th3g3ntl3man"
 
 export const InitialMessages: IMessage[] = [
   {
@@ -52,7 +52,7 @@ export const InitialMessages: IMessage[] = [
     date: '23:46',
     type: "message",
   },
-];
+]
 
-export const firstResponseMessage: IMessage = { author: samsepi0l, content: "find me the iv", date: "now", type: "message" };
-export const successMessage: IMessage = { author: samsepi0l, content: "it worked", date: "now", type: "message" };
+export const firstResponseMessage: IMessage = { author: samsepi0l, content: "find me the iv", date: "now", type: "message" }
+export const successMessage: IMessage = { author: samsepi0l, content: "it worked", date: "now", type: "message" }

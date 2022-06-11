@@ -1,33 +1,31 @@
-import { Controller, Get, QueryParams } from "@tsed/common";
-import { SubstitutionService } from '../../services/SubstitutionService';
-
+import { SubstitutionService } from '../../services/SubstitutionService'
+import BaseController from '../BaseController'
 
 export interface IResponse {
-  data: string;
+  data: string
 }
 
 export interface ICheckResponse {
-  success: boolean;
-  flag: string;
+  success: boolean
+  flag: string
 }
 
-@Controller("/classic/substitution")
-export class SubstitutionController {
+export class SubstitutionController extends BaseController {
 
-  @Get("/")
   public index(): IResponse {
-    const enc = SubstitutionService.encrypt("It was an ambush. Five or our men died. We got the goods. We leave at dawn");
+    const enc = SubstitutionService.encrypt("It was an ambush. Five or our men died. We got the goods. We leave at dawn")
 
-    return { data: enc };
+    return { data: enc }
   }
 
 
-  @Get("/check")
-  public check(@QueryParams("answer") answer: string): ICheckResponse {
+  public check(): ICheckResponse {
+    const answer = this.req.query["answer"]
+
     if (answer === "iwbodteld")
-      return { flag: SubstitutionService.getFlag(), success: true };
+      return { flag: SubstitutionService.getFlag(), success: true }
     else
-      return { flag: "", success: false };
+      return { flag: "", success: false }
   }
 
 }

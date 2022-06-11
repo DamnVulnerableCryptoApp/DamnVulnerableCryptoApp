@@ -1,44 +1,41 @@
-import { $log, Controller, Get, HeaderParams } from '@tsed/common';
-import { InternalServerError } from 'ts-httpexceptions';
-import { BlockReorderingService } from '../../services/BlockReorderingService';
+
+import { BlockReorderingService } from '../../services/BlockReorderingService'
+import BaseController from '../BaseController'
+
 
 export interface IAdminResponse {
-  isAdmin: boolean;
-  flag: string;
+  isAdmin: boolean
+  flag: string
 }
 
 export interface IAccessResponse {
-  token: string;
+  token: string
 }
 
-@Controller("aes/ecb/block-reordering/")
-export class BlockReorderingController {
+export class BlockReorderingController extends BaseController {
 
-  @Get("/")
-  public index(@HeaderParams("username") username: string): IAccessResponse {
-    const token = BlockReorderingService.createToken(username);
+  public index() {
+    const token = BlockReorderingService.createToken(this.getHeader("username"))
 
-    return { token };
+    return { token }
   }
 
-  @Get("/isAdmin")
-  public admin(@HeaderParams("token") token: string): IAdminResponse {
+  public admin(): IAdminResponse {
 
-    let isAdmin = false;
+    const token = this.getHeader("token")
+    let isAdmin = false
 
     try {
-      isAdmin = BlockReorderingService.isAdmin(token);
+      isAdmin = BlockReorderingService.isAdmin(token)
     }
-    catch (ex) {
-      $log.error(ex.message);
-
-      throw new InternalServerError(ex.message);
+    catch (ex: any) {
+      throw new Error(ex)
     }
 
     if (isAdmin)
-      return { isAdmin, flag: BlockReorderingService.getFlag() };
+      return { isAdmin, flag: BlockReorderingService.getFlag() }
     else
-      return { isAdmin, flag: "" };
+      return { isAdmin, flag: "" }
 
   }
 

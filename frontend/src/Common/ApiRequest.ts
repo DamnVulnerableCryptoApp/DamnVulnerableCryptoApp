@@ -6,7 +6,7 @@ export default class ApiRequest {
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error('timeout')), timeout)
       )
-    ]);
+    ])
   }
 
 
@@ -14,53 +14,56 @@ export default class ApiRequest {
   protected static async do(path: string, params?: RequestInit, upload = false): Promise<any> {
     return new Promise((resolve, reject) => {
 
-      if (!params) params = {};
+      if (!params) params = {}
 
       // force json content type
-      if (!params.headers) params.headers = {};
-      const headers: any = params.headers;
+      if (!params.headers) params.headers = {}
+      const headers: any = params.headers
 
-      if (!upload) headers['content-type'] = 'application/json';
+      if (!upload) headers['content-type'] = 'application/json'
 
-      params.headers = headers;
+      params.headers = headers
 
-      const url = `${ApiRequest.getApiUrl()}${path}`;
+      const url = `${ApiRequest.getApiUrl()}${path}`
       ApiRequest.fetchWithTimeout(url, params).then((res) => res.json()).then((response) => {
-        resolve(response);
+        resolve(response)
       }).catch(ex => {
-        reject(ex);
-      });
+        reject(ex)
+      })
 
-    });
+    })
   }
 
 
   public static serverPort(): number {
-    const runningPort = window.location.port || 80;
-    let port = parseInt(runningPort.toString(), 10);
+    const runningPort = window.location.port || 80
+    let port = parseInt(runningPort.toString())
 
-    if (process?.env?.NODE_ENV === "development") {
+    let p: any = { env: {} }
+    if (typeof process !== 'undefined') p = process
 
-      if (process?.env?.REACT_APP_SERVER_PORT)
-        port = parseInt(process.env.REACT_APP_SERVER_PORT, 10);
+    if (p.env?.NODE_ENV === "development") {
+
+      if (p?.env?.REACT_APP_SERVER_PORT)
+        port = parseInt(p.env.REACT_APP_SERVER_PORT)
       else
-        port = 1234; // if no port specified we are going to assume its the default, 1234
+        port = 4000 // if no port specified we are going to assume its the default, 4000
     }
 
-    return port;
+    return port
   }
 
 
   public static getApiOrigin(): string {
-    const port = ApiRequest.serverPort();
+    const port = ApiRequest.serverPort()
 
-    return `${window.location.hostname}:${port}`;
+    return `${window.location.hostname}:${port}`
   }
 
   public static getApiUrl(): string {
 
 
-    return `${window.location.protocol}//${ApiRequest.getApiOrigin()}`;
+    return `${window.location.protocol}//${ApiRequest.getApiOrigin()}`
 
   }
 

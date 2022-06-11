@@ -1,12 +1,12 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
-import React from "react";
-import IConfirmationProps from "./IConfirmationProps";
-import useStyles from "./styles";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core"
+import React from "react"
+import IConfirmationProps from "./IConfirmationProps"
+import useStyles from "./styles"
 
 
 
 const Confirmation = (props: IConfirmationProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div>
@@ -25,8 +25,8 @@ const Confirmation = (props: IConfirmationProps) => {
         </DialogActions>
       </Dialog>
     </div >
-  );
-};
+  )
+}
 
 
-export default Confirmation;
+export default Confirmation

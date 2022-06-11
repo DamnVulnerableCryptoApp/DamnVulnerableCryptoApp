@@ -1,46 +1,35 @@
-import { $log, Controller, Get, HeaderParams } from "@tsed/common";
-import { InternalServerError } from 'ts-httpexceptions';
-import { PaddingOracleService } from '../../services/PaddingOracleService';
+import { PaddingOracleService } from '../../services/PaddingOracleService'
+import BaseController from '../BaseController'
 
 
 export interface IAdminResponse {
-  isAdmin: boolean;
-  flag: string;
+  isAdmin: boolean
+  flag: string
 }
 
 export interface IAccessResponse {
-  token: string;
+  token: string
 }
 
+export class PaddingOracleController extends BaseController {
 
-@Controller("/aes/cbc/padding-oracle")
-export class PaddingOracleController {
-
-  @Get("/")
   public home(): IAccessResponse {
-    const token = PaddingOracleService.getAnonymousToken();
+    const token = PaddingOracleService.getAnonymousToken()
 
-    return { token };
+    return { token }
   }
 
-  @Get("/isAdmin")
-  public admin(@HeaderParams("token") token: string): IAdminResponse {
+  public admin(): IAdminResponse {
 
-    let isAdmin = false;
+    const token = this.getHeader("token")
+    let isAdmin = false
 
-    try {
-      isAdmin = PaddingOracleService.isAdmin(token);
-    }
-    catch (ex) {
-      $log.error(ex.message);
-
-      throw new InternalServerError(ex.message);
-    }
+    isAdmin = PaddingOracleService.isAdmin(token)
 
     if (isAdmin)
-      return { isAdmin, flag: PaddingOracleService.getFlag() };
+      return { isAdmin, flag: PaddingOracleService.getFlag() }
     else
-      return { isAdmin, flag: "" };
+      return { isAdmin, flag: "" }
 
   }
 

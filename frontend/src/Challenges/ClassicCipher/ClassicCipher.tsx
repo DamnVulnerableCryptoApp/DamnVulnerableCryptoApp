@@ -1,49 +1,49 @@
-import { Box, IconButton, InputBase, Paper, Typography } from "@material-ui/core";
-import SendIcon from '@material-ui/icons/Send';
-import Alert from "@material-ui/lab/Alert";
-import React, { useContext, useEffect, useState } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import { ClassicService } from "./ClassicService";
-import useStyles from "./styles";
+import { Box, IconButton, InputBase, Paper, Typography } from "@material-ui/core"
+import SendIcon from '@material-ui/icons/Send'
+import Alert from "@material-ui/lab/Alert"
+import React, { useContext, useEffect, useState } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import { ClassicService } from "./ClassicService"
+import useStyles from "./styles"
 
 
 
 
 const ClassicCipher = (props: IChallengeProps) => {
 
-  const classes = useStyles();
-  const [answer, setAnswer] = useState("");
-  const [enigma, setEnigma] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const layoutContext = useContext(LayoutContext);
+  const classes = useStyles()
+  const [answer, setAnswer] = useState("")
+  const [enigma, setEnigma] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const layoutContext = useContext(LayoutContext)
 
 
   const checkAnswer = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    layoutContext.setLoading(true);
-    setErrorMessage("");
+    event.preventDefault()
+    layoutContext.setLoading(true)
+    setErrorMessage("")
 
     ClassicService.checkAnswer(answer).then(res => {
-      const flag = res.flag;
-      props.setFlag(flag);
-      if (!res.success) setErrorMessage("Sorry, not quite there yet...");
+      const flag = res.flag
+      props.setFlag(flag)
+      if (!res.success) setErrorMessage("Sorry, not quite there yet...")
 
-      layoutContext.setLoading(false);
+      layoutContext.setLoading(false)
 
-    }).catch(() => layoutContext.setLoading(false));
-  };
+    }).catch(() => layoutContext.setLoading(false))
+  }
 
   useEffect(() => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
 
     ClassicService.init().then(data => {
-      setEnigma(data);
-      layoutContext.setLoading(false);
-    }).catch(() => layoutContext.setLoading(false));
-  }, []);
+      setEnigma(data)
+      layoutContext.setLoading(false)
+    }).catch(() => layoutContext.setLoading(false))
+  }, [])
 
-  const onAnswerChange = (e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value);
+  const onAnswerChange = (e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.target.value)
 
   return (
     <Box>
@@ -66,8 +66,8 @@ const ClassicCipher = (props: IChallengeProps) => {
         </Paper>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 
-export default ClassicCipher;
+export default ClassicCipher

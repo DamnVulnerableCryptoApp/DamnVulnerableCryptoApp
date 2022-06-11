@@ -1,31 +1,31 @@
-import { BodyParams, Controller, Post } from "@tsed/common";
-import { IvDetectionService } from '../../services/IvDetectionService';
-
+import { IvDetectionService } from '../../services/IvDetectionService'
+import BaseController from '../BaseController'
 
 export interface IResponse {
-  data: string;
-  flag: string;
+  data: string
+  flag: string
 }
 
-@Controller("/aes/cbc/iv-detection")
-export class IvDetectionController {
+export class IvDetectionController extends BaseController {
 
-  @Post("/send")
-  public send(@BodyParams("data") data: string) {
+  public send() {
+    const data = this.req.body.data
     // do nothing... just to have an endpoint for the UI to call :)
-    return {};
+
+    return {}
   }
 
-  @Post("/encrypt")
-  public encrypt(@BodyParams("data") data: string): IResponse {
-    const f = data === IvDetectionService.IV ? IvDetectionService.getFlag() : "";
+  public encrypt(): IResponse {
+    const data = this.req.body.data
+    const f = data === IvDetectionService.IV ? IvDetectionService.getFlag() : ""
 
-    return { data: IvDetectionService.encryptData(data), flag: f };
+    return { data: IvDetectionService.encryptData(data), flag: f }
   }
 
-  @Post("/decrypt")
-  public decrypt(@BodyParams("data") data: string): IResponse {
-    return { data: IvDetectionService.decryptData(data), flag: "" };
+  public decrypt(): IResponse {
+    const data = this.req.body.data
+
+    return { data: IvDetectionService.decryptData(data), flag: "" }
   }
 
 }

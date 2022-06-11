@@ -1,53 +1,53 @@
-import React, { useContext, useEffect, useState } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import useStyles from "./styles";
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import { Box, Typography } from "@material-ui/core";
-import { HashLengthExtensionService } from "./HashLengthExtensionService";
-import { Alert, AlertProps, Color } from "@material-ui/lab";
+import React, { useContext, useEffect, useState } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import useStyles from "./styles"
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance'
+import { Box, Typography } from "@material-ui/core"
+import { HashLengthExtensionService } from "./HashLengthExtensionService"
+import { Alert, AlertProps, Color } from "@material-ui/lab"
 
 const HashLengthExtension = (props: IChallengeProps) => {
 
-  const layoutContext = useContext(LayoutContext);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState<Color>("success");
-  const [data, setData] = useState("");
+  const layoutContext = useContext(LayoutContext)
+  const [message, setMessage] = useState("")
+  const [severity, setSeverity] = useState<Color>("success")
+  const [data, setData] = useState("")
 
   useEffect(() => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
 
-    const authData = HashLengthExtensionService.getData();
+    const authData = HashLengthExtensionService.getData()
     authData.then(d => {
-      setData(d.data);
+      setData(d.data)
 
       HashLengthExtensionService.check(d).then(f => {
-        props.setFlag(f.flag);
-        layoutContext.setLoading(false);
+        props.setFlag(f.flag)
+        layoutContext.setLoading(false)
 
         if (f.tampered) {
-          setMessage("DamnVulnerableCryptoApp sadly informs you that the data was manipulated");
-          setSeverity("error");
+          setMessage("DamnVulnerableCryptoApp sadly informs you that the data was manipulated")
+          setSeverity("error")
         }
         else {
-          setMessage("DamnVulnerableCryptoApp certifies that the data was not tampered");
-          setSeverity("success");
+          setMessage("DamnVulnerableCryptoApp certifies that the data was not tampered")
+          setSeverity("success")
         }
 
       }).catch(err => {
-        layoutContext.setSnackErrorMessage("Some error message");
-        layoutContext.setLoading(false);
-      });
+        layoutContext.setSnackErrorMessage("Some error message")
+        layoutContext.setLoading(false)
+      })
     }).catch(err => {
-      layoutContext.setSnackErrorMessage("Some error message");
-      layoutContext.setLoading(false);
-    });
+      layoutContext.setSnackErrorMessage("Some error message")
+      layoutContext.setLoading(false)
+    })
 
 
-  }, []);
+  }, [])
 
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Box >
@@ -66,7 +66,7 @@ const HashLengthExtension = (props: IChallengeProps) => {
         <Typography className={classes.data}>{data}</Typography>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default HashLengthExtension;
+export default HashLengthExtension

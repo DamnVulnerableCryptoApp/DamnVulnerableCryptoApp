@@ -1,45 +1,45 @@
-import { Box, Container, Link, Typography } from "@material-ui/core";
-import PowerIcon from '@material-ui/icons/Power';
-import React, { useContext, useState } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import ForgotPasswordModal from "./ForgotPasswordModal";
-import useStyles, { WhiteOutlinedButton as WhiteButton, WhiteTextField } from "./styles";
-import { TimingAttackService } from "./TimingAttackService";
+import { Box, Container, Link, Typography } from "@material-ui/core"
+import PowerIcon from '@material-ui/icons/Power'
+import React, { useContext, useState } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import ForgotPasswordModal from "./ForgotPasswordModal"
+import useStyles, { WhiteOutlinedButton as WhiteButton, WhiteTextField } from "./styles"
+import { TimingAttackService } from "./TimingAttackService"
 
 const TimingAttack = (props: IChallengeProps) => {
 
-  const layoutContext = useContext(LayoutContext);
-  const classes = useStyles();
+  const layoutContext = useContext(LayoutContext)
+  const classes = useStyles()
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginMessage, setLoginMessage] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [loginMessage, setLoginMessage] = useState("")
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const { setLoading } = layoutContext;
-  const { setFlag } = props;
+  const { setLoading } = layoutContext
+  const { setFlag } = props
 
-  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
-  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
 
-  const onForgotPasswordPressed = () => setModalOpen(true);
+  const onForgotPasswordPressed = () => setModalOpen(true)
 
   const onLogin = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setLoading(true);
-    setLoginMessage("");
+    setLoading(true)
+    setLoginMessage("")
 
     TimingAttackService.login({ username, password }).then(r => {
-      if (!r.success) setLoginMessage("Username of password incorrect");
+      if (!r.success) setLoginMessage("Username of password incorrect")
 
-      setLoading(false);
-    });
-  };
+      setLoading(false)
+    })
+  }
 
 
-  const closeModal = () => setModalOpen(false);
+  const closeModal = () => setModalOpen(false)
 
   return (
     <>
@@ -79,7 +79,7 @@ const TimingAttack = (props: IChallengeProps) => {
           </Box>
         </Container>
       </Box>
-    </>);
-};
+    </>)
+}
 
-export default TimingAttack;
+export default TimingAttack

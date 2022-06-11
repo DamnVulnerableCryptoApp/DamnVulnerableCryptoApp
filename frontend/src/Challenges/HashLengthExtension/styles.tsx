@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { brown, grey } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core"
+import { brown, grey } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   iconSize: {
@@ -25,6 +25,6 @@ const useStyles = makeStyles({
     marginTop: '20px'
   }
 
-});
+})
 
-export default useStyles;
+export default useStyles

@@ -1,57 +1,57 @@
-import ApiRequest from "../../Common/ApiRequest";
+import ApiRequest from "../../Common/ApiRequest"
 
 interface ICouponsResponse {
-  coupons: number[];
+  coupons: number[]
 }
 
 interface ICheckResponse {
-  valid: boolean;
-  flag: string;
+  valid: boolean
+  flag: string
 }
 
 
 export class InsecureRandomService extends ApiRequest {
 
 
-  public static CHALLENGEPATH = `/random`;
+  public static CHALLENGEPATH = `/random`
 
 
 
   public static async getCoupons(): Promise<number[]> {
     return new Promise((resolve, reject) => {
 
-      const path = `${InsecureRandomService.CHALLENGEPATH}/`;
-      super.do(path).then((res: ICouponsResponse) => resolve(res.coupons)).catch(ex => reject(ex));
+      const path = `${InsecureRandomService.CHALLENGEPATH}/`
+      super.do(path).then((res: ICouponsResponse) => resolve(res.coupons)).catch(ex => reject(ex))
 
-    });
+    })
   }
 
   public static async checkCoupon(coupon: string): Promise<ICheckResponse> {
-    const c = InsecureRandomService.unformatCoupon(coupon);
-    const path = `${InsecureRandomService.CHALLENGEPATH}/check?couponCode=${c}`;
+    const c = InsecureRandomService.unformatCoupon(coupon)
+    const path = `${InsecureRandomService.CHALLENGEPATH}/check?couponCode=${c}`
 
-    return super.do(path);
+    return super.do(path)
   }
 
   public static formatCoupon(coupon: number): string {
-    let c = coupon.toString();
-    c = c.replace("0.", "");
+    let c = coupon.toString()
+    c = c.replace("0.", "")
 
-    const length = c.length;
-    const enforceLength = 20 - length;
-    const padding = "0".repeat(enforceLength);
+    const length = c.length
+    const enforceLength = 20 - length
+    const padding = "0".repeat(enforceLength)
 
-    c = c + padding;
+    c = c + padding
 
-    const formatted = c.substring(0, 4) + "-" + c.substring(4, 8) + "-" + c.substring(8, 12) + "-" + c.substring(12, 16) + "-" + c.substring(16, 20);
+    const formatted = c.substring(0, 4) + "-" + c.substring(4, 8) + "-" + c.substring(8, 12) + "-" + c.substring(12, 16) + "-" + c.substring(16, 20)
 
-    return formatted;
+    return formatted
   }
 
   public static unformatCoupon(coupon: string): number {
-    coupon = coupon.toLowerCase().replace("dvcapp-", "0.").replace(/-/g, "");
+    coupon = coupon.toLowerCase().replace("dvcapp-", "0.").replace(/-/g, "")
 
-    return parseFloat(coupon);
+    return parseFloat(coupon)
   }
 
 }

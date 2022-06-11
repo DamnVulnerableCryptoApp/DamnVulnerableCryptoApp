@@ -54,9 +54,9 @@ function processFile {
       echo "   Changing markdown file $i, saving to $TEMP_CLONE_FOLDER/$newFileName"
 
       # Replacing image urls, to relative paths in the wiki. 
-      # This may give some problems if text /documentation/ is present in markdown...
+      # This may give some problems if text /docs/ is present in markdown...
       # We can create a more restrictive rule
-      sed 's/\/documentation\///g' "$1" > "$TEMP_CLONE_FOLDER/$newFileName" 
+      sed 's/\/docs\///g' "$1" > "$TEMP_CLONE_FOLDER/$newFileName" 
     else
 
       # If its not markdown just copy the file. No need to change it

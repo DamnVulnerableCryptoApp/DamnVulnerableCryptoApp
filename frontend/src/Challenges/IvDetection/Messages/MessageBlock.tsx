@@ -1,27 +1,27 @@
-import { Box, Chip, Typography } from "@material-ui/core";
-import React from "react";
-import useStyles from "../styles";
-import { me, system } from "./ChatData";
-import { IMessage } from "./IMessage";
+import { Box, Chip, Typography } from "@material-ui/core"
+import React from "react"
+import useStyles from "../styles"
+import { me, system } from "./ChatData"
+import { IMessage } from "./IMessage"
 
 
 export interface IMessageBlockProps {
-  left: boolean;
-  messages: IMessage[];
+  left: boolean
+  messages: IMessage[]
 }
 
-const MessageChip = (content: string, className: string) => (<Chip label={content} className={className} />);
-const NotificationChip = (content: string) => (<Chip label={content} variant="outlined" color="secondary" />);
+const MessageChip = (content: string, className: string) => (<Chip label={content} className={className} />)
+const NotificationChip = (content: string) => (<Chip label={content} variant="outlined" color="secondary" />)
 
 const MessageBlock = (props: IMessageBlockProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  if (props.messages.length === 0) return (<div />);
-  const firstMessage = props.messages[0];
-  const ownMessage = firstMessage.author === me;
-  const systemMessage = firstMessage.author === system;
-  const alignment = ownMessage ? classes.messageRight : classes.messageLeft;
-  const className = ownMessage ? classes.ownMessage : classes.receivedMessage;
+  if (props.messages.length === 0) return (<div />)
+  const firstMessage = props.messages[0]
+  const ownMessage = firstMessage.author === me
+  const systemMessage = firstMessage.author === system
+  const alignment = ownMessage ? classes.messageRight : classes.messageLeft
+  const className = ownMessage ? classes.ownMessage : classes.receivedMessage
 
   return (
     <Box className={alignment}>
@@ -40,13 +40,13 @@ const MessageBlock = (props: IMessageBlockProps) => {
                   m.type === "message" ? MessageChip(m.content, className) : NotificationChip(m.content)
                 }
               </Box>
-            );
+            )
           })
         }
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 
-export default MessageBlock;
+export default MessageBlock

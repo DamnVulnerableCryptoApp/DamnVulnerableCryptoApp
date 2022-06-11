@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
     - name: Extract tag name
@@ -25,7 +25,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn npx -f && npm run build-with-deps
+    - run: npm install -g yarn -f && yarn run build-with-deps
       env:
           CI: ""
     #- name: Create a Github Release

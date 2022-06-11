@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { amber } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core"
+import { amber } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   sidebarCard: {
@@ -38,6 +38,6 @@ const useStyles = makeStyles({
     textAlign: 'center',
     marginBottom: '50px'
   }
-});
+})
 
-export default useStyles;
+export default useStyles

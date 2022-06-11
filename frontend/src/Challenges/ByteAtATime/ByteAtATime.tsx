@@ -1,18 +1,18 @@
-import { Box, Button, Paper, Tab, Table, TableBody, TableContainer, TableHead, TableRow, Tabs, TextField, Typography } from "@material-ui/core";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import EditIcon from '@material-ui/icons/Edit';
-import SendIcon from '@material-ui/icons/Send';
-import Alert from "@material-ui/lab/Alert";
-import React, { useContext, useEffect, useState } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import ApiRequest from "../../Common/ApiRequest";
-import TabPanel from "../../Common/TabPanel/TabPanel";
-import faklerLogo from "../../Images/fakler.png";
-import { ByteAtATimeService } from "./ByteAtATimeService";
-import IRequest from "./IRequest";
-import useStyles, { StyledTableCell, StyledTableRow } from "./styles";
+import { Box, Button, Paper, Tab, Table, TableBody, TableContainer, TableHead, TableRow, Tabs, TextField, Typography } from "@material-ui/core"
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import EditIcon from '@material-ui/icons/Edit'
+import SendIcon from '@material-ui/icons/Send'
+import Alert from "@material-ui/lab/Alert"
+import React, { useContext, useEffect, useState } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import ApiRequest from "../../Common/ApiRequest"
+import TabPanel from "../../Common/TabPanel/TabPanel"
+import faklerLogo from "../../Images/fakler.png"
+import { ByteAtATimeService } from "./ByteAtATimeService"
+import IRequest from "./IRequest"
+import useStyles, { StyledTableCell, StyledTableRow } from "./styles"
 
 // TODO: make this data more dynamic, its kinda ugly this way with all the replaces and repeated info
 const defaultRequests = [
@@ -23,7 +23,7 @@ const defaultRequests = [
     host: ApiRequest.getApiOrigin(),
     url: '/aes/ecb/byte-at-a-time/request-access',
     method: 'POST',
-    rawContent: "POST http://127.0.0.1:1234/aes/ecb/byte-at-a-time/request-access HTTP/1.1\ncontent-type: application/json\nusername: AdminsFriend".replace("127.0.0.1:1234", ApiRequest.getApiOrigin()),
+    rawContent: "POST http://127.0.0.1:4000/aes/ecb/byte-at-a-time/request-access HTTP/1.1\ncontent-type: application/json\nusername: AdminsFriend".replace("127.0.0.1:4000", ApiRequest.getApiOrigin()),
     rawResponse: 'HTTP/1.1 200 OK\n\n{"granted":true,"token":"45e7e9420d69bf449f83e8950ffe641453bae8f1cd4f495d073bdfe88aad9cc59f5e71d57ec35e9327de4266ee114abd"}'
   },
   {
@@ -32,65 +32,65 @@ const defaultRequests = [
     host: ApiRequest.getApiOrigin(),
     url: '/aes/ecb/byte-at-a-time/admin',
     method: 'POST',
-    rawContent: "POST http://localhost:1234/aes/ecb/byte-at-a-time/admin HTTP/1.1\ncontent-type: application/json\nAuthorization: basic YWRtaW46dGVzdA==".replace("127.0.0.1:1234", ApiRequest.getApiOrigin()),
+    rawContent: "POST http://localhost:4000/aes/ecb/byte-at-a-time/admin HTTP/1.1\ncontent-type: application/json\nAuthorization: basic YWRtaW46dGVzdA==".replace("127.0.0.1:4000", ApiRequest.getApiOrigin()),
     rawResponse: 'HTTP/1.1 200 OK\n\n{"flag":"","success":false}'
   },
 
 
-];
+]
 
 const ByteAtATime = (props: IChallengeProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [requests, setRequests] = useState<IRequest[]>([]);
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [selectedRow, setSelectedRow] = useState(-1);
-  const [editedRequest, setEditedRequest] = useState("");
+  const [requests, setRequests] = useState<IRequest[]>([])
+  const [selectedTab, setSelectedTab] = useState(0)
+  const [selectedRow, setSelectedRow] = useState(-1)
+  const [editedRequest, setEditedRequest] = useState("")
 
-  const layoutContext = useContext(LayoutContext);
+  const layoutContext = useContext(LayoutContext)
 
   const onTableRowSelected = (i: number) => {
     return (e: React.MouseEvent) => {
-      setSelectedRow(i);
-    };
-  };
+      setSelectedRow(i)
+    }
+  }
 
 
-  const onTabChange = (event: React.ChangeEvent<{}>, newValue: number) => setSelectedTab(newValue);
-  const onEditRequestChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditedRequest(event.target.value);
+  const onTabChange = (event: React.ChangeEvent<{}>, newValue: number) => setSelectedTab(newValue)
+  const onEditRequestChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditedRequest(event.target.value)
 
 
   const onSubmitClicked = async () => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
     ByteAtATimeService.submitRequest(editedRequest).then(resp => {
-      layoutContext.setLoading(false);
+      layoutContext.setLoading(false)
 
-      setRequests([...requests, resp]);
+      setRequests([...requests, resp])
 
       // TODO: find a better way of doing this...
-      const m = resp.rawResponse.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/);
-      if (m) props.setFlag(m[0]);
+      const m = resp.rawResponse.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/)
+      if (m) props.setFlag(m[0])
 
 
     }).catch(err => {
-      layoutContext.setLoading(false);
+      layoutContext.setLoading(false)
       // TODO: HANDLE ERROR
       // error parsing the request...
-    });
+    })
 
 
-  };
-
-  useEffect(() => {
-    setRequests(defaultRequests);
-    setSelectedRow(0);
-
-  }, []);
+  }
 
   useEffect(() => {
-    setEditedRequest(requests[selectedRow]?.rawContent);
-    setSelectedTab(0);
-  }, [selectedRow]);
+    setRequests(defaultRequests)
+    setSelectedRow(0)
+
+  }, [])
+
+  useEffect(() => {
+    setEditedRequest(requests[selectedRow]?.rawContent)
+    setSelectedTab(0)
+  }, [selectedRow])
 
 
 
@@ -104,7 +104,7 @@ const ByteAtATime = (props: IChallengeProps) => {
       <Box mt={2} mb={4}>
         <Alert severity="info">
           A Fakler capture was shared online with you, take a look and have fun :)
-      </Alert>
+        </Alert>
       </Box>
 
       <Typography variant="h4">Captured Packages</Typography>
@@ -155,7 +155,7 @@ const ByteAtATime = (props: IChallengeProps) => {
           <Box textAlign="right">
             <Button color="primary" type="submit" onClick={onSubmitClicked}>
               Send
-            <SendIcon />
+              <SendIcon />
             </Button>
           </Box>
           <TextField multiline rows={16} fullWidth value={editedRequest} onChange={onEditRequestChange} className={classes.editRequestInput} />
@@ -165,7 +165,7 @@ const ByteAtATime = (props: IChallengeProps) => {
       </Box>
     </Box>
 
-  );
-};
+  )
+}
 
-export default ByteAtATime;
+export default ByteAtATime

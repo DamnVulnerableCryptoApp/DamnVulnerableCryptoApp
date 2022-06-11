@@ -1,4 +1,4 @@
 export interface IChatParticipant {
-  username: string;
-  avatar: string;
+  username: string
+  avatar: string
 }

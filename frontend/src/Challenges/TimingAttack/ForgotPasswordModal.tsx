@@ -1,31 +1,31 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
-import React, { useState } from "react";
-import { TimingAttackService } from "./TimingAttackService";
+import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@material-ui/core"
+import Alert from "@material-ui/lab/Alert"
+import React, { useState } from "react"
+import { TimingAttackService } from "./TimingAttackService"
 
 interface IModalProps {
-  isOpen: boolean;
-  setIsOpen: (f: boolean) => void;
-  setFlag: (f: string) => void;
+  isOpen: boolean
+  setIsOpen: (f: boolean) => void
+  setFlag: (f: string) => void
 }
 
-const getContainer = () => document.getElementById('timing-attack-container');
+const getContainer = () => document.getElementById('timing-attack-container')
 
 const ForgotPasswordModal = (props: IModalProps) => {
 
-  const [username, setUsername] = useState("");
-  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
-  const { isOpen, setIsOpen, setFlag } = props;
+  const [username, setUsername] = useState("")
+  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)
+  const { isOpen, setIsOpen, setFlag } = props
 
 
-  const onModalClose = () => setIsOpen(false);
+  const onModalClose = () => setIsOpen(false)
 
   const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    TimingAttackService.forgotPassword(username).then(res => setFlag(res.flag));
-    onModalClose();
-  };
+    TimingAttackService.forgotPassword(username).then(res => setFlag(res.flag))
+    onModalClose()
+  }
 
 
   return (
@@ -45,7 +45,7 @@ const ForgotPasswordModal = (props: IModalProps) => {
         </form>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default ForgotPasswordModal;
+export default ForgotPasswordModal

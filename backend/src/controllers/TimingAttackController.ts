@@ -1,41 +1,41 @@
-import { BodyParams, Controller, Post } from '@tsed/common';
-import { TimingAttackService } from '../services/TimingAttackService';
+import { TimingAttackService } from '../services/TimingAttackService'
+import BaseController from './BaseController'
 
 export interface ILoginRequest {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 export interface IForgotPasswordRequest {
-  username: string;
+  username: string
 }
 
 export interface IForgotPasswordResponse {
-  success: boolean;
-  flag: string;
+  success: boolean
+  flag: string
 }
 
 export interface ILoginResponse {
-  success: boolean;
+  success: boolean
 }
 
-@Controller("/timing-attack")
-export class TimingAttackController {
+export class TimingAttackController extends BaseController {
 
-  @Post("/login")
-  public async index(@BodyParams() login: ILoginRequest): Promise<ILoginResponse> {
-    const success = await TimingAttackService.checkLogin(login.username, login.password);
+  public async index(): Promise<ILoginResponse> {
+    const login: ILoginRequest = this.req.body
+    const success = await TimingAttackService.checkLogin(login.username, login.password)
 
-    return { success };
+    return { success }
   }
 
-  @Post("/forgot-password")
-  public async forgotPassword(@BodyParams() data: IForgotPasswordRequest): Promise<IForgotPasswordResponse> {
-    const ver = await TimingAttackService.checkUsername(data.username);
 
-    const response: IForgotPasswordResponse = { success: true, flag: ver ? TimingAttackService.getFlag() : "" };
+  public async forgotPassword(): Promise<IForgotPasswordResponse> {
+    const data: IForgotPasswordRequest = this.req.body
+    const ver = await TimingAttackService.checkUsername(data.username)
 
-    return response;
+    const response: IForgotPasswordResponse = { success: true, flag: ver ? TimingAttackService.getFlag() : "" }
+
+    return response
   }
 
 }

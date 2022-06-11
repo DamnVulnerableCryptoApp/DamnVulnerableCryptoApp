@@ -1,17 +1,17 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle, TextField, Typography } from "@material-ui/core";
-import React, { useContext } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IEmail, KeyDisclosureService } from "./KeyDisclosureService";
-import useStyles from "./styles";
+import { Box, Button, Dialog, DialogContent, DialogTitle, TextField, Typography } from "@material-ui/core"
+import React, { useContext } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IEmail, KeyDisclosureService } from "./KeyDisclosureService"
+import useStyles from "./styles"
 
 interface IModalProps {
-  inboxUnlocked: boolean;
-  mailboxKey: string;
-  setMailboxKey: (s: string) => void;
-  setInboxUnlocked: (b: boolean) => void;
-  setSelectedEmail: (m: IEmail) => void;
-  setEmails: (emails: IEmail[]) => void;
-  setFlag: (f: string) => void;
+  inboxUnlocked: boolean
+  mailboxKey: string
+  setMailboxKey: (s: string) => void
+  setInboxUnlocked: (b: boolean) => void
+  setSelectedEmail: (m: IEmail) => void
+  setEmails: (emails: IEmail[]) => void
+  setFlag: (f: string) => void
 
 }
 
@@ -19,25 +19,25 @@ interface IModalProps {
 
 const KeyModal = (props: IModalProps) => {
 
-  const layoutContext = useContext(LayoutContext);
-  const classes = useStyles();
+  const layoutContext = useContext(LayoutContext)
+  const classes = useStyles()
 
   const onLoginClicked = () => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
 
     KeyDisclosureService.unlockMailbox(props.mailboxKey).then(res => {
-      layoutContext.setLoading(false);
+      layoutContext.setLoading(false)
       if (res.success) {
-        props.setFlag(res.flag);
-        props.setInboxUnlocked(true);
-        props.setEmails(res.emails);
-        props.setSelectedEmail(res.emails[0]);
+        props.setFlag(res.flag)
+        props.setInboxUnlocked(true)
+        props.setEmails(res.emails)
+        props.setSelectedEmail(res.emails[0])
       }
-    }).catch(() => layoutContext.setLoading(false));
-  };
+    }).catch(() => layoutContext.setLoading(false))
+  }
 
-  const onMailboxChange = (e: React.ChangeEvent<HTMLInputElement>) => props.setMailboxKey(e.target.value);
-  const getContainer = () => document.getElementById('key-disclosure-container');
+  const onMailboxChange = (e: React.ChangeEvent<HTMLInputElement>) => props.setMailboxKey(e.target.value)
+  const getContainer = () => document.getElementById('key-disclosure-container')
 
 
 
@@ -58,8 +58,8 @@ const KeyModal = (props: IModalProps) => {
         </Box>
       </DialogContent>
     </Dialog >
-  );
-};
+  )
+}
 
 
-export default KeyModal;
+export default KeyModal

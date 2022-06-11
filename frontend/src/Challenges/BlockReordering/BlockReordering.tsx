@@ -1,30 +1,30 @@
-import { Box, Typography } from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
-import { LayoutContext } from "../../App/LayoutContext";
-import { IChallengeProps } from "../../Challenge/IChallengeProps";
-import fcaLogo from "../../Images/fca_logo.png";
-import { BlockReorderingService } from "./BlockReorderingService";
-import useStyles from "./styles";
+import { Box, Typography } from "@material-ui/core"
+import React, { useContext, useEffect } from "react"
+import { LayoutContext } from "../../App/LayoutContext"
+import { IChallengeProps } from "../../Challenge/IChallengeProps"
+import fcaLogo from "../../Images/fca_logo.png"
+import { BlockReorderingService } from "./BlockReorderingService"
+import useStyles from "./styles"
 
 
 
 
 const BlockReordering = (props: IChallengeProps) => {
-  const classes = useStyles();
-  const layoutContext = useContext(LayoutContext);
+  const classes = useStyles()
+  const layoutContext = useContext(LayoutContext)
 
   useEffect(() => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
     BlockReorderingService.createAnonymousSessionIfNeeded().then(() => {
       BlockReorderingService.isAdmin().then((res) => {
 
-        props.setFlag(res.flag);
-        layoutContext.setLoading(false);
+        props.setFlag(res.flag)
+        layoutContext.setLoading(false)
 
-      }).catch(() => layoutContext.setLoading(false));
-    }).catch(() => layoutContext.setLoading(false));
+      }).catch(() => layoutContext.setLoading(false))
+    }).catch(() => layoutContext.setLoading(false))
 
-  }, []);
+  }, [])
 
   return (
     <Box >
@@ -61,7 +61,7 @@ const BlockReordering = (props: IChallengeProps) => {
         </Box>
       </Box>
     </Box >
-  );
-};
+  )
+}
 
-export default BlockReordering;
+export default BlockReordering

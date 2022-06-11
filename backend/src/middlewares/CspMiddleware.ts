@@ -1,9 +1,6 @@
-import { IMiddleware, Middleware, Req, Res } from "@tsed/common";
+import { NextFunction, Request, Response } from 'express'
 
-@Middleware()
-export class CspMiddleware implements IMiddleware {
-  use(@Req() request: Req, @Res() response: Res) {
-    response.setHeader("Content-Security-Policy", "default-src 'self'");
-
-  }
+export const cspMiddleware = (err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack)
+  res.setHeader("Content-Security-Policy", "default-src 'self'")
 }

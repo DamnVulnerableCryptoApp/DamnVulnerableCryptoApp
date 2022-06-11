@@ -6,28 +6,25 @@
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.49",
-    "@types/highlight.js": "^9.12.3",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
     "highlight.js": "^10.4.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-markdown": "^4.3.1",
+    "react": "^18.0.5",
+    "react-dom": "^18.0.5",
+    "react-error-overlay": "^6.0.11",
+    "react-markdown": "^8.0.3",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.2",
-    "react-syntax-highlighter": "^12.2.1",
+    "react-scripts": "^5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
     "typed.js": "^2.0.11"
   },
   "scripts": {
-    "start": "npx react-scripts start",
-    "build": "npx react-scripts build",
-    "test": "npx react-scripts test",
-    "eject": "npx react-scripts eject",
-    "test:lint": "npx tslint --project tsconfig.json",
-    "test:lint:fix": "npx tslint --project tsconfig.json --fix"
+    "start:dev": "yarn run start",
+    "start": "yarn react-scripts start",
+    "build": "yarn react-scripts build",
+    "test": "yarn react-scripts test",
+    "eject": "yarn react-scripts eject",
+    "lint": "yarn tslint --project tsconfig.json",
+    "lint:fix": "yarn tslint --project tsconfig.json --fix"
   },
   "browserslist": {
     "production": [
@@ -41,13 +38,24 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "//": "See https://github.com/facebook/create-react-app/issues/11773",
+    "@types/react": "18.0.5",
+    "@types/react-dom": "18.0.5",
+    "react-error-overlay": "6.0.11"
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/highlight.js": "^9.12.3",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^18.0.5",
+    "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.1.5",
-    "npx": "^10.2.2",
-    "tslint": "^6.1.1",
+    "react-app-env": "^1.2.3",
+    "tslint": "^6.1.3",
     "tslint-react": "^5.0.0",
     "typescript": "^3.7.2"
   }

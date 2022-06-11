@@ -1,19 +1,16 @@
-import { $log, ServerLoader } from "@tsed/common";
-import { Server } from "./Server";
-import { FlagService } from './services/FlagService';
+import dotenv from 'dotenv'
+import path from 'path'
+import { startServer } from './app'
 
-async function bootstrap() {
+export const isTesting = process.env?.NODE_ENV === "test"
 
-  await FlagService.createOrLoadFlags();
-  try {
-    $log.debug("Start server...");
-    const server = await ServerLoader.bootstrap(Server);
+const main = async () => {
 
-    await server.listen();
-    $log.debug("Server initialized");
-  } catch (er) {
-    $log.error(er);
-  }
+  // from here forward process.env will have all variables from .env files
+  dotenv.config({ path: path.join(process.cwd(), `.${process.env.NODE_ENV}.env`) })
+
+  const app = startServer()
 }
 
-bootstrap();
+process.on('uncaughtException', (err: any) => console.error(err))
+main()

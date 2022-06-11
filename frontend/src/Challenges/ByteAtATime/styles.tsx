@@ -1,5 +1,5 @@
-import { createStyles, makeStyles, TableCell, TableRow, Theme, withStyles } from "@material-ui/core";
-import { amber } from "@material-ui/core/colors";
+import { createStyles, makeStyles, TableCell, TableRow, Theme, withStyles } from "@material-ui/core"
+import { amber } from "@material-ui/core/colors"
 
 const useStyles = makeStyles({
   requestsTable: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   editRequestInput: {
     backgroundColor: '#FFF'
   }
-});
+})
 
 export const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +33,7 @@ export const StyledTableCell = withStyles((theme: Theme) =>
       fontSize: 14,
     },
   }),
-)(TableCell);
+)(TableCell)
 
 export const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
@@ -47,6 +47,6 @@ export const StyledTableRow = withStyles((theme: Theme) =>
       }
     },
   }),
-)(TableRow);
+)(TableRow)
 
-export default useStyles;
+export default useStyles

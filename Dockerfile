@@ -1,34 +1,25 @@
-###############################################################################
-###############################################################################
-##                      _______ _____ ______ _____                           ##
-##                     |__   __/ ____|  ____|  __ \                          ##
-##                        | | | (___ | |__  | |  | |                         ##
-##                        | |  \___ \|  __| | |  | |                         ##
-##                        | |  ____) | |____| |__| |                         ##
-##                        |_| |_____/|______|_____/                          ##
-##                                                                           ##
-## description     : Dockerfile for TsED Application                         ##
-## author          : TsED team                                               ##
-## date            : 20190820                                                ##
-## version         : 1.0                                                     ##
-###############################################################################
-###############################################################################
-FROM node:12.13.0-alpine
+FROM node:18-alpine3.15 as builder
 
-RUN apk update && apk add build-base git python
-COPY backend/package.json .
-COPY backend/yarn.lock .
-COPY backend/src ./src
-COPY backend/dist ./dist
+COPY . .
+RUN yarn install
+RUN yarn run build-with-deps
 
-# COPY ./resources ./resources
-# COPY ./spec ./spec
-RUN npm install -g yarn npx 
+FROM node:18-alpine3.15 as runner
+
+
+RUN mkdir /app
+COPY --from=builder backend/build /app/build
+COPY --from=builder backend/yarn.lock /app
+COPY --from=builder backend/package.json /app
+
+WORKDIR /app
+
+RUN yarn global add cross-env
 RUN yarn install --production
-RUN yarn global add global cross-env
 
-EXPOSE 8081
-ENV PORT 8081
+EXPOSE 4000
+ENV PORT 4000
 ENV NODE_ENV production
+
 
 CMD ["yarn", "start:prod"]

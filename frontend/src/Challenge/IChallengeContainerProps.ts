@@ -1,5 +1,5 @@
-import { ChallengeData } from "../Challenges/Challenges";
+import { ChallengeData } from "../Challenges/Challenges"
 
 export interface IChallengeContainerProps {
-  obj: ChallengeData;
+  obj: ChallengeData
 }

@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles({
   root: {
@@ -38,6 +38,6 @@ const useStyles = makeStyles({
     }
 
   }
-});
+})
 
-export default useStyles;
+export default useStyles

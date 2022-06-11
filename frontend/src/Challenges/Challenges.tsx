@@ -1,23 +1,23 @@
-import { IChallengeProps } from "../Challenge/IChallengeProps";
-import AlgorithmNegotiation from "./AlgorithmNegotiation/AlgorithmNegotiation";
-import BlockReordering from "./BlockReordering/BlockReordering";
-import ByteAtATime from "./ByteAtATime/ByteAtATime";
-import ChecksumCollision from "./ChecksumCollision/ChecksumCollision";
-import ClassicCipher from "./ClassicCipher/ClassicCipher";
-import HashLengthExtension from "./HashLengthExtension/HashLengthExtension";
-import InsecureRandom from "./InsecureRandom/InsecureRandom";
-import IvDetection from "./IvDetection/IvDetection";
-import KeyDisclosure from "./KeyDisclosure/KeyDisclosure";
-import KnownPlaintextAndKeyReuse from "./KnownPlaintextAndKeyReuse/KnownPlaintextAndKeyReuse";
-import PaddingOracle from "./PaddingOracle/PaddingOracle";
-import TimingAttack from "./TimingAttack/TimingAttack";
-import WeakHashing from "./WeakHashing/WeakHashing";
+import { IChallengeProps } from "../Challenge/IChallengeProps"
+import AlgorithmNegotiation from "./AlgorithmNegotiation/AlgorithmNegotiation"
+import BlockReordering from "./BlockReordering/BlockReordering"
+import ByteAtATime from "./ByteAtATime/ByteAtATime"
+import ChecksumCollision from "./ChecksumCollision/ChecksumCollision"
+import ClassicCipher from "./ClassicCipher/ClassicCipher"
+import HashLengthExtension from "./HashLengthExtension/HashLengthExtension"
+import InsecureRandom from "./InsecureRandom/InsecureRandom"
+import IvDetection from "./IvDetection/IvDetection"
+import KeyDisclosure from "./KeyDisclosure/KeyDisclosure"
+import KnownPlaintextAndKeyReuse from "./KnownPlaintextAndKeyReuse/KnownPlaintextAndKeyReuse"
+import PaddingOracle from "./PaddingOracle/PaddingOracle"
+import TimingAttack from "./TimingAttack/TimingAttack"
+import WeakHashing from "./WeakHashing/WeakHashing"
 
 export interface ChallengeData {
-  name: string;
-  description: string;
-  url: string;
-  component: (props: IChallengeProps) => JSX.Element;
+  name: string
+  description: string
+  url: string
+  component: (props: IChallengeProps) => JSX.Element
 }
 
 
@@ -118,7 +118,7 @@ const Challenges: ChallengeData[] = [
 
 
 
-];
+]
 
 
-export default Challenges;
+export default Challenges

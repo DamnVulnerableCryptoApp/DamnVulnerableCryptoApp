@@ -1,45 +1,45 @@
-import { Box, Button, Card, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@material-ui/core';
-import PublicIcon from '@material-ui/icons/Public';
-import Alert from '@material-ui/lab/Alert';
-import React, { useContext, useState } from 'react';
-import { LayoutContext } from '../../App/LayoutContext';
-import { IChallengeProps } from '../../Challenge/IChallengeProps';
-import useStyles from './styles';
-import { WeakHashingService } from './WeakHashingService';
+import { Box, Button, Card, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@material-ui/core'
+import PublicIcon from '@material-ui/icons/Public'
+import Alert from '@material-ui/lab/Alert'
+import React, { useContext, useState } from 'react'
+import { LayoutContext } from '../../App/LayoutContext'
+import { IChallengeProps } from '../../Challenge/IChallengeProps'
+import useStyles from './styles'
+import { WeakHashingService } from './WeakHashingService'
 
 
 const LoginScreen = (props: IChallengeProps) => {
 
-  const classes = useStyles();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [failedLogin, setFailedLogin] = useState(false);
-  const layoutContext = useContext(LayoutContext);
+  const classes = useStyles()
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [failedLogin, setFailedLogin] = useState(false)
+  const layoutContext = useContext(LayoutContext)
 
-  let loginError;
+  let loginError
   if (failedLogin)
-    loginError = <Alert severity="error" >Failed to login</Alert>;
+    loginError = <Alert severity="error" >Failed to login</Alert>
 
 
   const doLogin = (user: string, pass: string) => {
-    layoutContext.setLoading(true);
+    layoutContext.setLoading(true)
 
     WeakHashingService.login(user, pass).then((res) => {
       if (res.flag) {
-        props.setFlag(res.flag);
-        setFailedLogin(false);
-        window.scrollTo(0, 200);
+        props.setFlag(res.flag)
+        setFailedLogin(false)
+        window.scrollTo(0, 200)
       }
       else
-        setFailedLogin(true);
+        setFailedLogin(true)
 
-      layoutContext.setLoading(false);
-    }).catch(() => layoutContext.setLoading(false));
-  };
+      layoutContext.setLoading(false)
+    }).catch(() => layoutContext.setLoading(false))
+  }
 
-  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
-  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-  const onLoginButtonPressed = () => doLogin(username, password);
+  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+  const onLoginButtonPressed = () => doLogin(username, password)
 
   return (
 
@@ -79,7 +79,7 @@ const LoginScreen = (props: IChallengeProps) => {
       </Box>
     </Box>
 
-  );
-};
+  )
+}
 
-export default LoginScreen;
+export default LoginScreen

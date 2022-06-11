@@ -14,12 +14,11 @@ code {
 }
 
 
-input[type=file]{
+input[type=file] {
   display: none;
 }
 
-pre{
+pre {
   white-space: pre-wrap;
   word-break: break-word;
 }
-

@@ -1,49 +1,43 @@
-import { $log, Controller, Get, QueryParams } from '@tsed/common';
-import { InsecureRandomService } from '../services/InsecureRandomService';
+import { InsecureRandomService } from '../services/InsecureRandomService'
+import BaseController from './BaseController'
 
 export interface ICouponsResponse {
-  coupons: number[];
+  coupons: number[]
 }
 
 export interface ICheckResponse {
-  valid: boolean;
-  flag: string;
+  valid: boolean
+  flag: string
 }
 
+export class InsecureRandomController extends BaseController {
 
-@Controller("/random")
-export class InsecureRandomController {
-
-  static nextCoupons: number[];
-  static currentCoupons: number[];
-
+  static nextCoupons: number[]
+  static currentCoupons: number[]
 
   // IMPORTANT:
   // this challenge may have problems if being served to more then one person...
   // since the nextcoupons will be overriden
-
-  @Get("/")
   public index(): ICouponsResponse {
-    InsecureRandomController.currentCoupons = InsecureRandomService.generate5RandomValues(5);
-    InsecureRandomController.nextCoupons = InsecureRandomService.generate5RandomValues(5);
+    InsecureRandomController.currentCoupons = InsecureRandomService.generate5RandomValues(5)
+    InsecureRandomController.nextCoupons = InsecureRandomService.generate5RandomValues(5)
 
-    $log.info("Generated 5 coupons: " + InsecureRandomController.currentCoupons.toString() + " - and 5 to be predicted: " + InsecureRandomController.nextCoupons.toString());
+    console.info("Generated 5 coupons: " + InsecureRandomController.currentCoupons.toString() + " - and 5 to be predicted: " + InsecureRandomController.nextCoupons.toString())
 
-    return { coupons: InsecureRandomController.currentCoupons };
+    return { coupons: InsecureRandomController.currentCoupons }
   }
 
 
-  @Get("/check")
-  public check(@QueryParams("couponCode") code: number): ICheckResponse {
+  public check(): ICheckResponse {
+    const code = parseFloat(this.getQueryParam("couponCode"))
 
     if (InsecureRandomController.currentCoupons.includes(code))
-      return { valid: true, flag: "" };
+      return { valid: true, flag: "" }
     else if (InsecureRandomController.nextCoupons.includes(code))
-      return { valid: true, flag: InsecureRandomService.getFlag() };
+      return { valid: true, flag: InsecureRandomService.getFlag() }
     else
-      return { flag: "", valid: false };
+      return { flag: "", valid: false }
   }
-
 
   // function mulberry32(a) {
   //   return function() {
